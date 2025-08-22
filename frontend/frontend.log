@@ -1,0 +1,1611 @@
+
+Warning: This is a simple server for use in testing or debugging Angular applications
+locally. It hasn't been reviewed for security issues.
+
+Binding this server to an open connection can result in compromising your application or
+computer. Using a different host than the one passed to the "--host" flag might result in
+websocket connection issues. You might need to use "--disable-host-check" if that's the
+case.
+    
+Component HMR has been enabled, see https://angular.dev/hmr for more info.
+❯ Building...
+✔ Building...
+Initial chunk files | Names                            |  Raw size
+polyfills.js        | polyfills                        |  89.80 kB | 
+main.js             | main                             |  85.93 kB | 
+chunk-WN4LZNMU.js   | -                                |   3.45 kB | 
+chunk-D6VPGVQD.js   | -                                |   2.98 kB | 
+chunk-CZJLB7T5.js   | -                                |   1.08 kB | 
+styles.css          | styles                           |  96 bytes | 
+
+                    | Initial total                    | 183.34 kB
+
+Lazy chunk files    | Names                            |  Raw size
+chunk-YOMUKQXN.js   | loan-application-form-component  | 113.71 kB | 
+chunk-PPY3KDJM.js   | property-comparison-component    |  84.32 kB | 
+chunk-5KHZ64BR.js   | rent-vs-buy-calculator-component |  77.20 kB | 
+chunk-UYOFWF5V.js   | user-dashboard-component         |  76.94 kB | 
+chunk-TJE3RSYD.js   | mortgage-calculator-component    |  72.02 kB | 
+chunk-XJPTIBWS.js   | loan-review-component            |  50.67 kB | 
+chunk-WYCGW6NJ.js   | property-search-component        |  48.48 kB | 
+chunk-YAEGNMD4.js   | user-management-component        |  40.48 kB | 
+chunk-NFJEXYAW.js   | loan-management-component        |  39.65 kB | 
+chunk-EYQTYAJJ.js   | property-detail-component        |  39.09 kB | 
+chunk-LVVCMPBI.js   | admin-dashboard-component        |  30.06 kB | 
+chunk-7CO2YMG5.js   | -                                |   8.26 kB | 
+chunk-XO6DR47S.js   | -                                |   4.74 kB | 
+chunk-6ZVQE7XS.js   | -                                |   4.44 kB | 
+chunk-AH4C6E6G.js   | -                                |   2.28 kB | 
+
+Application bundle generation complete. [4.383 seconds]
+
+Watch mode enabled. Watching for file changes...
+NOTE: Raw file sizes do not reflect development server per-request transformations.
+  ➜  Local:   http://localhost:4200/
+  ➜  Network: http://192.168.1.8:4200/
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Initial chunk files | Names                          | Raw size
+main.js             | main                           | 85.88 kB | 
+
+Lazy chunk files    | Names                          | Raw size
+chunk-KOYBLDN2.js   | refinance-calculator-component | 96.09 kB | 
+
+Application bundle generation complete. [2.184 seconds]
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:59:
+[37m      42 │ ...Module, RouterLink, [32mLoadingSpinnerComponent[37m, ProgressIndicatorC...
+         ╵                        [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ProgressIndicatorComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:84:
+[37m      42 │ ... RouterLink, LoadingSpinnerComponent, [32mProgressIndicatorComponent[37m],
+         ╵                                          [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Initial chunk files | Names                              | Raw size
+main.js             | main                               | 85.83 kB | 
+
+Lazy chunk files    | Names                              | Raw size
+chunk-4DY6LN4P.js   | refinance-calculator-component     | 85.84 kB | 
+chunk-4OIM3H6A.js   | extra-payment-calculator-component | 77.97 kB | 
+chunk-CW2NNZKP.js   | -                                  | 10.16 kB | 
+
+Application bundle generation complete. [0.688 seconds]
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of ExtraPaymentCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/extra-payment-calculator.component.ts:78:59:
+[37m      78 │ ...Module, ReactiveFormsModule, RouterLink, [32mLoadingSpinnerComponent[37m],
+         ╵                                             [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:59:
+[37m      42 │ ...Module, RouterLink, [32mLoadingSpinnerComponent[37m, ProgressIndicatorC...
+         ╵                        [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ProgressIndicatorComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:84:
+[37m      42 │ ... RouterLink, LoadingSpinnerComponent, [32mProgressIndicatorComponent[37m],
+         ╵                                          [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Application bundle generation failed. [0.880 seconds]
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ErrorBoundaryComponent is not used within the template of MarketTrendsDashboardComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/market-trends-dashboard.component.ts:13:84:
+[37m      13 │ ...ule, RouterLink, LoadingSpinnerComponent, [32mErrorBoundaryComponent[37m],
+         ╵                                              [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of ExtraPaymentCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/extra-payment-calculator.component.ts:78:59:
+[37m      78 │ ...Module, ReactiveFormsModule, RouterLink, [32mLoadingSpinnerComponent[37m],
+         ╵                                             [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:59:
+[37m      42 │ ...Module, RouterLink, [32mLoadingSpinnerComponent[37m, ProgressIndicatorC...
+         ╵                        [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ProgressIndicatorComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:84:
+[37m      42 │ ... RouterLink, LoadingSpinnerComponent, [32mProgressIndicatorComponent[37m],
+         ╵                                          [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'points' since it isn't a known property of ':svg:polyline'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/market-trends-dashboard.component.ts:116:22:
+[37m      116 │                       [32m[points]="getChartPoints()"[37m
+          ╵                       [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Can't have multiple template bindings on one element. Use only one attribute prefixed with *[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/market-trends-dashboard.component.ts:130:20:
+[37m      130 │                     [32m*ngIf="i % 3 === 0"[37m
+          ╵                     [32m~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'i' does not exist on type 'MarketTrendsDashboardComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/market-trends-dashboard.component.ts:130:27:
+[37m      130 │                     *ngIf="[32mi[37m % 3 === 0"
+          ╵                            [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'points' since it isn't a known property of ':svg:polyline'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/market-trends-dashboard.component.ts:164:20:
+[37m      164 │                     [32m[points]="getRateChartPoints('rate30Year')"[37m
+          ╵                     [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'points' since it isn't a known property of ':svg:polyline'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/market-trends-dashboard.component.ts:174:20:
+[37m      174 │                     [32m[points]="getRateChartPoints('rate15Year')"[37m
+          ╵                     [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'points' since it isn't a known property of ':svg:polyline'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/market-trends-dashboard.component.ts:184:20:
+[37m      184 │                     [32m[points]="getRateChartPoints('rateARM')"[37m
+          ╵                     [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS-991010: template must be a string
+  Value could not be determined statically.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:48:12:
+[37m      48 │   template: [32m`[37m
+         ╵             [32m^[0m
+
+  A string value could not be determined statically.
+
+    src/app/market-trends/components/price-history-charts.component.ts:116:57:
+[37m      116 │ ...ight">\\${[32m{ selectedProperty.currentPrice | number:'1.0-0' }[37m}<...
+          ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS18004: No value exists in scope for the shorthand property 'selectedProperty'. Either declare one or provide an initializer.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:116:59:
+[37m      116 │ ...value highlight">\\${{ [32mselectedProperty[37m.currentPrice | number:...
+          ╵                           [32m~~~~~~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ',' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:116:75:
+[37m      116 │ ...ghlight">\\${{ selectedProperty[32m.[37mcurrentPrice | number:'1.0-0' ...
+          ╵                                   [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS2693: 'number' only refers to a type, but is being used as a value here.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:116:91:
+[37m      116 │ ...t">\\${{ selectedProperty.currentPrice | [32mnumber[37m:'1.0-0' }}</span>
+          ╵                                             [32m~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ',' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:116:97:
+[37m      116 │ ...t">\\${{ selectedProperty.currentPrice | number[32m:[37m'1.0-0' }}</span>
+          ╵                                                   [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ':' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:116:106:
+[37m      116 │ ...t">\\${{ selectedProperty.currentPrice | number:'1.0-0' [32m}[37m}</span>
+          ╵                                                            [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type '{}' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:164:28:
+[37m      164 │                         \\${[32m{[37m (point.price / 1000).toFixed(0) }}K
+          ╵                             [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1136: Property assignment expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:164:30:
+[37m      164 │                         \\${{ [32m([37mpoint.price / 1000).toFixed(0) }}K
+          ╵                               [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS2552: Cannot find name 'point'. Did you mean 'print'?[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:164:31:
+[37m      164 │                         \\${{ ([32mpoint[37m.price / 1000).toFixed(0) }}K
+          ╵                                [32m~~~~~[0m
+
+  'print' is declared here.
+
+    node_modules/.pnpm/typescript@5.7.3/node_modules/typescript/lib/lib.dom.d.ts:28157:17:
+[37m      28157 │ declare function [32mprint[37m(): void;
+            ╵                  [32m~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS18004: No value exists in scope for the shorthand property 'label'. Either declare one or provide an initializer.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:186:28:
+[37m      186 │                       \\${{ [32mlabel[37m.value }}
+          ╵                             [32m~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ',' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:186:33:
+[37m      186 │                       \\${{ label[32m.[37mvalue }}
+          ╵                                  [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS18004: No value exists in scope for the shorthand property 'comp'. Either declare one or provide an initializer.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:293:51:
+[37m      293 │ ...n class="metric-value">\\${{ [32mcomp[37m.price | number:'1.0-0' }}</s...
+          ╵                                 [32m~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ',' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:293:55:
+[37m      293 │ ... class="metric-value">\\${{ comp[32m.[37mprice | number:'1.0-0' }}</span>
+          ╵                                    [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS2693: 'number' only refers to a type, but is being used as a value here.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:293:64:
+[37m      293 │ ... class="metric-value">\\${{ comp.price | [32mnumber[37m:'1.0-0' }}</span>
+          ╵                                             [32m~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ',' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:293:70:
+[37m      293 │ ... class="metric-value">\\${{ comp.price | number[32m:[37m'1.0-0' }}</span>
+          ╵                                                   [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ':' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:293:79:
+[37m      293 │ ... class="metric-value">\\${{ comp.price | number:'1.0-0' [32m}[37m}</span>
+          ╵                                                            [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS18004: No value exists in scope for the shorthand property 'comp'. Either declare one or provide an initializer.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:297:51:
+[37m      297 │ ...n class="metric-value">\\${{ [32mcomp[37m.pricePerSqFt | number:'1.0-0...
+          ╵                                 [32m~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ',' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:297:55:
+[37m      297 │ ...class="metric-value">\\${{ comp[32m.[37mpricePerSqFt | number:'1.0-0' ...
+          ╵                                   [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS2693: 'number' only refers to a type, but is being used as a value here.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:297:71:
+[37m      297 │ ..."metric-value">\\${{ comp.pricePerSqFt | [32mnumber[37m:'1.0-0' }}</span>
+          ╵                                             [32m~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ',' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:297:77:
+[37m      297 │ ..."metric-value">\\${{ comp.pricePerSqFt | number[32m:[37m'1.0-0' }}</span>
+          ╵                                                   [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ':' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:297:86:
+[37m      297 │ ..."metric-value">\\${{ comp.pricePerSqFt | number:'1.0-0' [32m}[37m}</span>
+          ╵                                                            [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mExpected identifier but found ":"[0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:435:77:
+[37m      435 │ ...light">\\${{ selectedProperty, [32m:[37m .currentPrice | number, '1.0-...
+          ╵                                   [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG1: Object is possibly 'null'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/components/error-boundary.component.ts:31:24:
+[37m      31 │           <pre>{{ error.[32mdetails[37m }}</pre>
+         ╵                         [32m~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG1: Object is possibly 'null'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/components/error-boundary.component.ts:74:43:
+[37m      74 │         <p *ngIf="error?.details">{{ error.[32mdetails[37m }}</p>
+         ╵                                            [32m~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG1: Object is possibly 'null'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/components/error-boundary.component.ts:84:43:
+[37m      84 │         <p *ngIf="error?.details">{{ error.[32mdetails[37m }}</p>
+         ╵                                            [32m~~~~~~~[0m
+
+
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Application bundle generation failed. [0.402 seconds]
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ErrorBoundaryComponent is not used within the template of MarketTrendsDashboardComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/market-trends-dashboard.component.ts:13:84:
+[37m      13 │ ...ule, RouterLink, LoadingSpinnerComponent, [32mErrorBoundaryComponent[37m],
+         ╵                                              [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of ExtraPaymentCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/extra-payment-calculator.component.ts:78:59:
+[37m      78 │ ...Module, ReactiveFormsModule, RouterLink, [32mLoadingSpinnerComponent[37m],
+         ╵                                             [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:59:
+[37m      42 │ ...Module, RouterLink, [32mLoadingSpinnerComponent[37m, ProgressIndicatorC...
+         ╵                        [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ProgressIndicatorComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:84:
+[37m      42 │ ... RouterLink, LoadingSpinnerComponent, [32mProgressIndicatorComponent[37m],
+         ╵                                          [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'points' since it isn't a known property of ':svg:polyline'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/market-trends-dashboard.component.ts:116:22:
+[37m      116 │                       [32m[points]="getChartPoints()"[37m
+          ╵                       [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Can't have multiple template bindings on one element. Use only one attribute prefixed with *[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/market-trends-dashboard.component.ts:130:20:
+[37m      130 │                     [32m*ngIf="i % 3 === 0"[37m
+          ╵                     [32m~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'i' does not exist on type 'MarketTrendsDashboardComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/market-trends-dashboard.component.ts:130:27:
+[37m      130 │                     *ngIf="[32mi[37m % 3 === 0"
+          ╵                            [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'points' since it isn't a known property of ':svg:polyline'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/market-trends-dashboard.component.ts:164:20:
+[37m      164 │                     [32m[points]="getRateChartPoints('rate30Year')"[37m
+          ╵                     [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'points' since it isn't a known property of ':svg:polyline'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/market-trends-dashboard.component.ts:174:20:
+[37m      174 │                     [32m[points]="getRateChartPoints('rate15Year')"[37m
+          ╵                     [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'points' since it isn't a known property of ':svg:polyline'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/market-trends-dashboard.component.ts:184:20:
+[37m      184 │                     [32m[points]="getRateChartPoints('rateARM')"[37m
+          ╵                     [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS-991010: template must be a string
+  Value could not be determined statically.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:48:12:
+[37m      48 │   template: [32m`[37m
+         ╵             [32m^[0m
+
+  A string value could not be determined statically.
+
+    src/app/market-trends/components/price-history-charts.component.ts:116:55:
+[37m      116 │ ...hlight">${[32m{ selectedProperty.currentPrice | number:'1.0-0' }[37m}<...
+          ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS18004: No value exists in scope for the shorthand property 'selectedProperty'. Either declare one or provide an initializer.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:116:57:
+[37m      116 │ ...c-value highlight">${{ [32mselectedProperty[37m.currentPrice | number:...
+          ╵                           [32m~~~~~~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ',' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:116:73:
+[37m      116 │ ...highlight">${{ selectedProperty[32m.[37mcurrentPrice | number:'1.0-0' ...
+          ╵                                   [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS2693: 'number' only refers to a type, but is being used as a value here.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:116:89:
+[37m      116 │ ...ght">${{ selectedProperty.currentPrice | [32mnumber[37m:'1.0-0' }}</span>
+          ╵                                             [32m~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ',' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:116:95:
+[37m      116 │ ...ght">${{ selectedProperty.currentPrice | number[32m:[37m'1.0-0' }}</span>
+          ╵                                                   [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ':' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:116:104:
+[37m      116 │ ...ght">${{ selectedProperty.currentPrice | number:'1.0-0' [32m}[37m}</span>
+          ╵                                                            [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type '{}' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:164:26:
+[37m      164 │                         ${[32m{[37m (point.price / 1000).toFixed(0) }}K
+          ╵                           [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1136: Property assignment expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:164:28:
+[37m      164 │                         ${{ [32m([37mpoint.price / 1000).toFixed(0) }}K
+          ╵                             [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS2552: Cannot find name 'point'. Did you mean 'print'?[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:164:29:
+[37m      164 │                         ${{ ([32mpoint[37m.price / 1000).toFixed(0) }}K
+          ╵                              [32m~~~~~[0m
+
+  'print' is declared here.
+
+    node_modules/.pnpm/typescript@5.7.3/node_modules/typescript/lib/lib.dom.d.ts:28157:17:
+[37m      28157 │ declare function [32mprint[37m(): void;
+            ╵                  [32m~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS18004: No value exists in scope for the shorthand property 'label'. Either declare one or provide an initializer.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:186:26:
+[37m      186 │                       ${{ [32mlabel[37m.value }}
+          ╵                           [32m~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ',' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:186:31:
+[37m      186 │                       ${{ label[32m.[37mvalue }}
+          ╵                                [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS18004: No value exists in scope for the shorthand property 'comp'. Either declare one or provide an initializer.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:293:49:
+[37m      293 │ ...pan class="metric-value">${{ [32mcomp[37m.price | number:'1.0-0' }}</s...
+          ╵                                 [32m~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ',' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:293:53:
+[37m      293 │ ...an class="metric-value">${{ comp[32m.[37mprice | number:'1.0-0' }}</span>
+          ╵                                    [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS2693: 'number' only refers to a type, but is being used as a value here.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:293:62:
+[37m      293 │ ...an class="metric-value">${{ comp.price | [32mnumber[37m:'1.0-0' }}</span>
+          ╵                                             [32m~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ',' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:293:68:
+[37m      293 │ ...an class="metric-value">${{ comp.price | number[32m:[37m'1.0-0' }}</span>
+          ╵                                                   [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ':' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:293:77:
+[37m      293 │ ...an class="metric-value">${{ comp.price | number:'1.0-0' [32m}[37m}</span>
+          ╵                                                            [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS18004: No value exists in scope for the shorthand property 'comp'. Either declare one or provide an initializer.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:297:49:
+[37m      297 │ ...pan class="metric-value">${{ [32mcomp[37m.pricePerSqFt | number:'1.0-0...
+          ╵                                 [32m~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ',' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:297:53:
+[37m      297 │ ...n class="metric-value">${{ comp[32m.[37mpricePerSqFt | number:'1.0-0' ...
+          ╵                                   [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS2693: 'number' only refers to a type, but is being used as a value here.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:297:69:
+[37m      297 │ ...s="metric-value">${{ comp.pricePerSqFt | [32mnumber[37m:'1.0-0' }}</span>
+          ╵                                             [32m~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ',' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:297:75:
+[37m      297 │ ...s="metric-value">${{ comp.pricePerSqFt | number[32m:[37m'1.0-0' }}</span>
+          ╵                                                   [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ':' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:297:84:
+[37m      297 │ ...s="metric-value">${{ comp.pricePerSqFt | number:'1.0-0' [32m}[37m}</span>
+          ╵                                                            [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mExpected identifier but found ":"[0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:435:75:
+[37m      435 │ ...ghlight">${{ selectedProperty, [32m:[37m .currentPrice | number, '1.0-...
+          ╵                                   [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG1: Object is possibly 'null'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/components/error-boundary.component.ts:31:24:
+[37m      31 │           <pre>{{ error.[32mdetails[37m }}</pre>
+         ╵                         [32m~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG1: Object is possibly 'null'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/components/error-boundary.component.ts:74:43:
+[37m      74 │         <p *ngIf="error?.details">{{ error.[32mdetails[37m }}</p>
+         ╵                                            [32m~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG1: Object is possibly 'null'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/components/error-boundary.component.ts:84:43:
+[37m      84 │         <p *ngIf="error?.details">{{ error.[32mdetails[37m }}</p>
+         ╵                                            [32m~~~~~~~[0m
+
+
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Application bundle generation failed. [0.490 seconds]
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ErrorBoundaryComponent is not used within the template of MarketTrendsDashboardComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/market-trends-dashboard.component.ts:13:84:
+[37m      13 │ ...ule, RouterLink, LoadingSpinnerComponent, [32mErrorBoundaryComponent[37m],
+         ╵                                              [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of ExtraPaymentCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/extra-payment-calculator.component.ts:78:59:
+[37m      78 │ ...Module, ReactiveFormsModule, RouterLink, [32mLoadingSpinnerComponent[37m],
+         ╵                                             [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:59:
+[37m      42 │ ...Module, RouterLink, [32mLoadingSpinnerComponent[37m, ProgressIndicatorC...
+         ╵                        [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ProgressIndicatorComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:84:
+[37m      42 │ ... RouterLink, LoadingSpinnerComponent, [32mProgressIndicatorComponent[37m],
+         ╵                                          [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS-991010: template must be a string
+  Value could not be determined statically.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:48:12:
+[37m      48 │   template: [32m`[37m
+         ╵             [32m^[0m
+
+  A string value could not be determined statically.
+
+    src/app/market-trends/components/price-history-charts.component.ts:116:55:
+[37m      116 │ ...hlight">${[32m{ selectedProperty.currentPrice | number:'1.0-0' }[37m}<...
+          ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS18004: No value exists in scope for the shorthand property 'selectedProperty'. Either declare one or provide an initializer.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:116:57:
+[37m      116 │ ...c-value highlight">${{ [32mselectedProperty[37m.currentPrice | number:...
+          ╵                           [32m~~~~~~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ',' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:116:73:
+[37m      116 │ ...highlight">${{ selectedProperty[32m.[37mcurrentPrice | number:'1.0-0' ...
+          ╵                                   [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS2693: 'number' only refers to a type, but is being used as a value here.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:116:89:
+[37m      116 │ ...ght">${{ selectedProperty.currentPrice | [32mnumber[37m:'1.0-0' }}</span>
+          ╵                                             [32m~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ',' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:116:95:
+[37m      116 │ ...ght">${{ selectedProperty.currentPrice | number[32m:[37m'1.0-0' }}</span>
+          ╵                                                   [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ':' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:116:104:
+[37m      116 │ ...ght">${{ selectedProperty.currentPrice | number:'1.0-0' [32m}[37m}</span>
+          ╵                                                            [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type '{}' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:164:26:
+[37m      164 │                         ${[32m{[37m (point.price / 1000).toFixed(0) }}K
+          ╵                           [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1136: Property assignment expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:164:28:
+[37m      164 │                         ${{ [32m([37mpoint.price / 1000).toFixed(0) }}K
+          ╵                             [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS2552: Cannot find name 'point'. Did you mean 'print'?[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:164:29:
+[37m      164 │                         ${{ ([32mpoint[37m.price / 1000).toFixed(0) }}K
+          ╵                              [32m~~~~~[0m
+
+  'print' is declared here.
+
+    node_modules/.pnpm/typescript@5.7.3/node_modules/typescript/lib/lib.dom.d.ts:28157:17:
+[37m      28157 │ declare function [32mprint[37m(): void;
+            ╵                  [32m~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS18004: No value exists in scope for the shorthand property 'label'. Either declare one or provide an initializer.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:186:26:
+[37m      186 │                       ${{ [32mlabel[37m.value }}
+          ╵                           [32m~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ',' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:186:31:
+[37m      186 │                       ${{ label[32m.[37mvalue }}
+          ╵                                [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS18004: No value exists in scope for the shorthand property 'comp'. Either declare one or provide an initializer.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:293:49:
+[37m      293 │ ...pan class="metric-value">${{ [32mcomp[37m.price | number:'1.0-0' }}</s...
+          ╵                                 [32m~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ',' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:293:53:
+[37m      293 │ ...an class="metric-value">${{ comp[32m.[37mprice | number:'1.0-0' }}</span>
+          ╵                                    [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS2693: 'number' only refers to a type, but is being used as a value here.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:293:62:
+[37m      293 │ ...an class="metric-value">${{ comp.price | [32mnumber[37m:'1.0-0' }}</span>
+          ╵                                             [32m~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ',' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:293:68:
+[37m      293 │ ...an class="metric-value">${{ comp.price | number[32m:[37m'1.0-0' }}</span>
+          ╵                                                   [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ':' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:293:77:
+[37m      293 │ ...an class="metric-value">${{ comp.price | number:'1.0-0' [32m}[37m}</span>
+          ╵                                                            [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS18004: No value exists in scope for the shorthand property 'comp'. Either declare one or provide an initializer.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:297:49:
+[37m      297 │ ...pan class="metric-value">${{ [32mcomp[37m.pricePerSqFt | number:'1.0-0...
+          ╵                                 [32m~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ',' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:297:53:
+[37m      297 │ ...n class="metric-value">${{ comp[32m.[37mpricePerSqFt | number:'1.0-0' ...
+          ╵                                   [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS2693: 'number' only refers to a type, but is being used as a value here.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:297:69:
+[37m      297 │ ...s="metric-value">${{ comp.pricePerSqFt | [32mnumber[37m:'1.0-0' }}</span>
+          ╵                                             [32m~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ',' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:297:75:
+[37m      297 │ ...s="metric-value">${{ comp.pricePerSqFt | number[32m:[37m'1.0-0' }}</span>
+          ╵                                                   [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ':' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:297:84:
+[37m      297 │ ...s="metric-value">${{ comp.pricePerSqFt | number:'1.0-0' [32m}[37m}</span>
+          ╵                                                            [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mExpected identifier but found ":"[0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:435:75:
+[37m      435 │ ...ghlight">${{ selectedProperty, [32m:[37m .currentPrice | number, '1.0-...
+          ╵                                   [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG1: Object is possibly 'null'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/components/error-boundary.component.ts:31:24:
+[37m      31 │           <pre>{{ error.[32mdetails[37m }}</pre>
+         ╵                         [32m~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG1: Object is possibly 'null'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/components/error-boundary.component.ts:74:43:
+[37m      74 │         <p *ngIf="error?.details">{{ error.[32mdetails[37m }}</p>
+         ╵                                            [32m~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG1: Object is possibly 'null'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/components/error-boundary.component.ts:84:43:
+[37m      84 │         <p *ngIf="error?.details">{{ error.[32mdetails[37m }}</p>
+         ╵                                            [32m~~~~~~~[0m
+
+
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Application bundle generation failed. [0.559 seconds]
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ErrorBoundaryComponent is not used within the template of MarketTrendsDashboardComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/market-trends-dashboard.component.ts:13:84:
+[37m      13 │ ...ule, RouterLink, LoadingSpinnerComponent, [32mErrorBoundaryComponent[37m],
+         ╵                                              [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of ExtraPaymentCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/extra-payment-calculator.component.ts:78:59:
+[37m      78 │ ...Module, ReactiveFormsModule, RouterLink, [32mLoadingSpinnerComponent[37m],
+         ╵                                             [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:59:
+[37m      42 │ ...Module, RouterLink, [32mLoadingSpinnerComponent[37m, ProgressIndicatorC...
+         ╵                        [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ProgressIndicatorComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:84:
+[37m      42 │ ... RouterLink, LoadingSpinnerComponent, [32mProgressIndicatorComponent[37m],
+         ╵                                          [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS-991010: template must be a string
+  Value could not be determined statically.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:48:12:
+[37m      48 │   template: [32m`[37m
+         ╵             [32m^[0m
+
+  A string value could not be determined statically.
+
+    src/app/market-trends/components/price-history-charts.component.ts:116:55:
+[37m      116 │ ...hlight">${[32m{ selectedProperty.currentPrice | number:'1.0-0' }[37m}<...
+          ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS18004: No value exists in scope for the shorthand property 'selectedProperty'. Either declare one or provide an initializer.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:116:57:
+[37m      116 │ ...c-value highlight">${{ [32mselectedProperty[37m.currentPrice | number:...
+          ╵                           [32m~~~~~~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ',' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:116:73:
+[37m      116 │ ...highlight">${{ selectedProperty[32m.[37mcurrentPrice | number:'1.0-0' ...
+          ╵                                   [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS2693: 'number' only refers to a type, but is being used as a value here.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:116:89:
+[37m      116 │ ...ght">${{ selectedProperty.currentPrice | [32mnumber[37m:'1.0-0' }}</span>
+          ╵                                             [32m~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ',' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:116:95:
+[37m      116 │ ...ght">${{ selectedProperty.currentPrice | number[32m:[37m'1.0-0' }}</span>
+          ╵                                                   [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ':' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:116:104:
+[37m      116 │ ...ght">${{ selectedProperty.currentPrice | number:'1.0-0' [32m}[37m}</span>
+          ╵                                                            [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type '{}' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:164:26:
+[37m      164 │                         ${[32m{[37m (point.price / 1000).toFixed(0) }}K
+          ╵                           [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1136: Property assignment expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:164:28:
+[37m      164 │                         ${{ [32m([37mpoint.price / 1000).toFixed(0) }}K
+          ╵                             [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS2552: Cannot find name 'point'. Did you mean 'print'?[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:164:29:
+[37m      164 │                         ${{ ([32mpoint[37m.price / 1000).toFixed(0) }}K
+          ╵                              [32m~~~~~[0m
+
+  'print' is declared here.
+
+    node_modules/.pnpm/typescript@5.7.3/node_modules/typescript/lib/lib.dom.d.ts:28157:17:
+[37m      28157 │ declare function [32mprint[37m(): void;
+            ╵                  [32m~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS18004: No value exists in scope for the shorthand property 'label'. Either declare one or provide an initializer.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:186:26:
+[37m      186 │                       ${{ [32mlabel[37m.value }}
+          ╵                           [32m~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ',' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:186:31:
+[37m      186 │                       ${{ label[32m.[37mvalue }}
+          ╵                                [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS18004: No value exists in scope for the shorthand property 'comp'. Either declare one or provide an initializer.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:293:49:
+[37m      293 │ ...pan class="metric-value">${{ [32mcomp[37m.price | number:'1.0-0' }}</s...
+          ╵                                 [32m~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ',' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:293:53:
+[37m      293 │ ...an class="metric-value">${{ comp[32m.[37mprice | number:'1.0-0' }}</span>
+          ╵                                    [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS2693: 'number' only refers to a type, but is being used as a value here.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:293:62:
+[37m      293 │ ...an class="metric-value">${{ comp.price | [32mnumber[37m:'1.0-0' }}</span>
+          ╵                                             [32m~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ',' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:293:68:
+[37m      293 │ ...an class="metric-value">${{ comp.price | number[32m:[37m'1.0-0' }}</span>
+          ╵                                                   [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ':' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:293:77:
+[37m      293 │ ...an class="metric-value">${{ comp.price | number:'1.0-0' [32m}[37m}</span>
+          ╵                                                            [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS18004: No value exists in scope for the shorthand property 'comp'. Either declare one or provide an initializer.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:297:49:
+[37m      297 │ ...pan class="metric-value">${{ [32mcomp[37m.pricePerSqFt | number:'1.0-0...
+          ╵                                 [32m~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ',' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:297:53:
+[37m      297 │ ...n class="metric-value">${{ comp[32m.[37mpricePerSqFt | number:'1.0-0' ...
+          ╵                                   [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS2693: 'number' only refers to a type, but is being used as a value here.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:297:69:
+[37m      297 │ ...s="metric-value">${{ comp.pricePerSqFt | [32mnumber[37m:'1.0-0' }}</span>
+          ╵                                             [32m~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ',' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:297:75:
+[37m      297 │ ...s="metric-value">${{ comp.pricePerSqFt | number[32m:[37m'1.0-0' }}</span>
+          ╵                                                   [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: ':' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:297:84:
+[37m      297 │ ...s="metric-value">${{ comp.pricePerSqFt | number:'1.0-0' [32m}[37m}</span>
+          ╵                                                            [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mExpected identifier but found ":"[0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:435:75:
+[37m      435 │ ...ghlight">${{ selectedProperty, [32m:[37m .currentPrice | number, '1.0-...
+          ╵                                   [32m^[0m
+
+
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Application bundle generation failed. [0.504 seconds]
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ErrorBoundaryComponent is not used within the template of MarketTrendsDashboardComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/market-trends-dashboard.component.ts:13:84:
+[37m      13 │ ...ule, RouterLink, LoadingSpinnerComponent, [32mErrorBoundaryComponent[37m],
+         ╵                                              [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of ExtraPaymentCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/extra-payment-calculator.component.ts:78:59:
+[37m      78 │ ...Module, ReactiveFormsModule, RouterLink, [32mLoadingSpinnerComponent[37m],
+         ╵                                             [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:59:
+[37m      42 │ ...Module, RouterLink, [32mLoadingSpinnerComponent[37m, ProgressIndicatorC...
+         ╵                        [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ProgressIndicatorComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:84:
+[37m      42 │ ... RouterLink, LoadingSpinnerComponent, [32mProgressIndicatorComponent[37m],
+         ╵                                          [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'points' since it isn't a known property of ':svg:polyline'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:171:24:
+[37m      171 │                         [32m[points]="getPriceLinePoints()"[37m
+          ╵                         [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Can't have multiple template bindings on one element. Use only one attribute prefixed with *[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:196:22:
+[37m      196 │                       [32m*ngIf="shouldShowDateLabel(i)"[37m
+          ╵                       [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'i' does not exist on type 'PriceHistoryChartsComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:196:49:
+[37m      196 │                       *ngIf="shouldShowDateLabel([32mi[37m)"
+          ╵                                                  [32m^[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'points' since it isn't a known property of ':svg:polyline'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:221:22:
+[37m      221 │                       [32m[points]="getPriceLinePoints()"[37m
+          ╵                       [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'points' since it isn't a known property of ':svg:polyline'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/price-history-charts.component.ts:231:22:
+[37m      231 │                       [32m[points]="getMarketComparisonPoints()"[37m
+          ╵                       [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Initial chunk files | Names                              |  Raw size
+polyfills.js        | polyfills                          |  89.80 kB | 
+main.js             | main                               |  85.73 kB | 
+chunk-WN4LZNMU.js   | -                                  |   3.45 kB | 
+chunk-D6VPGVQD.js   | -                                  |   2.98 kB | 
+chunk-CZJLB7T5.js   | -                                  |   1.08 kB | 
+styles.css          | styles                             |  96 bytes | 
+
+                    | Initial total                      | 183.14 kB
+
+Lazy chunk files    | Names                              |  Raw size
+chunk-YOMUKQXN.js   | loan-application-form-component    | 113.71 kB | 
+chunk-TXM2QXA3.js   | market-trends-dashboard-component  | 104.38 kB | 
+chunk-MMZUKGLC.js   | price-history-charts-component     |  87.75 kB | 
+chunk-4DY6LN4P.js   | refinance-calculator-component     |  85.84 kB | 
+chunk-PPY3KDJM.js   | property-comparison-component      |  84.32 kB | 
+chunk-4OIM3H6A.js   | extra-payment-calculator-component |  77.97 kB | 
+chunk-5KHZ64BR.js   | rent-vs-buy-calculator-component   |  77.20 kB | 
+chunk-UYOFWF5V.js   | user-dashboard-component           |  76.94 kB | 
+chunk-TJE3RSYD.js   | mortgage-calculator-component      |  72.02 kB | 
+chunk-XJPTIBWS.js   | loan-review-component              |  50.67 kB | 
+chunk-WYCGW6NJ.js   | property-search-component          |  48.48 kB | 
+chunk-YAEGNMD4.js   | user-management-component          |  40.48 kB | 
+chunk-NFJEXYAW.js   | loan-management-component          |  39.65 kB | 
+chunk-EYQTYAJJ.js   | property-detail-component          |  39.09 kB | 
+chunk-LVVCMPBI.js   | admin-dashboard-component          |  30.06 kB | 
+...and 6 more lazy chunks files. Use "--verbose" to show all the files.
+
+Application bundle generation complete. [0.603 seconds]
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ErrorBoundaryComponent is not used within the template of MarketTrendsDashboardComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/market-trends-dashboard.component.ts:13:84:
+[37m      13 │ ...ule, RouterLink, LoadingSpinnerComponent, [32mErrorBoundaryComponent[37m],
+         ╵                                              [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of ExtraPaymentCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/extra-payment-calculator.component.ts:78:59:
+[37m      78 │ ...Module, ReactiveFormsModule, RouterLink, [32mLoadingSpinnerComponent[37m],
+         ╵                                             [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:59:
+[37m      42 │ ...Module, RouterLink, [32mLoadingSpinnerComponent[37m, ProgressIndicatorC...
+         ╵                        [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ProgressIndicatorComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:84:
+[37m      42 │ ... RouterLink, LoadingSpinnerComponent, [32mProgressIndicatorComponent[37m],
+         ╵                                          [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Initial chunk files | Names                     | Raw size
+main.js             | main                      | 85.73 kB | 
+
+Lazy chunk files    | Names                     | Raw size
+chunk-7ZDDF4CY.js   | user-dashboard-component  | 76.94 kB | 
+chunk-HVLQDRMH.js   | property-search-component | 48.48 kB | 
+chunk-TRXKOL5A.js   | property-detail-component | 39.09 kB | 
+chunk-I5HWBBVY.js   | -                         |  4.74 kB | 
+
+Application bundle generation complete. [2.304 seconds]
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ErrorBoundaryComponent is not used within the template of MarketTrendsDashboardComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/market-trends-dashboard.component.ts:13:84:
+[37m      13 │ ...ule, RouterLink, LoadingSpinnerComponent, [32mErrorBoundaryComponent[37m],
+         ╵                                              [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of ExtraPaymentCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/extra-payment-calculator.component.ts:78:59:
+[37m      78 │ ...Module, ReactiveFormsModule, RouterLink, [32mLoadingSpinnerComponent[37m],
+         ╵                                             [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:59:
+[37m      42 │ ...Module, RouterLink, [32mLoadingSpinnerComponent[37m, ProgressIndicatorC...
+         ╵                        [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ProgressIndicatorComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:84:
+[37m      42 │ ... RouterLink, LoadingSpinnerComponent, [32mProgressIndicatorComponent[37m],
+         ╵                                          [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Initial chunk files | Names                     | Raw size
+main.js             | main                      | 85.73 kB | 
+
+Lazy chunk files    | Names                     | Raw size
+chunk-WFULZDBO.js   | user-dashboard-component  | 76.94 kB | 
+chunk-OYZGZ5VM.js   | property-search-component | 48.48 kB | 
+chunk-IH2VZD72.js   | property-detail-component | 39.09 kB | 
+chunk-SI5SORMV.js   | -                         |  6.49 kB | 
+
+Application bundle generation complete. [0.168 seconds]
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ErrorBoundaryComponent is not used within the template of MarketTrendsDashboardComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/market-trends-dashboard.component.ts:13:84:
+[37m      13 │ ...ule, RouterLink, LoadingSpinnerComponent, [32mErrorBoundaryComponent[37m],
+         ╵                                              [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of ExtraPaymentCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/extra-payment-calculator.component.ts:78:59:
+[37m      78 │ ...Module, ReactiveFormsModule, RouterLink, [32mLoadingSpinnerComponent[37m],
+         ╵                                             [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:59:
+[37m      42 │ ...Module, RouterLink, [32mLoadingSpinnerComponent[37m, ProgressIndicatorC...
+         ╵                        [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ProgressIndicatorComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:84:
+[37m      42 │ ... RouterLink, LoadingSpinnerComponent, [32mProgressIndicatorComponent[37m],
+         ╵                                          [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Initial chunk files | Names                           |  Raw size
+main.js             | main                            |  85.73 kB | 
+chunk-VIIUXKMK.js   | -                               |   2.98 kB | 
+
+Lazy chunk files    | Names                           |  Raw size
+chunk-KNEIKBAC.js   | loan-application-form-component | 113.71 kB | 
+chunk-R6HG4J7V.js   | user-dashboard-component        |  76.94 kB | 
+chunk-ALZ7HEQL.js   | property-search-component       |  48.48 kB | 
+chunk-4UMSCHFJ.js   | property-detail-component       |  39.09 kB | 
+chunk-I3COL7QY.js   | -                               |   8.26 kB | 
+chunk-E45KUNYZ.js   | -                               |   6.49 kB | 
+
+Application bundle generation complete. [0.271 seconds]
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ErrorBoundaryComponent is not used within the template of MarketTrendsDashboardComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/market-trends-dashboard.component.ts:13:84:
+[37m      13 │ ...ule, RouterLink, LoadingSpinnerComponent, [32mErrorBoundaryComponent[37m],
+         ╵                                              [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of ExtraPaymentCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/extra-payment-calculator.component.ts:78:59:
+[37m      78 │ ...Module, ReactiveFormsModule, RouterLink, [32mLoadingSpinnerComponent[37m],
+         ╵                                             [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:59:
+[37m      42 │ ...Module, RouterLink, [32mLoadingSpinnerComponent[37m, ProgressIndicatorC...
+         ╵                        [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ProgressIndicatorComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:84:
+[37m      42 │ ... RouterLink, LoadingSpinnerComponent, [32mProgressIndicatorComponent[37m],
+         ╵                                          [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Initial chunk files | Names                           |  Raw size
+main.js             | main                            |  85.73 kB | 
+chunk-X43HWAAY.js   | -                               |   4.69 kB | 
+
+Lazy chunk files    | Names                           |  Raw size
+chunk-T2OAVBEK.js   | loan-application-form-component | 113.71 kB | 
+chunk-GUBHA7GI.js   | user-dashboard-component        |  76.94 kB | 
+chunk-EQTEZWSR.js   | property-search-component       |  48.48 kB | 
+chunk-DN5DTVSR.js   | property-detail-component       |  39.09 kB | 
+chunk-VES7J2WI.js   | -                               |   8.26 kB | 
+chunk-3PMHYHL2.js   | -                               |   4.75 kB | 
+
+Application bundle generation complete. [0.133 seconds]
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ErrorBoundaryComponent is not used within the template of MarketTrendsDashboardComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/market-trends-dashboard.component.ts:13:84:
+[37m      13 │ ...ule, RouterLink, LoadingSpinnerComponent, [32mErrorBoundaryComponent[37m],
+         ╵                                              [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of ExtraPaymentCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/extra-payment-calculator.component.ts:78:59:
+[37m      78 │ ...Module, ReactiveFormsModule, RouterLink, [32mLoadingSpinnerComponent[37m],
+         ╵                                             [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:59:
+[37m      42 │ ...Module, RouterLink, [32mLoadingSpinnerComponent[37m, ProgressIndicatorC...
+         ╵                        [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ProgressIndicatorComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:84:
+[37m      42 │ ... RouterLink, LoadingSpinnerComponent, [32mProgressIndicatorComponent[37m],
+         ╵                                          [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Initial chunk files | Names                     | Raw size
+main.js             | main                      | 85.73 kB | 
+
+Lazy chunk files    | Names                     | Raw size
+chunk-FEYOLWXD.js   | loan-review-component     | 50.67 kB | 
+chunk-W2Z3ZKQ5.js   | user-management-component | 40.48 kB | 
+chunk-WAZFCR2N.js   | loan-management-component | 39.65 kB | 
+chunk-XPR35O2K.js   | admin-dashboard-component | 30.06 kB | 
+chunk-SHG5IPWU.js   | -                         |  2.28 kB | 
+
+Application bundle generation complete. [0.184 seconds]
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ErrorBoundaryComponent is not used within the template of MarketTrendsDashboardComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/market-trends-dashboard.component.ts:13:84:
+[37m      13 │ ...ule, RouterLink, LoadingSpinnerComponent, [32mErrorBoundaryComponent[37m],
+         ╵                                              [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of ExtraPaymentCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/extra-payment-calculator.component.ts:78:59:
+[37m      78 │ ...Module, ReactiveFormsModule, RouterLink, [32mLoadingSpinnerComponent[37m],
+         ╵                                             [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:59:
+[37m      42 │ ...Module, RouterLink, [32mLoadingSpinnerComponent[37m, ProgressIndicatorC...
+         ╵                        [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ProgressIndicatorComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:84:
+[37m      42 │ ... RouterLink, LoadingSpinnerComponent, [32mProgressIndicatorComponent[37m],
+         ╵                                          [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Initial chunk files | Names                           |  Raw size
+main.js             | main                            |  85.76 kB | 
+chunk-UH3BQMOO.js   | -                               |   3.03 kB | 
+chunk-QPAI6F2E.js   | -                               |   1.77 kB | 
+
+Lazy chunk files    | Names                           |  Raw size
+chunk-TXUVOGWX.js   | loan-application-form-component | 113.74 kB | 
+chunk-P7CZ2P7Q.js   | user-dashboard-component        |  76.97 kB | 
+chunk-EQM6MGRU.js   | loan-review-component           |  50.70 kB | 
+chunk-H6LRMN4U.js   | property-search-component       |  48.51 kB | 
+chunk-FTL43FIL.js   | user-management-component       |  40.52 kB | 
+chunk-IFF45GXV.js   | loan-management-component       |  39.68 kB | 
+chunk-ROZES325.js   | property-detail-component       |  39.12 kB | 
+chunk-TS2WOQU7.js   | admin-dashboard-component       |  30.09 kB | 
+chunk-DZ2DGGSF.js   | -                               |   8.26 kB | 
+chunk-ADR3ZEHS.js   | -                               |   4.79 kB | 
+chunk-3AFQUA7L.js   | -                               |   2.33 kB | 
+
+Application bundle generation complete. [0.125 seconds]
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ErrorBoundaryComponent is not used within the template of MarketTrendsDashboardComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/market-trends-dashboard.component.ts:13:84:
+[37m      13 │ ...ule, RouterLink, LoadingSpinnerComponent, [32mErrorBoundaryComponent[37m],
+         ╵                                              [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of ExtraPaymentCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/extra-payment-calculator.component.ts:78:59:
+[37m      78 │ ...Module, ReactiveFormsModule, RouterLink, [32mLoadingSpinnerComponent[37m],
+         ╵                                             [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:59:
+[37m      42 │ ...Module, RouterLink, [32mLoadingSpinnerComponent[37m, ProgressIndicatorC...
+         ╵                        [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ProgressIndicatorComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:84:
+[37m      42 │ ... RouterLink, LoadingSpinnerComponent, [32mProgressIndicatorComponent[37m],
+         ╵                                          [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Initial chunk files | Names                           |  Raw size
+main.js             | main                            |  85.76 kB | 
+
+Lazy chunk files    | Names                           |  Raw size
+chunk-D5RAHF6K.js   | loan-application-form-component | 113.74 kB | 
+chunk-KJJKL3MT.js   | user-dashboard-component        |  76.97 kB | 
+chunk-ASJZOEW4.js   | -                               |   8.26 kB | 
+
+Application bundle generation complete. [0.274 seconds]
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ErrorBoundaryComponent is not used within the template of MarketTrendsDashboardComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/market-trends-dashboard.component.ts:13:84:
+[37m      13 │ ...ule, RouterLink, LoadingSpinnerComponent, [32mErrorBoundaryComponent[37m],
+         ╵                                              [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of ExtraPaymentCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/extra-payment-calculator.component.ts:78:59:
+[37m      78 │ ...Module, ReactiveFormsModule, RouterLink, [32mLoadingSpinnerComponent[37m],
+         ╵                                             [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:59:
+[37m      42 │ ...Module, RouterLink, [32mLoadingSpinnerComponent[37m, ProgressIndicatorC...
+         ╵                        [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ProgressIndicatorComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:84:
+[37m      42 │ ... RouterLink, LoadingSpinnerComponent, [32mProgressIndicatorComponent[37m],
+         ╵                                          [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Initial chunk files | Names                           |  Raw size
+main.js             | main                            |  85.76 kB | 
+
+Lazy chunk files    | Names                           |  Raw size
+chunk-5LEAUOUB.js   | loan-application-form-component | 113.74 kB | 
+chunk-PVLX5AOU.js   | user-dashboard-component        |  76.97 kB | 
+chunk-5SCWTQH3.js   | -                               |   8.31 kB | 
+
+Application bundle generation complete. [0.146 seconds]
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ErrorBoundaryComponent is not used within the template of MarketTrendsDashboardComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/market-trends-dashboard.component.ts:13:84:
+[37m      13 │ ...ule, RouterLink, LoadingSpinnerComponent, [32mErrorBoundaryComponent[37m],
+         ╵                                              [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of ExtraPaymentCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/extra-payment-calculator.component.ts:78:59:
+[37m      78 │ ...Module, ReactiveFormsModule, RouterLink, [32mLoadingSpinnerComponent[37m],
+         ╵                                             [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:59:
+[37m      42 │ ...Module, RouterLink, [32mLoadingSpinnerComponent[37m, ProgressIndicatorC...
+         ╵                        [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ProgressIndicatorComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:84:
+[37m      42 │ ... RouterLink, LoadingSpinnerComponent, [32mProgressIndicatorComponent[37m],
+         ╵                                          [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Initial chunk files | Names                         | Raw size
+main.js             | main                          | 85.76 kB | 
+
+Lazy chunk files    | Names                         | Raw size
+chunk-OVTZTHEF.js   | user-dashboard-component      | 76.97 kB | 
+chunk-UBQDXWW6.js   | mortgage-calculator-component | 72.02 kB | 
+chunk-M76SNL7P.js   | -                             |  4.44 kB | 
+
+Application bundle generation complete. [0.262 seconds]
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ErrorBoundaryComponent is not used within the template of MarketTrendsDashboardComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/market-trends-dashboard.component.ts:13:84:
+[37m      13 │ ...ule, RouterLink, LoadingSpinnerComponent, [32mErrorBoundaryComponent[37m],
+         ╵                                              [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of ExtraPaymentCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/extra-payment-calculator.component.ts:78:59:
+[37m      78 │ ...Module, ReactiveFormsModule, RouterLink, [32mLoadingSpinnerComponent[37m],
+         ╵                                             [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:59:
+[37m      42 │ ...Module, RouterLink, [32mLoadingSpinnerComponent[37m, ProgressIndicatorC...
+         ╵                        [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ProgressIndicatorComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:84:
+[37m      42 │ ... RouterLink, LoadingSpinnerComponent, [32mProgressIndicatorComponent[37m],
+         ╵                                          [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Initial chunk files | Names                         | Raw size
+main.js             | main                          | 85.76 kB | 
+
+Lazy chunk files    | Names                         | Raw size
+chunk-CCKAFQJG.js   | user-dashboard-component      | 76.97 kB | 
+chunk-PTWVSN2U.js   | mortgage-calculator-component | 72.05 kB | 
+chunk-RRYWDGO7.js   | -                             |  4.49 kB | 
+
+Application bundle generation complete. [0.129 seconds]
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ErrorBoundaryComponent is not used within the template of MarketTrendsDashboardComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/market-trends/components/market-trends-dashboard.component.ts:13:84:
+[37m      13 │ ...ule, RouterLink, LoadingSpinnerComponent, [32mErrorBoundaryComponent[37m],
+         ╵                                              [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of ExtraPaymentCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/extra-payment-calculator.component.ts:78:59:
+[37m      78 │ ...Module, ReactiveFormsModule, RouterLink, [32mLoadingSpinnerComponent[37m],
+         ╵                                             [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: LoadingSpinnerComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:59:
+[37m      42 │ ...Module, RouterLink, [32mLoadingSpinnerComponent[37m, ProgressIndicatorC...
+         ╵                        [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: ProgressIndicatorComponent is not used within the template of RefinanceCalculatorComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/mortgage-tools/components/refinance-calculator.component.ts:42:84:
+[37m      42 │ ... RouterLink, LoadingSpinnerComponent, [32mProgressIndicatorComponent[37m],
+         ╵                                          [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+Page reload sent to client(s).

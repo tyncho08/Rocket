@@ -1,0 +1,28 @@
+<div class="app-container">
+  <header class="header">
+    <nav class="navbar">
+      <div class="nav-brand">
+        <h1 routerLink="/">{{ title }}</h1>
+      </div>
+      <div class="nav-links">
+        <a routerLink="/search" routerLinkActive="active">Home Search</a>
+        <a routerLink="/mortgage-tools" routerLinkActive="active">Mortgage Tools</a>
+        <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+        <a routerLink="/admin" routerLinkActive="active" *ngIf="authService.isAuthenticated() && authService.isAdmin()">Admin</a>
+        <a routerLink="/login" routerLinkActive="active" *ngIf="!authService.isAuthenticated()">Login</a>
+        <a (click)="authService.logout()" class="logout-link" *ngIf="authService.isAuthenticated()">Logout</a>
+      </div>
+    </nav>
+  </header>
+  
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+  
+  <footer class="footer">
+    <p>&copy; 2024 Mortgage Platform. All rights reserved.</p>
+  </footer>
+  
+  <!-- Global notifications -->
+  <app-notifications></app-notifications>
+</div>

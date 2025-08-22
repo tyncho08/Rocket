@@ -1,0 +1,15 @@
+/usr/local/share/dotnet/sdk/8.0.410/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.EolTargetFrameworks.targets(32,5): warning NETSDK1138: The target framework 'netcoreapp3.1' is out of support and will not receive security updates in the future. Please refer to https://aka.ms/dotnet-core-support for more information about the support policy. [/Users/MartinGonella/Desktop/Demos/Rocket/backend/MortgagePlatform.API/MortgagePlatform.API.csproj]
+/usr/local/share/dotnet/sdk/8.0.410/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.EolTargetFrameworks.targets(32,5): warning NETSDK1138: The target framework 'netcoreapp3.1' is out of support and will not receive security updates in the future. Please refer to https://aka.ms/dotnet-core-support for more information about the support policy. [/Users/MartinGonella/Desktop/Demos/Rocket/backend/MortgagePlatform.API/MortgagePlatform.API.csproj]
+/Users/MartinGonella/Desktop/Demos/Rocket/backend/MortgagePlatform.API/MortgagePlatform.API.csproj : warning NU1902: Package 'System.IdentityModel.Tokens.Jwt' 6.8.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-59j7-ghrg-fj52
+/usr/local/share/dotnet/sdk/8.0.410/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.EolTargetFrameworks.targets(32,5): warning NETSDK1138: The target framework 'netcoreapp3.1' is out of support and will not receive security updates in the future. Please refer to https://aka.ms/dotnet-core-support for more information about the support policy. [/Users/MartinGonella/Desktop/Demos/Rocket/backend/MortgagePlatform.API/MortgagePlatform.API.csproj]
+/Users/MartinGonella/Desktop/Demos/Rocket/backend/MortgagePlatform.API/MortgagePlatform.API.csproj : warning NU1902: Package 'System.IdentityModel.Tokens.Jwt' 6.8.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-59j7-ghrg-fj52
+[40m[32minfo[39m[22m[49m: Microsoft.Hosting.Lifetime[0]
+      Now listening on: http://localhost:5000
+[40m[32minfo[39m[22m[49m: Microsoft.Hosting.Lifetime[0]
+      Now listening on: https://localhost:5001
+[40m[32minfo[39m[22m[49m: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+[40m[32minfo[39m[22m[49m: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+[40m[32minfo[39m[22m[49m: Microsoft.Hosting.Lifetime[0]
+      Content root path: /Users/MartinGonella/Desktop/Demos/Rocket/backend/MortgagePlatform.API
