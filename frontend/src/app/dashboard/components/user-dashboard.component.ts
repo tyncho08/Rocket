@@ -7,8 +7,9 @@ import { NotificationService } from '../../shared/services/notification.service'
 import { PropertyService } from '../../home-search/services/property.service';
 import { MortgageService } from '../../mortgage-tools/services/mortgage.service';
 import { LoanService } from '../services/loan.service';
+import { AuthService } from '../../auth/services/auth.service';
 import { Property } from '../../shared/models/property.model';
-import { MortgageCalculationResult } from '../../shared/models/mortgage.model';
+import { MortgageCalculationResult, LoanApplication } from '../../shared/models/mortgage.model';
 
 export interface User {
   id: number;
@@ -23,9 +24,9 @@ export interface User {
   joinDate: string;
 }
 
-export interface LoanApplication {
+export interface LoanApplicationDisplay {
   id: number;
-  status: 'draft' | 'submitted' | 'under_review' | 'approved' | 'denied';
+  status: string;
   propertyAddress: string;
   loanAmount: number;
   monthlyPayment: number;
@@ -33,6 +34,7 @@ export interface LoanApplication {
   lastUpdated: string;
   nextStep: string;
 }
+
 
 @Component({
   selector: 'app-user-dashboard',
@@ -246,13 +248,13 @@ export interface LoanApplication {
                 </div>
                 
                 <div class="app-actions">
-                  <button class="btn btn-outline btn-sm">
+                  <button (click)="viewApplicationDetails(app.id)" class="btn btn-outline btn-sm">
                     👁️ View Details
                   </button>
-                  <button *ngIf="app.status === 'draft'" class="btn btn-primary btn-sm">
+                  <button *ngIf="app.status === 'draft'" (click)="continueApplication(app.id)" class="btn btn-primary btn-sm">
                     ✏️ Continue
                   </button>
-                  <button *ngIf="app.status !== 'draft'" class="btn btn-secondary btn-sm">
+                  <button *ngIf="app.status !== 'draft'" (click)="viewApplicationDocuments(app.id)" class="btn btn-secondary btn-sm">
                     📄 Documents
                   </button>
                 </div>
@@ -956,7 +958,7 @@ export interface LoanApplication {
 })
 export class UserDashboardComponent implements OnInit, OnDestroy {
   user: User | null = null;
-  loanApplications: LoanApplication[] = [];
+  loanApplications: LoanApplicationDisplay[] = [];
   favoriteProperties: Property[] = [];
   calculationHistory: MortgageCalculationResult[] = [];
   
@@ -971,7 +973,8 @@ export class UserDashboardComponent implements OnInit, OnDestroy {
     private notificationService: NotificationService,
     private propertyService: PropertyService,
     private mortgageService: MortgageService,
-    private loanService: LoanService
+    private loanService: LoanService,
+    private authService: AuthService
   ) {
     this.profileForm = this.fb.group({
       firstName: ['', [Validators.required]],
@@ -1046,29 +1049,101 @@ export class UserDashboardComponent implements OnInit, OnDestroy {
   }
 
   loadLoanApplications(): void {
-    // Mock loan applications - in real app, this would come from an API
-    this.loanApplications = [
-      {
-        id: 1001,
-        status: 'under_review',
-        propertyAddress: '456 Oak Avenue, Austin, TX 78702',
-        loanAmount: 320000,
-        monthlyPayment: 2145.67,
-        applicationDate: '2024-08-15T00:00:00Z',
-        lastUpdated: '2024-08-18T00:00:00Z',
-        nextStep: 'Provide income verification documents'
-      },
-      {
-        id: 1002,
-        status: 'draft',
-        propertyAddress: '789 Pine Street, Austin, TX 78703',
-        loanAmount: 275000,
-        monthlyPayment: 1842.33,
-        applicationDate: '2024-08-20T00:00:00Z',
-        lastUpdated: '2024-08-20T00:00:00Z',
-        nextStep: 'Complete application form'
-      }
-    ];
+    // Check if user is authenticated before making API call
+    if (!this.authService.isAuthenticated()) {
+      // User is not authenticated - show empty state or mock data for demo
+      this.loanApplications = [];
+      console.log('User not authenticated - showing empty loan applications');
+      return;
+    }
+
+    this.subscriptions.add(
+      this.loanService.getUserLoanApplications().subscribe({
+        next: (applications) => {
+          this.loanApplications = applications.map(app => this.convertToDisplayFormat(app));
+        },
+        error: (error) => {
+          console.error('Error loading loan applications:', error);
+          
+          // If it's an authentication error, redirect to login
+          if (error.status === 401) {
+            this.notificationService.info(
+              'Authentication Required',
+              'Please log in to view your loan applications.'
+            );
+            this.router.navigate(['/auth/login']);
+            return;
+          }
+          
+          // For other errors, show empty state
+          this.loanApplications = [];
+          this.notificationService.error(
+            'Load Error',
+            'Unable to load loan applications. Please try again.'
+          );
+        }
+      })
+    );
+  }
+
+  private convertToDisplayFormat(app: LoanApplication): LoanApplicationDisplay {
+    // Calculate monthly payment if not provided
+    const monthlyPayment = this.calculateMonthlyPayment(
+      app.loanAmount, 
+      app.interestRate, 
+      app.loanTermYears
+    );
+
+    // Determine next step based on status
+    const nextStep = this.getNextStepForStatus(app.status || 'draft');
+
+    return {
+      id: app.id || 0,
+      status: app.status || 'draft',
+      propertyAddress: this.formatPropertyAddress(app),
+      loanAmount: app.loanAmount,
+      monthlyPayment: monthlyPayment,
+      applicationDate: app.createdAt ? app.createdAt.toString() : new Date().toISOString(),
+      lastUpdated: app.updatedAt ? app.updatedAt.toString() : new Date().toISOString(),
+      nextStep: nextStep
+    };
+  }
+
+  private calculateMonthlyPayment(loanAmount: number, annualRate: number, years: number): number {
+    const monthlyRate = annualRate / 100 / 12;
+    const numberOfPayments = years * 12;
+    
+    if (monthlyRate === 0) {
+      return loanAmount / numberOfPayments;
+    }
+    
+    const monthlyPayment = loanAmount * 
+      (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) / 
+      (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
+      
+    return Math.round(monthlyPayment * 100) / 100;
+  }
+
+  private formatPropertyAddress(_app: LoanApplication): string {
+    // Try to construct address from available fields, or use a placeholder
+    return 'Property address not specified';
+  }
+
+  private getNextStepForStatus(status: string): string {
+    switch (status) {
+      case 'draft':
+        return 'Complete application form';
+      case 'submitted':
+        return 'Application under initial review';
+      case 'under_review':
+        return 'Provide additional documentation';
+      case 'approved':
+        return 'Review loan terms';
+      case 'denied':
+        return 'Review denial reasons';
+      default:
+        return 'Contact support for status update';
+    }
   }
 
   editProfile(): void {
@@ -1131,13 +1206,56 @@ export class UserDashboardComponent implements OnInit, OnDestroy {
     );
   }
 
-  getActiveApplication(): LoanApplication | undefined {
+  // Loan Application Actions
+  viewApplicationDetails(applicationId: number): void {
+    if (!this.authService.isAuthenticated()) {
+      this.notificationService.info('Authentication Required', 'Please log in to view application details');
+      this.router.navigate(['/auth/login']);
+      return;
+    }
+    
+    // Navigate to loan application details or show modal
+    this.router.navigate(['/loan-application'], { 
+      queryParams: { id: applicationId, mode: 'view' } 
+    });
+  }
+
+  continueApplication(applicationId: number): void {
+    if (!this.authService.isAuthenticated()) {
+      this.notificationService.info('Authentication Required', 'Please log in to continue your application');
+      this.router.navigate(['/auth/login']);
+      return;
+    }
+    
+    // Navigate to loan application form to continue draft
+    this.router.navigate(['/loan-application'], { 
+      queryParams: { id: applicationId, mode: 'continue' } 
+    });
+  }
+
+  viewApplicationDocuments(_applicationId: number): void {
+    if (!this.authService.isAuthenticated()) {
+      this.notificationService.info('Authentication Required', 'Please log in to view documents');
+      this.router.navigate(['/auth/login']);
+      return;
+    }
+    
+    // Navigate to documents section or show documents modal
+    this.notificationService.info(
+      'Documents',
+      'Document management feature coming soon!'
+    );
+    // TODO: Implement document viewing
+    // this.router.navigate(['/loan-application/documents', applicationId]);
+  }
+
+  getActiveApplication(): LoanApplicationDisplay | undefined {
     return this.loanApplications.find(app => 
       app.status === 'under_review' || app.status === 'submitted'
     );
   }
 
-  getLoanTerm(calculation: MortgageCalculationResult): number {
+  getLoanTerm(_calculation: MortgageCalculationResult): number {
     // Extract loan term from calculation - this would be stored with the calculation
     return 30; // Default to 30 years for now
   }

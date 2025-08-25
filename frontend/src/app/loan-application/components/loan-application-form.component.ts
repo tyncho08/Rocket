@@ -5,6 +5,7 @@ import { RouterLink, Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NotificationService } from '../../shared/services/notification.service';
 import { LoanService } from '../../dashboard/services/loan.service';
+import { AuthService } from '../../auth/services/auth.service';
 
 export interface LoanApplicationData {
   // Personal Information
@@ -1318,7 +1319,8 @@ export class LoanApplicationFormComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private notificationService: NotificationService,
-    private loanService: LoanService
+    private loanService: LoanService,
+    private authService: AuthService
   ) {
     this.applicationForm = this.createForm();
   }
@@ -1489,6 +1491,16 @@ export class LoanApplicationFormComponent implements OnInit, OnDestroy {
       return;
     }
 
+    // Check authentication before submitting
+    if (!this.authService.isAuthenticated()) {
+      this.notificationService.info(
+        'Authentication Required',
+        'Please log in to submit your application.'
+      );
+      this.router.navigate(['/auth/login']);
+      return;
+    }
+
     const formData: LoanApplicationData = this.applicationForm.value;
     formData.loanInfo.loanAmount = this.getCalculatedLoanAmount();
 
@@ -1506,6 +1518,16 @@ export class LoanApplicationFormComponent implements OnInit, OnDestroy {
         this.router.navigate(['/dashboard']);
       },
       error: (error) => {
+        // Handle authentication errors specifically
+        if (error.status === 401) {
+          this.notificationService.info(
+            'Session Expired',
+            'Your session has expired. Please log in again.'
+          );
+          this.router.navigate(['/auth/login']);
+          return;
+        }
+        
         this.notificationService.error(
           'Submission Failed',
           'Unable to submit your application. Please try again.'

@@ -143,13 +143,29 @@ export class LoanService {
   // Load methods for updating local state
   private loadUserLoanApplications(): void {
     if (this.authService.isAuthenticated()) {
-      this.getUserLoanApplications().subscribe();
+      this.getUserLoanApplications().subscribe({
+        next: (loans) => {
+          // Successfully loaded user loans
+        },
+        error: (error) => {
+          console.error('Error loading user loan applications:', error);
+          // Silently handle error - this is a background operation
+        }
+      });
     }
   }
 
   private loadAllLoanApplications(): void {
-    if (this.authService.isAdmin()) {
-      this.getAllLoanApplications().subscribe();
+    if (this.authService.isAdmin() && this.authService.isAuthenticated()) {
+      this.getAllLoanApplications().subscribe({
+        next: (loans) => {
+          // Successfully loaded loans
+        },
+        error: (error) => {
+          console.error('Error loading all loan applications:', error);
+          // Silently handle error - this is a background operation
+        }
+      });
     }
   }
 
