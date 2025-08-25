@@ -146,9 +146,9 @@ import { Property } from '../../shared/models/property.model';
           </div>
         </div>
 
-        <div class="nearby-properties" *ngIf="similarProperties.length > 0">
+        <div class="nearby-properties">
           <h2>Similar Properties</h2>
-          <div class="similar-properties-grid">
+          <div *ngIf="similarProperties.length > 0; else noSimilarProperties" class="similar-properties-grid">
             <div 
               *ngFor="let similar of similarProperties" 
               class="similar-property-card"
@@ -166,6 +166,20 @@ import { Property } from '../../shared/models/property.model';
               </div>
             </div>
           </div>
+          <ng-template #noSimilarProperties>
+            <div class="no-similar-properties">
+              <div class="no-similar-icon">🏠</div>
+              <h3>No Similar Properties Found</h3>
+              <p>We couldn't find similar properties in this area right now. Try browsing all available properties in {{ property.city }}, {{ property.state }}.</p>
+              <button 
+                [routerLink]="['/search']" 
+                [queryParams]="{city: property.city, state: property.state}"
+                class="btn btn-outline browse-all-btn"
+              >
+                Browse All Properties in {{ property.city }}
+              </button>
+            </div>
+          </ng-template>
         </div>
       </div>
     </div>
@@ -463,6 +477,32 @@ import { Property } from '../../shared/models/property.model';
       color: #495057;
     }
 
+    .no-similar-properties {
+      text-align: center;
+      padding: 3rem 2rem;
+      color: #6c757d;
+    }
+
+    .no-similar-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .no-similar-properties h3 {
+      color: #495057;
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+    }
+
+    .no-similar-properties p {
+      margin-bottom: 2rem;
+      line-height: 1.5;
+    }
+
+    .browse-all-btn {
+      font-weight: 600;
+    }
+
     .loading-container {
       display: flex;
       flex-direction: column;
@@ -556,32 +596,103 @@ export class PropertyDetailComponent implements OnInit, OnDestroy {
 
   loadSimilarProperties(): void {
     if (!this.property) return;
+    
+    // Single, simple search with progressive fallback
+    this.searchForSimilarProperties();
+  }
 
-    // Search for similar properties in the same city with similar price range
-    const filters = {
-      city: this.property.city,
-      state: this.property.state,
-      minPrice: this.property.price * 0.8,
-      maxPrice: this.property.price * 1.2,
-      propertyType: this.property.propertyType,
+  private searchForSimilarProperties(): void {
+    // Start with a broader search to get more options
+    const searchFilters = {
+      state: this.property!.state,
       page: 1,
-      pageSize: 3,
-      sortBy: 'Price',
+      pageSize: 50, // Get many properties to choose from
+      sortBy: 'random', // Use backend random sorting
       sortOrder: 'asc'
     };
 
-    this.propertyService.searchProperties(filters).subscribe({
+    this.propertyService.searchProperties(searchFilters).subscribe({
       next: (results) => {
-        // Filter out current property and take first 3
-        this.similarProperties = results.properties
+        // Filter out current property and ensure unique IDs
+        const uniqueProperties = results.properties
           .filter(p => p.id !== this.property!.id)
-          .slice(0, 3);
+          .filter((property, index, array) => 
+            array.findIndex(p => p.id === property.id) === index
+          );
+        
+        if (uniqueProperties.length === 0) {
+          this.similarProperties = [];
+          return;
+        }
+
+        // Try to find properties with similar characteristics
+        let similarProperties = this.findSimilarProperties(uniqueProperties);
+        
+        if (similarProperties.length < 3) {
+          // If not enough similar properties, fill with any available properties
+          const remainingProperties = uniqueProperties.filter(p => 
+            !similarProperties.some(sp => sp.id === p.id)
+          );
+          
+          while (similarProperties.length < 3 && remainingProperties.length > 0) {
+            const randomIndex = Math.floor(Math.random() * remainingProperties.length);
+            similarProperties.push(remainingProperties.splice(randomIndex, 1)[0]);
+          }
+        }
+
+        // Take only 3 properties maximum
+        this.similarProperties = similarProperties.slice(0, 3);
       },
-      error: () => {
-        // Don't show error for similar properties as it's not critical
+      error: (error) => {
         this.similarProperties = [];
       }
     });
+  }
+
+  private findSimilarProperties(allProperties: any[]): any[] {
+    const currentProperty = this.property!;
+    const similarProperties: any[] = [];
+
+    // Priority 1: Same city and property type
+    const sameCityType = allProperties.filter(p => 
+      p.city.toLowerCase() === currentProperty.city.toLowerCase() &&
+      p.propertyType.toLowerCase() === currentProperty.propertyType.toLowerCase() &&
+      Math.abs(p.price - currentProperty.price) <= currentProperty.price * 0.3
+    );
+
+    // Priority 2: Same city, different type
+    const sameCityDiffType = allProperties.filter(p => 
+      p.city.toLowerCase() === currentProperty.city.toLowerCase() &&
+      p.propertyType.toLowerCase() !== currentProperty.propertyType.toLowerCase()
+    );
+
+    // Priority 3: Same state, similar price range
+    const sameStateSimilarPrice = allProperties.filter(p => 
+      p.city.toLowerCase() !== currentProperty.city.toLowerCase() &&
+      Math.abs(p.price - currentProperty.price) <= currentProperty.price * 0.4
+    );
+
+    // Add properties in order of priority
+    this.addUniqueProperties(similarProperties, sameCityType, 3);
+    if (similarProperties.length < 3) {
+      this.addUniqueProperties(similarProperties, sameCityDiffType, 3 - similarProperties.length);
+    }
+    if (similarProperties.length < 3) {
+      this.addUniqueProperties(similarProperties, sameStateSimilarPrice, 3 - similarProperties.length);
+    }
+
+    return similarProperties;
+  }
+
+  private addUniqueProperties(targetArray: any[], sourceArray: any[], maxToAdd: number): void {
+    let added = 0;
+    for (const property of sourceArray) {
+      if (added >= maxToAdd) break;
+      if (!targetArray.some(p => p.id === property.id)) {
+        targetArray.push(property);
+        added++;
+      }
+    }
   }
 
   calculateEstimatedPayment(): void {

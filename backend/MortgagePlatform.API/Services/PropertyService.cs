@@ -66,6 +66,9 @@ namespace MortgagePlatform.API.Services
                 query = query.Where(p => p.PropertyType.ToLower() == searchDto.PropertyType.ToLower());
             }
 
+            // Apply distinct to prevent duplicates (remove this as it may not work properly with complex queries)
+            // query = query.Distinct();
+
             switch (searchDto.SortBy?.ToLower())
             {
                 case "price":
@@ -77,6 +80,10 @@ namespace MortgagePlatform.API.Services
                     query = searchDto.SortOrder?.ToLower() == "asc" 
                         ? query.OrderBy(p => p.Bedrooms) 
                         : query.OrderByDescending(p => p.Bedrooms);
+                    break;
+                case "random":
+                    // Add random ordering for similar properties search
+                    query = query.OrderBy(p => Guid.NewGuid());
                     break;
                 default:
                     query = searchDto.SortOrder?.ToLower() == "asc" 
@@ -107,6 +114,8 @@ namespace MortgagePlatform.API.Services
                     ImageUrl = p.ImageUrl,
                     IsFavorite = userId.HasValue && p.FavoriteProperties.Any(f => f.UserId == userId.Value)
                 })
+                .GroupBy(p => p.Id)
+                .Select(g => g.First()) // Ensure unique properties by ID
                 .ToArrayAsync();
 
             return new PropertySearchResultDto
