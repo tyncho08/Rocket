@@ -361,6 +361,7 @@ import { Property, PropertySearchFilters, PropertySearchResult } from '../../sha
       cursor: pointer;
       font-weight: 600;
       transition: all 0.3s;
+      text-align: center;
     }
 
     .btn-primary {

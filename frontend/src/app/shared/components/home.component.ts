@@ -94,6 +94,7 @@ import { RouterLink } from '@angular/router';
       font-weight: 500;
       transition: all 0.3s;
       display: inline-block;
+      text-align: center;
     }
 
     .btn-primary {

@@ -169,6 +169,7 @@ import { AuthService } from '../services/auth.service';
       cursor: pointer;
       transition: background-color 0.3s;
       margin-top: 1rem;
+      text-align: center;
     }
 
     .btn-primary {
