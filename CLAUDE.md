@@ -100,6 +100,9 @@ Key patterns:
 - Interceptors for API communication
 
 ### Database Schema
+**Database**: PostgreSQL (`mortgage_platform`)
+**Connection**: Host=localhost, Username=MartinGonella, Password=(empty), Port=5432
+
 Main tables:
 - Users - User accounts with roles (User/Admin)
 - Properties - Property listings
@@ -107,6 +110,12 @@ Main tables:
 - Documents - Uploaded documents
 - Payments - Payment tracking
 - FavoriteProperties - User favorites
+
+**Database Management**:
+- Schema initialization via `database/init.sql`
+- No EF migrations - uses manual SQL schema files
+- Data stored in PostgreSQL default directory (`/usr/local/var/postgres`)
+- Access via DBeaver: localhost:5432, database=mortgage_platform, user=MartinGonella
 
 ## Important Development Notes
 
