@@ -164,7 +164,7 @@ import { Property, PropertySearchFilters, PropertySearchResult } from '../../sha
           >
             <div class="property-image">
               <img 
-                [src]="property.imageUrl || '/assets/images/property-placeholder.jpg'" 
+                [src]="property.imageUrl || 'assets/images/property-placeholder.jpg'" 
                 [alt]="property.address"
                 (error)="onImageError($event)"
               />
@@ -726,7 +726,7 @@ export class PropertySearchComponent implements OnInit, OnDestroy {
   }
 
   onImageError(event: any): void {
-    event.target.src = '/assets/images/property-placeholder.jpg';
+    event.target.src = 'assets/images/property-placeholder.jpg';
   }
 
   // Add to module imports
