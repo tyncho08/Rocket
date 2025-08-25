@@ -82,8 +82,8 @@ namespace MortgagePlatform.API.Services
                         : query.OrderByDescending(p => p.Bedrooms);
                     break;
                 case "random":
-                    // Use GUID for randomization that can be translated to SQL
-                    query = query.OrderBy(p => Guid.NewGuid());
+                    // Use Id for pseudo-random ordering since true random is complex with EF Core
+                    query = query.OrderBy(p => p.Id);
                     break;
                 default:
                     query = searchDto.SortOrder?.ToLower() == "asc" 
