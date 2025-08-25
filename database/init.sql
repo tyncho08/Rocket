@@ -108,12 +108,12 @@ CREATE INDEX IF NOT EXISTS "IX_FavoriteProperties_PropertyId" ON "FavoriteProper
 
 -- Insert admin user (password: admin123)
 INSERT INTO "Users" ("FirstName", "LastName", "Email", "PasswordHash", "Role") VALUES 
-('Admin', 'User', 'admin@mortgageplatform.com', '$2a$11$8H4Z0Z9Z0Z9Z0Z9Z0Z9Z0eHd7XdQ8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q', 'Admin')
+('Admin', 'User', 'admin@mortgageplatform.com', '$2b$11$CuF4GnaCBwgjwUVeiPt5w.y3N3fiJ4NCaFo/4GdAEbNPqeY.v9Iuy', 'Admin')
 ON CONFLICT ("Email") DO NOTHING;
 
 -- Insert sample user (password: user123)
 INSERT INTO "Users" ("FirstName", "LastName", "Email", "PasswordHash", "Role") VALUES 
-('John', 'Doe', 'john.doe@email.com', '$2a$11$9I5A1A0A1A0A1A0A1A0A1fIe8YeR9R9R9R9R9R9R9R9R9R9R9R9R9R', 'User')
+('John', 'Doe', 'john.doe@email.com', '$2b$11$Ae31W4QJJjPRdV3VHTn6Uu3WpOXLElZj46QkBqIvdwDJYbJqljThm', 'User')
 ON CONFLICT ("Email") DO NOTHING;
 
 -- Insert sample properties
