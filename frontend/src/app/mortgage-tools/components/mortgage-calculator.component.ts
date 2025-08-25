@@ -966,7 +966,6 @@ export class MortgageCalculatorComponent implements OnInit, OnDestroy {
       next: (result) => {
         this.result = result;
         this.calculating = false;
-        this.notificationService.success('Calculation Complete', 'Your mortgage payment has been calculated');
       },
       error: (error) => {
         this.calculating = false;
