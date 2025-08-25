@@ -4,13 +4,12 @@ import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoadingSpinnerComponent } from '../../shared/components/loading-spinner.component';
-import { ErrorBoundaryComponent } from '../../shared/components/error-boundary.component';
 import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, MarketIndicators, MarketInsight } from '../services/market-trends.service';
 
 @Component({
   selector: 'app-market-trends-dashboard',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink, LoadingSpinnerComponent, ErrorBoundaryComponent],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, LoadingSpinnerComponent],
   template: `
     <div class="market-dashboard-container">
       <div class="dashboard-header">

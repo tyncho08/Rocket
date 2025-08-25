@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { LoadingSpinnerComponent } from '../../shared/components/loading-spinner.component';
 
 interface ExtraPaymentResult {
   originalLoan: LoanDetails;
@@ -75,7 +74,7 @@ interface PaymentScenario {
 @Component({
   selector: 'app-extra-payment-calculator',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink, LoadingSpinnerComponent],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   template: `
     <div class="extra-payment-container">
       <div class="calculator-header">

@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { LoadingSpinnerComponent } from '../../shared/components/loading-spinner.component';
-import { ProgressIndicatorComponent } from '../../shared/components/progress-indicator.component';
 
 interface RefinanceResult {
   currentLoan: LoanDetails;
@@ -39,7 +37,7 @@ interface BreakEvenAnalysis {
 @Component({
   selector: 'app-refinance-calculator',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink, LoadingSpinnerComponent, ProgressIndicatorComponent],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   template: `
     <div class="refinance-calculator-container">
       <div class="calculator-header">
