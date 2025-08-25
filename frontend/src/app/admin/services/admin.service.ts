@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { AuthService } from '../../auth/services/auth.service';
 
 export interface DashboardMetrics {
   totalApplications: number;
@@ -73,13 +74,26 @@ export interface AdminUser {
 export class AdminService {
   private baseUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService
+  ) {}
+
+  private getAuthHeaders(): HttpHeaders {
+    const token = this.authService.getToken();
+    return new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+  }
 
   getDashboardMetrics(): Observable<DashboardMetrics> {
-    return this.http.get<DashboardMetrics>(`${this.baseUrl}/admin/dashboard-metrics`);
+    const headers = this.getAuthHeaders();
+    return this.http.get<DashboardMetrics>(`${this.baseUrl}/admin/dashboard-metrics`, { headers });
   }
 
   getAllLoanApplications(page: number = 1, limit: number = 10, status: string = '', search: string = ''): Observable<LoanApplicationsResponse> {
+    const headers = this.getAuthHeaders();
     let params = new HttpParams()
       .set('page', page.toString())
       .set('limit', limit.toString());
@@ -92,21 +106,24 @@ export class AdminService {
       params = params.set('search', search);
     }
 
-    return this.http.get<LoanApplicationsResponse>(`${this.baseUrl}/loans`, { params });
+    return this.http.get<LoanApplicationsResponse>(`${this.baseUrl}/loans`, { headers, params });
   }
 
   getLoanApplicationById(id: number): Observable<LoanApplication> {
-    return this.http.get<LoanApplication>(`${this.baseUrl}/loans/${id}`);
+    const headers = this.getAuthHeaders();
+    return this.http.get<LoanApplication>(`${this.baseUrl}/loans/${id}`, { headers });
   }
 
   updateLoanApplicationStatus(id: number, status: string, notes?: string): Observable<LoanApplication> {
+    const headers = this.getAuthHeaders();
     return this.http.put<LoanApplication>(`${this.baseUrl}/loans/${id}/status`, {
       status,
       notes
-    });
+    }, { headers });
   }
 
   getAllUsers(page: number = 1, limit: number = 10, search: string = ''): Observable<UsersResponse> {
+    const headers = this.getAuthHeaders();
     let params = new HttpParams()
       .set('page', page.toString())
       .set('limit', limit.toString());
@@ -115,12 +132,13 @@ export class AdminService {
       params = params.set('search', search);
     }
 
-    return this.http.get<UsersResponse>(`${this.baseUrl}/admin/users`, { params });
+    return this.http.get<UsersResponse>(`${this.baseUrl}/admin/users`, { headers, params });
   }
 
   updateUserRole(id: number, role: string): Observable<AdminUser> {
+    const headers = this.getAuthHeaders();
     return this.http.put<AdminUser>(`${this.baseUrl}/admin/users/${id}/role`, {
       role
-    });
+    }, { headers });
   }
 }

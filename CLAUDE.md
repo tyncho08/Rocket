@@ -123,8 +123,8 @@ Main tables:
 4. Route guards protect authenticated routes
 
 ### Testing Accounts
-- Regular User: user@example.com / password123
-- Admin User: admin@example.com / admin123
+- Regular User: john.doe@email.com / user123
+- Admin User: admin@mortgageplatform.com / admin123
 
 ### Key Features to Test
 1. Property search with filters and pagination

@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { inject } from '@angular/core';
 import { HomeComponent } from './shared/components/home.component';
 import { LoginComponent } from './auth/components/login.component';
 import { RegisterComponent } from './auth/components/register.component';
@@ -32,22 +31,22 @@ export const routes: Routes = [
   {
     path: 'admin',
     loadComponent: () => import('./admin/components/admin-dashboard.component').then(m => m.AdminDashboardComponent),
-    canActivate: [() => inject(AdminGuard).canActivate(null as any, null as any)]
+    canActivate: [AdminGuard]
   },
   {
     path: 'admin/loans',
     loadComponent: () => import('./admin/components/loan-management.component').then(m => m.LoanManagementComponent),
-    canActivate: [() => inject(AdminGuard).canActivate(null as any, null as any)]
+    canActivate: [AdminGuard]
   },
   {
     path: 'admin/loans/:id',
     loadComponent: () => import('./admin/components/loan-review.component').then(m => m.LoanReviewComponent),
-    canActivate: [() => inject(AdminGuard).canActivate(null as any, null as any)]
+    canActivate: [AdminGuard]
   },
   {
     path: 'admin/users',
     loadComponent: () => import('./admin/components/user-management.component').then(m => m.UserManagementComponent),
-    canActivate: [() => inject(AdminGuard).canActivate(null as any, null as any)]
+    canActivate: [AdminGuard]
   },
   {
     path: 'comparison',

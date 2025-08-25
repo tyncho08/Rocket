@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Linq;
+using System;
 using MortgagePlatform.API.Data;
 using MortgagePlatform.API.Services;
 
@@ -62,13 +64,14 @@ namespace MortgagePlatform.API
             services.AddSwaggerGen();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext context)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI();
+                SeedDatabase(context);
             }
 
             app.UseRouting();
@@ -80,6 +83,57 @@ namespace MortgagePlatform.API
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private void SeedDatabase(ApplicationDbContext context)
+        {
+            try
+            {
+                context.Database.EnsureCreated();
+
+                // Check if admin user exists
+                var existingAdmin = context.Users.FirstOrDefault(u => u.Email == "admin@mortgageplatform.com");
+                if (existingAdmin == null)
+                {
+                    var adminUser = new MortgagePlatform.API.Models.User
+                    {
+                        FirstName = "Admin",
+                        LastName = "User",
+                        Email = "admin@mortgageplatform.com",
+                        PasswordHash = BCrypt.Net.BCrypt.HashPassword("admin123"),
+                        Role = "Admin",
+                        CreatedAt = DateTime.UtcNow,
+                        UpdatedAt = DateTime.UtcNow
+                    };
+
+                    context.Users.Add(adminUser);
+                    context.SaveChanges();
+                }
+
+                // Check if regular user exists
+                var existingUser = context.Users.FirstOrDefault(u => u.Email == "john.doe@email.com");
+                if (existingUser == null)
+                {
+                    var regularUser = new MortgagePlatform.API.Models.User
+                    {
+                        FirstName = "John",
+                        LastName = "Doe",
+                        Email = "john.doe@email.com",
+                        PasswordHash = BCrypt.Net.BCrypt.HashPassword("user123"),
+                        Role = "User",
+                        CreatedAt = DateTime.UtcNow,
+                        UpdatedAt = DateTime.UtcNow
+                    };
+
+                    context.Users.Add(regularUser);
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log error but don't crash the application
+                Console.WriteLine("Error seeding database: " + ex.Message);
+            }
         }
     }
 }
