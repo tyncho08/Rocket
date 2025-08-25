@@ -82,8 +82,9 @@ namespace MortgagePlatform.API.Services
                         : query.OrderByDescending(p => p.Bedrooms);
                     break;
                 case "random":
-                    // Add random ordering for similar properties search
-                    query = query.OrderBy(p => Guid.NewGuid());
+                    // Add random ordering for similar properties search - use Id-based approach for PostgreSQL compatibility
+                    var random = new Random();
+                    query = query.OrderBy(p => p.Id % random.Next(1, 1000));
                     break;
                 default:
                     query = searchDto.SortOrder?.ToLower() == "asc" 
