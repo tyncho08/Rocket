@@ -208,12 +208,6 @@ import { Property, PropertySearchFilters, PropertySearchResult } from '../../sha
                 >
                   View Details
                 </button>
-                <button 
-                  class="btn btn-secondary btn-sm"
-                  (click)="calculateMortgage(property)"
-                >
-                  Calculate Payment
-                </button>
               </div>
             </div>
           </div>
@@ -643,13 +637,6 @@ export class PropertySearchComponent implements OnInit, OnDestroy {
     });
   }
 
-  calculateMortgage(property: Property): void {
-    // This would typically navigate to mortgage calculator with property data
-    this.notificationService.info(
-      'Calculate Mortgage', 
-      'Redirecting to mortgage calculator...'
-    );
-  }
 
   setMinBedrooms(beds: number): void {
     const current = this.searchForm.get('minBedrooms')?.value;

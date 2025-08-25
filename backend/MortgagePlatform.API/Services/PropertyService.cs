@@ -114,8 +114,6 @@ namespace MortgagePlatform.API.Services
                     ImageUrl = p.ImageUrl,
                     IsFavorite = userId.HasValue && p.FavoriteProperties.Any(f => f.UserId == userId.Value)
                 })
-                .GroupBy(p => p.Id)
-                .Select(g => g.First()) // Ensure unique properties by ID
                 .ToArrayAsync();
 
             return new PropertySearchResultDto
