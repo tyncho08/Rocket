@@ -16,19 +16,21 @@ import { NotificationService } from '../../shared/services/notification.service'
         <p>Manage applications, users, and monitor platform activity</p>
       </div>
 
-      <div class="loading" *ngIf="loading">
-        <div class="spinner"></div>
+      <div class="loading-state" *ngIf="loading">
+        <div class="loading-spinner"></div>
         <p>Loading dashboard metrics...</p>
       </div>
 
       <div class="dashboard-content" *ngIf="!loading && metrics">
         <!-- Key Metrics Cards -->
-        <div class="metrics-section">
-          <h2>Key Metrics</h2>
-          <div class="metrics-grid">
+        <div class="section-content">
+          <div class="section-header">
+            <h2>Key Metrics</h2>
+          </div>
+          <div class="stats-grid">
             <div class="metric-card">
               <div class="metric-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M9 5H7C6.46957 5 5.96086 5.21071 5.58579 5.58579C5.21071 5.96086 5 6.46957 5 7V19C5 19.5304 5.21071 20.0391 5.58579 20.4142C5.96086 20.7893 6.46957 21 7 21H17C17.5304 21 18.0391 20.7893 18.4142 20.4142C18.7893 20.0391 19 19.5304 19 19V7C19 6.46957 18.7893 5.96086 18.4142 5.58579C18.0391 5.21071 17.5304 5 17 5H15"/>
                   <path d="M9 5C9 4.46957 9.21071 3.96086 9.58579 3.58579C9.96086 3.21071 10.4696 3 11 3H13C13.5304 3 14.0391 3.21071 14.4142 3.58579C14.7893 3.96086 15 4.46957 15 5V7H9V5Z"/>
                 </svg>
@@ -39,7 +41,7 @@ import { NotificationService } from '../../shared/services/notification.service'
             
             <div class="metric-card pending">
               <div class="metric-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <circle cx="12" cy="12" r="10"/>
                   <polyline points="12,6 12,12 16,14"/>
                 </svg>
@@ -50,7 +52,7 @@ import { NotificationService } from '../../shared/services/notification.service'
             
             <div class="metric-card approved">
               <div class="metric-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <polyline points="20,6 9,17 4,12"/>
                 </svg>
               </div>
@@ -60,7 +62,7 @@ import { NotificationService } from '../../shared/services/notification.service'
             
             <div class="metric-card denied">
               <div class="metric-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <line x1="18" y1="6" x2="6" y2="18"></line>
                   <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
@@ -71,7 +73,7 @@ import { NotificationService } from '../../shared/services/notification.service'
             
             <div class="metric-card">
               <div class="metric-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21"/>
                   <circle cx="9" cy="7" r="4"/>
                   <path d="M23 21V19C23 18.1645 22.7155 17.3541 22.2094 16.7019C21.7033 16.0497 20.0109 15.6023 19 15.4278"/>
@@ -84,7 +86,7 @@ import { NotificationService } from '../../shared/services/notification.service'
             
             <div class="metric-card">
               <div class="metric-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <polyline points="23,6 13.5,15.5 8.5,10.5 1,18"/>
                   <polyline points="17,6 23,6 23,12"/>
                 </svg>
@@ -96,9 +98,11 @@ import { NotificationService } from '../../shared/services/notification.service'
         </div>
 
         <!-- Quick Actions -->
-        <div class="actions-section">
-          <h2>Quick Actions</h2>
-          <div class="action-cards">
+        <div class="section-content">
+          <div class="section-header">
+            <h2>Quick Actions</h2>
+          </div>
+          <div class="card-grid">
             <a routerLink="/admin/loans" class="action-card">
               <div class="action-icon">
                 <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -137,8 +141,10 @@ import { NotificationService } from '../../shared/services/notification.service'
         </div>
 
         <!-- Recent Applications -->
-        <div class="recent-section">
-          <h2>Recent Applications</h2>
+        <div class="section-content">
+          <div class="section-header">
+            <h2>Recent Applications</h2>
+          </div>
           <div class="recent-applications" *ngIf="metrics.recentApplications.length > 0">
             <div class="application-item" *ngFor="let app of metrics.recentApplications">
               <div class="app-info">
@@ -152,10 +158,17 @@ import { NotificationService } from '../../shared/services/notification.service'
                 </div>
                 <div class="app-date">{{formatDate(app.createdAt)}}</div>
               </div>
-              <a routerLink="/admin/loans/{{app.id}}" class="review-btn">Review</a>
+              <a routerLink="/admin/loans/{{app.id}}" class="btn btn-primary btn-sm">Review</a>
             </div>
           </div>
-          <div class="no-applications" *ngIf="metrics.recentApplications.length === 0">
+          <div class="empty-state" *ngIf="metrics.recentApplications.length === 0">
+            <div class="empty-state-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 5H7C6.46957 5 5.96086 5.21071 5.58579 5.58579C5.21071 5.96086 5 6.46957 5 7V19C5 19.5304 5.21071 20.0391 5.58579 20.4142C5.96086 20.7893 6.46957 21 7 21H17C17.5304 21 18.0391 21.7893 18.4142 20.4142C18.7893 20.0391 19 19.5304 19 19V7C19 6.46957 18.7893 5.96086 18.4142 5.58579C18.0391 5.21071 17.5304 5 17 5H15"/>
+                <path d="M9 5C9 4.46957 9.21071 3.96086 9.58579 3.58579C9.96086 3.21071 10.4696 3 11 3H13C13.5304 3 14.0391 3.21071 14.4142 3.58579C14.7893 3.96086 15 4.46957 15 5V7H9V5Z"/>
+              </svg>
+            </div>
+            <h3>No Recent Applications</h3>
             <p>No recent applications found</p>
           </div>
         </div>
@@ -166,48 +179,24 @@ import { NotificationService } from '../../shared/services/notification.service'
     .admin-dashboard-container {
       min-height: 100vh;
       background: var(--background-secondary);
-      padding: 2rem;
+      padding: var(--space-lg);
     }
 
     .dashboard-header {
       text-align: center;
-      margin-bottom: 3rem;
+      margin-bottom: var(--space-2xl);
     }
 
     .dashboard-header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+      font-size: var(--text-3xl);
+      margin-bottom: var(--space-xs);
       color: var(--primary-dark);
       font-weight: 600;
     }
 
     .dashboard-header p {
-      font-size: 1.2rem;
+      font-size: var(--text-lg);
       color: var(--text-secondary);
-    }
-
-    .loading {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 300px;
-      color: var(--text-secondary);
-    }
-
-    .spinner {
-      width: 50px;
-      height: 50px;
-      border: 4px solid var(--border-light);
-      border-top: 4px solid var(--primary-dark);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-bottom: 20px;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
     }
 
     .dashboard-content {
@@ -215,41 +204,24 @@ import { NotificationService } from '../../shared/services/notification.service'
       margin: 0 auto;
     }
 
-    .metrics-section, .actions-section, .recent-section {
-      background: var(--background-primary);
-      border: 1px solid var(--border-light);
-      border-radius: 0.75rem;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 1px 3px var(--shadow-light);
-    }
-
-    .metrics-section h2, .actions-section h2, .recent-section h2 {
-      margin-bottom: 1.5rem;
-      color: var(--primary-dark);
-      font-size: 1.5rem;
-      font-weight: 600;
-    }
-
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
+    .section-content {
+      margin-bottom: var(--space-xl);
     }
 
     .metric-card {
       background: var(--background-primary);
-      padding: 1.5rem;
-      border-radius: 0.75rem;
+      padding: var(--space-md);
+      border-radius: var(--radius-md);
       text-align: center;
       border: 1px solid var(--border-light);
       transition: all 0.2s ease;
-      box-shadow: 0 1px 3px var(--shadow-light);
+      box-shadow: 0 2px 8px var(--shadow-light);
     }
 
     .metric-card:hover {
       transform: translateY(-2px);
       box-shadow: 0 4px 12px var(--shadow-medium);
+      border-color: var(--primary-dark);
     }
 
     .metric-card.pending {
@@ -265,50 +237,45 @@ import { NotificationService } from '../../shared/services/notification.service'
     }
 
     .metric-icon {
-      margin-bottom: 1rem;
+      margin-bottom: var(--space-sm);
       color: var(--primary-dark);
       display: flex;
       justify-content: center;
     }
 
     .metric-icon svg {
-      width: 32px;
-      height: 32px;
-      stroke: var(--primary-dark);
+      width: 24px;
+      height: 24px;
     }
 
     .metric-value {
-      font-size: 2.5rem;
+      font-size: var(--text-xl);
       font-weight: 700;
       color: var(--primary-dark);
-      margin-bottom: 0.5rem;
+      margin-bottom: var(--space-xs);
+      line-height: 1.2;
     }
 
     .metric-label {
-      font-size: 0.875rem;
+      font-size: var(--text-xs);
       color: var(--text-secondary);
       text-transform: uppercase;
       letter-spacing: 0.5px;
       font-weight: 500;
-    }
-
-    .action-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+      line-height: 1.3;
     }
 
     .action-card {
       background: var(--background-primary);
       color: var(--text-primary);
-      padding: 1.5rem;
-      border-radius: 0.75rem;
+      padding: var(--space-lg);
+      border-radius: var(--radius-lg);
       border: 1px solid var(--border-light);
       text-decoration: none;
       transition: all 0.2s ease;
       cursor: pointer;
       text-align: center;
-      box-shadow: 0 1px 3px var(--shadow-light);
+      box-shadow: 0 2px 8px var(--shadow-light);
     }
 
     .action-card:hover {
@@ -320,32 +287,28 @@ import { NotificationService } from '../../shared/services/notification.service'
     }
 
     .action-icon {
-      margin-bottom: 1rem;
+      margin-bottom: var(--space-md);
       color: var(--primary-dark);
       display: flex;
       justify-content: center;
     }
 
-    .action-icon svg {
-      width: 36px;
-      height: 36px;
-      stroke: var(--primary-dark);
-    }
-
     .action-title {
-      font-size: 1.2rem;
+      font-size: var(--text-lg);
       font-weight: 600;
-      margin-bottom: 0.5rem;
+      margin-bottom: var(--space-xs);
       color: var(--primary-dark);
     }
 
     .action-description {
-      font-size: 0.875rem;
+      font-size: var(--text-sm);
       color: var(--text-secondary);
     }
 
     .recent-applications {
-      space-y: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
     }
 
     .application-item {
@@ -353,9 +316,8 @@ import { NotificationService } from '../../shared/services/notification.service'
       justify-content: space-between;
       align-items: center;
       background: var(--background-tertiary);
-      padding: 1.25rem;
-      border-radius: 0.5rem;
-      margin-bottom: 1rem;
+      padding: var(--space-lg);
+      border-radius: var(--radius-md);
       border: 1px solid var(--border-light);
       transition: all 0.2s ease;
     }
@@ -363,6 +325,7 @@ import { NotificationService } from '../../shared/services/notification.service'
     .application-item:hover {
       background: var(--background-primary);
       box-shadow: 0 2px 8px var(--shadow-light);
+      border-color: var(--primary-dark);
     }
 
     .app-info {
@@ -372,19 +335,20 @@ import { NotificationService } from '../../shared/services/notification.service'
     .app-header {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 8px;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xs);
     }
 
     .app-id {
       font-weight: 600;
       color: var(--primary-dark);
+      font-size: var(--text-sm);
     }
 
     .app-status {
-      padding: 0.25rem 0.75rem;
-      border-radius: 1rem;
-      font-size: 0.75rem;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--radius-xl);
+      font-size: var(--text-xs);
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -410,78 +374,77 @@ import { NotificationService } from '../../shared/services/notification.service'
 
     .app-details {
       display: flex;
-      gap: 20px;
-      margin-bottom: 5px;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xs);
     }
 
     .app-user {
       font-weight: 500;
       color: var(--text-primary);
+      font-size: var(--text-sm);
     }
 
     .app-amount {
       font-weight: 600;
       color: var(--accent-success);
+      font-size: var(--text-sm);
     }
 
     .app-date {
-      font-size: 0.875rem;
+      font-size: var(--text-xs);
       color: var(--text-muted);
     }
 
-    .review-btn {
-      background: var(--primary-dark);
-      color: var(--text-white);
-      padding: 0.5rem 1rem;
-      border-radius: 0.375rem;
-      border: 1px solid var(--primary-dark);
-      text-decoration: none;
-      font-size: 0.875rem;
-      font-weight: 500;
-      transition: all 0.2s ease;
-    }
-
-    .review-btn:hover {
-      background: var(--primary-medium);
-      color: var(--text-white);
-      text-decoration: none;
-      transform: translateY(-1px);
-      box-shadow: 0 2px 8px var(--shadow-medium);
-    }
-
-    .no-applications {
-      text-align: center;
-      color: var(--text-muted);
-      padding: 2.5rem;
-    }
-
+    /* Mobile responsiveness */
     @media (max-width: 768px) {
       .admin-dashboard-container {
-        padding: 10px;
+        padding: var(--space-sm);
       }
 
-      .metrics-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 15px;
+      .dashboard-header {
+        margin-bottom: var(--space-xl);
       }
 
-      .action-cards {
-        grid-template-columns: 1fr;
+      .dashboard-header h1 {
+        font-size: var(--text-2xl);
       }
 
       .application-item {
         flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
+        align-items: stretch;
+        gap: var(--space-md);
       }
 
       .app-details {
         flex-direction: column;
-        gap: 5px;
+        gap: var(--space-xs);
       }
 
-      .review-btn {
-        align-self: flex-start;
+      .metric-value {
+        font-size: var(--text-lg);
+      }
+
+      .metric-icon {
+        margin-bottom: var(--space-xs);
+      }
+
+      .metric-icon svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .admin-dashboard-container {
+        padding: var(--space-xs);
+      }
+      
+      .metric-card {
+        padding: var(--space-sm);
+      }
+      
+      .action-card {
+        padding: var(--space-md);
       }
     }
   `]

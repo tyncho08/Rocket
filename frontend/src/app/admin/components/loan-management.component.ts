@@ -20,43 +20,56 @@ import { NotificationService } from '../../shared/services/notification.service'
       </div>
 
       <!-- Filters and Search -->
-      <div class="filters-section">
-        <div class="search-filter">
-          <input 
-            type="text" 
-            placeholder="Search by user name or email..."
-            [(ngModel)]="searchTerm"
-            (input)="onSearchChange($event)"
-            class="search-input">
+      <div class="section-content">
+        <div class="section-header">
+          <h2>Search & Filter Applications</h2>
         </div>
-        
-        <div class="status-filter">
-          <select [(ngModel)]="selectedStatus" (change)="onFilterChange()" class="filter-select">
-            <option value="">All Status</option>
-            <option value="Pending">Pending</option>
-            <option value="Approved">Approved</option>
-            <option value="Denied">Denied</option>
-            <option value="Under Review">Under Review</option>
-          </select>
-        </div>
+        <div class="filters-container">
+          <div class="filters-grid">
+            <div class="form-group">
+              <label for="search">Search Applications</label>
+              <input 
+                id="search"
+                type="text" 
+                placeholder="Search by user name or email..."
+                [(ngModel)]="searchTerm"
+                (input)="onSearchChange($event)"
+                class="form-control">
+            </div>
+            
+            <div class="form-group">
+              <label for="status-filter">Filter by Status</label>
+              <select id="status-filter" [(ngModel)]="selectedStatus" (change)="onFilterChange()" class="form-control">
+                <option value="">All Status</option>
+                <option value="Pending">Pending</option>
+                <option value="Approved">Approved</option>
+                <option value="Denied">Denied</option>
+                <option value="Under Review">Under Review</option>
+              </select>
+            </div>
+          </div>
 
-        <div class="results-info" *ngIf="applicationsResponse">
-          Showing {{((applicationsResponse.page - 1) * applicationsResponse.limit) + 1}} to 
-          {{Math.min(applicationsResponse.page * applicationsResponse.limit, applicationsResponse.totalCount)}} 
-          of {{applicationsResponse.totalCount}} applications
+          <div class="results-info" *ngIf="applicationsResponse">
+            <strong>Results:</strong> Showing {{((applicationsResponse.page - 1) * applicationsResponse.limit) + 1}} to 
+            {{Math.min(applicationsResponse.page * applicationsResponse.limit, applicationsResponse.totalCount)}} 
+            of {{applicationsResponse.totalCount}} applications
+          </div>
         </div>
       </div>
 
       <!-- Loading State -->
-      <div class="loading" *ngIf="loading">
-        <div class="spinner"></div>
+      <div class="loading-state" *ngIf="loading">
+        <div class="loading-spinner"></div>
         <p>Loading loan applications...</p>
       </div>
 
       <!-- Applications Table -->
-      <div class="applications-table" *ngIf="!loading && applicationsResponse">
-        <div class="table-responsive">
-          <table class="applications-grid">
+      <div class="section-content" *ngIf="!loading && applicationsResponse">
+        <div class="section-header">
+          <h2>Loan Applications</h2>
+        </div>
+        <div class="table-container">
+          <table class="data-table">
             <thead>
               <tr>
                 <th>Application ID</th>
@@ -69,35 +82,45 @@ import { NotificationService } from '../../shared/services/notification.service'
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let application of applicationsResponse.applications" class="application-row">
-                <td class="app-id">#{{application.id}}</td>
-                <td class="applicant-info">
-                  <div class="applicant-name">{{application.userName}}</div>
-                  <div class="applicant-income">\${{application.annualIncome | number:'1.0-0'}} annually</div>
+              <tr *ngFor="let application of applicationsResponse.applications">
+                <td>
+                  <span class="app-id">#{{application.id}}</span>
                 </td>
-                <td class="loan-amount">
-                  <div class="amount">\${{application.loanAmount | number:'1.0-0'}}</div>
-                  <div class="term">{{application.loanTermYears}} years at {{application.interestRate}}%</div>
+                <td>
+                  <div class="applicant-info">
+                    <div class="applicant-name">{{application.userName}}</div>
+                    <div class="applicant-details">\${{application.annualIncome | number:'1.0-0'}} annually</div>
+                  </div>
                 </td>
-                <td class="property-value">
-                  <div class="value">\${{application.propertyValue | number:'1.0-0'}}</div>
-                  <div class="down-payment">Down: \${{application.downPayment | number:'1.0-0'}}</div>
+                <td>
+                  <div class="loan-details">
+                    <div class="amount">\${{application.loanAmount | number:'1.0-0'}}</div>
+                    <div class="term">{{application.loanTermYears}} years at {{application.interestRate}}%</div>
+                  </div>
                 </td>
-                <td class="status-cell">
+                <td>
+                  <div class="property-details">
+                    <div class="value">\${{application.propertyValue | number:'1.0-0'}}</div>
+                    <div class="down-payment">Down: \${{application.downPayment | number:'1.0-0'}}</div>
+                  </div>
+                </td>
+                <td>
                   <span class="status-badge" [class]="'status-' + application.status.toLowerCase().replace(' ', '-')">
                     {{application.status}}
                   </span>
                 </td>
                 <td class="date-cell">{{formatDate(application.createdAt)}}</td>
-                <td class="actions-cell">
-                  <a routerLink="/admin/loans/{{application.id}}" class="review-btn">Review</a>
-                  <button 
-                    *ngIf="application.status === 'Pending'" 
-                    (click)="quickApprove(application.id)"
-                    class="quick-approve-btn"
-                    [disabled]="updating === application.id">
-                    {{updating === application.id ? 'Updating...' : 'Quick Approve'}}
-                  </button>
+                <td>
+                  <div class="button-group-vertical">
+                    <a routerLink="/admin/loans/{{application.id}}" class="btn btn-primary btn-sm">Review</a>
+                    <button 
+                      *ngIf="application.status === 'Pending'" 
+                      (click)="quickApprove(application.id)"
+                      class="btn btn-success btn-sm"
+                      [disabled]="updating === application.id">
+                      {{updating === application.id ? 'Updating...' : 'Quick Approve'}}
+                    </button>
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -105,8 +128,8 @@ import { NotificationService } from '../../shared/services/notification.service'
         </div>
 
         <!-- No Applications Message -->
-        <div class="no-applications" *ngIf="applicationsResponse.applications.length === 0">
-          <div class="no-data-icon">
+        <div class="empty-state" *ngIf="applicationsResponse.applications.length === 0">
+          <div class="empty-state-icon">
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M9 5H7C6.46957 5 5.96086 5.21071 5.58579 5.58579C5.21071 5.96086 5 6.46957 5 7V19C5 19.5304 5.21071 20.0391 5.58579 20.4142C5.96086 20.7893 6.46957 21 7 21H17C17.5304 21 18.0391 20.7893 18.4142 20.4142C18.7893 20.0391 19 19.5304 19 19V7C19 6.46957 18.7893 5.96086 18.4142 5.58579C18.0391 5.21071 17.5304 5 17 5H15"/>
               <path d="M9 5C9 4.46957 9.21071 3.96086 9.58579 3.58579C9.96086 3.21071 10.4696 3 11 3H13C13.5304 3 14.0391 3.21071 14.4142 3.58579C14.7893 3.96086 15 4.46957 15 5V7H9V5Z"/>
@@ -118,24 +141,26 @@ import { NotificationService } from '../../shared/services/notification.service'
       </div>
 
       <!-- Pagination -->
-      <div class="pagination" *ngIf="applicationsResponse && applicationsResponse.totalPages > 1">
-        <button 
-          (click)="changePage(applicationsResponse.page - 1)"
-          [disabled]="applicationsResponse.page === 1 || loading"
-          class="pagination-btn">
-          Previous
-        </button>
-        
-        <span class="pagination-info">
-          Page {{applicationsResponse.page}} of {{applicationsResponse.totalPages}}
-        </span>
-        
-        <button 
-          (click)="changePage(applicationsResponse.page + 1)"
-          [disabled]="applicationsResponse.page === applicationsResponse.totalPages || loading"
-          class="pagination-btn">
-          Next
-        </button>
+      <div class="pagination-container" *ngIf="applicationsResponse && applicationsResponse.totalPages > 1">
+        <div class="pagination">
+          <button 
+            (click)="changePage(applicationsResponse.page - 1)"
+            [disabled]="applicationsResponse.page === 1 || loading"
+            class="btn btn-outline btn-sm">
+            ← Previous
+          </button>
+          
+          <span class="pagination-info">
+            Page {{applicationsResponse.page}} of {{applicationsResponse.totalPages}}
+          </span>
+          
+          <button 
+            (click)="changePage(applicationsResponse.page + 1)"
+            [disabled]="applicationsResponse.page === applicationsResponse.totalPages || loading"
+            class="btn btn-outline btn-sm">
+            Next →
+          </button>
+        </div>
       </div>
     </div>
   `,
@@ -143,26 +168,26 @@ import { NotificationService } from '../../shared/services/notification.service'
     .loan-management-container {
       min-height: 100vh;
       background: var(--background-secondary);
-      padding: 2rem;
+      padding: var(--space-lg);
     }
 
     .page-header {
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: var(--space-2xl);
       position: relative;
     }
 
     .page-header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+      font-size: var(--text-3xl);
+      margin-bottom: var(--space-xs);
       color: var(--primary-dark);
       font-weight: 600;
     }
 
     .page-header p {
-      font-size: 1.2rem;
+      font-size: var(--text-lg);
       color: var(--text-secondary);
-      margin-bottom: 1.5rem;
+      margin-bottom: var(--space-lg);
     }
 
     .back-btn {
@@ -171,12 +196,13 @@ import { NotificationService } from '../../shared/services/notification.service'
       top: 0;
       color: var(--primary-dark);
       text-decoration: none;
-      padding: 0.75rem 1.5rem;
+      padding: var(--space-sm) var(--space-md);
       border: 1px solid var(--border-medium);
-      border-radius: 0.375rem;
+      border-radius: var(--radius-md);
       background: var(--background-primary);
       transition: all 0.2s ease;
       font-weight: 500;
+      font-size: var(--text-sm);
     }
 
     .back-btn:hover {
@@ -187,350 +213,242 @@ import { NotificationService } from '../../shared/services/notification.service'
       transform: translateY(-1px);
     }
 
-    .filters-section {
-      background: white;
-      border-radius: 15px;
-      padding: 25px;
-      margin-bottom: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      display: flex;
-      gap: 20px;
-      align-items: center;
-      flex-wrap: wrap;
-      max-width: 1400px;
-      margin-left: auto;
-      margin-right: auto;
-      margin-bottom: 30px;
+    /* Filters Section */
+    .filters-container {
+      margin-bottom: var(--space-lg);
     }
 
-    .search-filter {
-      flex: 2;
-      min-width: 300px;
-    }
-
-    .search-input {
-      width: 100%;
-      padding: 12px 16px;
-      border: 2px solid #e0e6ed;
-      border-radius: 8px;
-      font-size: 1rem;
-      transition: border-color 0.3s ease;
-    }
-
-    .search-input:focus {
-      outline: none;
-      border-color: #667eea;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-    }
-
-    .status-filter {
-      flex: 1;
-      min-width: 200px;
-    }
-
-    .filter-select {
-      width: 100%;
-      padding: 12px 16px;
-      border: 2px solid #e0e6ed;
-      border-radius: 8px;
-      font-size: 1rem;
-      background: white;
-      transition: border-color 0.3s ease;
-    }
-
-    .filter-select:focus {
-      outline: none;
-      border-color: #667eea;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    .filters-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-md);
     }
 
     .results-info {
-      flex: 1;
-      min-width: 200px;
-      color: #666;
-      font-size: 0.9rem;
-      text-align: right;
+      color: var(--text-secondary);
+      font-size: var(--text-sm);
+      padding: var(--space-md);
+      background: var(--background-tertiary);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-light);
     }
 
-    .loading {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 300px;
-      color: white;
+    /* Table Styling */
+    .table-container {
+      background: var(--background-primary);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-light);
+      overflow: hidden;
+      box-shadow: 0 2px 8px var(--shadow-light);
     }
 
-    .spinner {
-      width: 50px;
-      height: 50px;
-      border: 5px solid rgba(255,255,255,0.3);
-      border-top: 5px solid white;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-bottom: 20px;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .applications-table {
-      background: white;
-      border-radius: 15px;
-      padding: 30px;
-      margin-bottom: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      max-width: 1400px;
-      margin-left: auto;
-      margin-right: auto;
-      margin-bottom: 30px;
-    }
-
-    .table-responsive {
-      overflow-x: auto;
-    }
-
-    .applications-grid {
+    .data-table {
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 20px;
+      font-size: var(--text-sm);
     }
 
-    .applications-grid th {
-      background: #f8f9fa;
-      padding: 15px 12px;
-      text-align: left;
+    .data-table th {
+      background: var(--background-secondary);
+      color: var(--text-primary);
       font-weight: 600;
-      color: #333;
-      border-bottom: 2px solid #e9ecef;
+      text-align: left;
+      padding: var(--space-md);
+      border-bottom: 2px solid var(--border-medium);
       white-space: nowrap;
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
-    .application-row {
-      border-bottom: 1px solid #e9ecef;
-      transition: background-color 0.3s ease;
-    }
-
-    .application-row:hover {
-      background-color: #f8f9fa;
-    }
-
-    .applications-grid td {
-      padding: 20px 12px;
+    .data-table td {
+      padding: var(--space-md);
+      border-bottom: 1px solid var(--border-light);
       vertical-align: top;
+      min-width: 120px;
+    }
+
+    .data-table td:nth-child(5) {
+      min-width: 140px;
+      text-align: center;
+    }
+
+    .data-table tr:hover {
+      background: var(--background-secondary);
+    }
+
+    .data-table tr:last-child td {
+      border-bottom: none;
     }
 
     .app-id {
-      font-weight: bold;
-      color: #667eea;
+      font-weight: 600;
+      color: var(--primary-dark);
+      font-size: var(--text-sm);
     }
 
     .applicant-info .applicant-name {
       font-weight: 600;
-      color: #333;
-      margin-bottom: 4px;
+      color: var(--text-primary);
+      margin-bottom: var(--space-xs);
+      font-size: var(--text-sm);
     }
 
-    .applicant-info .applicant-income {
-      font-size: 0.85rem;
-      color: #666;
+    .applicant-info .applicant-details {
+      font-size: var(--text-xs);
+      color: var(--text-secondary);
     }
 
-    .loan-amount .amount {
-      font-weight: bold;
-      color: #28a745;
-      font-size: 1.1rem;
-      margin-bottom: 4px;
+    .loan-details .amount {
+      font-weight: 600;
+      color: var(--accent-success);
+      font-size: var(--text-base);
+      margin-bottom: var(--space-xs);
     }
 
-    .loan-amount .term {
-      font-size: 0.85rem;
-      color: #666;
+    .loan-details .term {
+      font-size: var(--text-xs);
+      color: var(--text-secondary);
     }
 
-    .property-value .value {
-      font-weight: bold;
-      color: #333;
-      margin-bottom: 4px;
+    .property-details .value {
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: var(--space-xs);
+      font-size: var(--text-sm);
     }
 
-    .property-value .down-payment {
-      font-size: 0.85rem;
-      color: #666;
+    .property-details .down-payment {
+      font-size: var(--text-xs);
+      color: var(--text-secondary);
     }
 
     .status-badge {
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: bold;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--radius-xl);
+      font-size: var(--text-xs);
+      font-weight: 600;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border: 1px solid;
+      white-space: nowrap;
+      display: inline-block;
+      min-width: fit-content;
+      text-align: center;
     }
 
     .status-pending {
-      background: #fff3cd;
-      color: #856404;
+      background: rgba(214, 158, 46, 0.1);
+      color: var(--accent-warning);
+      border-color: var(--accent-warning);
     }
 
     .status-approved {
-      background: #d4edda;
-      color: #155724;
+      background: rgba(56, 161, 105, 0.1);
+      color: var(--accent-success);
+      border-color: var(--accent-success);
     }
 
     .status-denied {
-      background: #f8d7da;
-      color: #721c24;
+      background: rgba(229, 62, 62, 0.1);
+      color: var(--accent-danger);
+      border-color: var(--accent-danger);
     }
 
     .status-under-review {
-      background: #d1ecf1;
-      color: #0c5460;
+      background: rgba(49, 130, 206, 0.1);
+      color: var(--primary-dark);
+      border-color: var(--primary-dark);
     }
 
     .date-cell {
-      color: #666;
-      font-size: 0.9rem;
+      color: var(--text-secondary);
+      font-size: var(--text-xs);
     }
 
-    .actions-cell {
-      white-space: nowrap;
+    .button-group-vertical {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      align-items: stretch;
     }
 
-    .review-btn {
-      background: #007bff;
-      color: white;
-      padding: 8px 16px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 0.85rem;
-      margin-right: 8px;
-      display: inline-block;
-      transition: background 0.3s ease;
-    }
-
-    .review-btn:hover {
-      background: #0056b3;
-      color: white;
-      text-decoration: none;
-    }
-
-    .quick-approve-btn {
-      background: #28a745;
-      color: white;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 6px;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .quick-approve-btn:hover:not(:disabled) {
-      background: #218838;
-    }
-
-    .quick-approve-btn:disabled {
-      background: #6c757d;
-      cursor: not-allowed;
-    }
-
-    .no-applications {
-      text-align: center;
-      padding: 60px 20px;
-      color: #666;
-    }
-
-    .no-data-icon {
-      font-size: 4rem;
-      margin-bottom: 20px;
-    }
-
-    .no-applications h3 {
-      margin-bottom: 10px;
-      color: #333;
-    }
-
-    .pagination {
+    .pagination-container {
       display: flex;
       justify-content: center;
-      align-items: center;
-      gap: 20px;
-      color: white;
-      margin-bottom: 30px;
-    }
-
-    .pagination-btn {
-      background: rgba(255,255,255,0.2);
-      color: white;
-      border: 2px solid rgba(255,255,255,0.3);
-      padding: 10px 20px;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .pagination-btn:hover:not(:disabled) {
-      background: rgba(255,255,255,0.3);
-    }
-
-    .pagination-btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
+      margin-top: var(--space-xl);
+      margin-bottom: var(--space-lg);
     }
 
     .pagination-info {
+      color: var(--text-secondary);
       font-weight: 500;
+      font-size: var(--text-sm);
+      display: flex;
+      align-items: center;
+      margin: 0 var(--space-md);
     }
 
+    /* Mobile responsive */
     @media (max-width: 768px) {
       .loan-management-container {
-        padding: 10px;
+        padding: var(--space-sm);
+      }
+
+      .page-header {
+        margin-bottom: var(--space-xl);
       }
 
       .page-header h1 {
-        font-size: 2rem;
+        font-size: var(--text-2xl);
       }
 
       .back-btn {
         position: relative;
         display: block;
         width: fit-content;
-        margin: 0 auto 20px;
+        margin: 0 auto var(--space-lg);
       }
 
-      .filters-section {
-        flex-direction: column;
-        align-items: stretch;
+      .filters-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
       }
 
-      .search-filter, .status-filter {
-        min-width: unset;
+      .table-container {
+        overflow-x: auto;
       }
 
-      .results-info {
+      .data-table {
+        min-width: 800px;
+      }
+
+      .data-table th,
+      .data-table td {
+        padding: var(--space-sm);
+        font-size: var(--text-xs);
+      }
+
+      .button-group-vertical {
+        align-items: center;
+      }
+
+      .button-group-vertical .btn {
+        min-width: 100px;
         text-align: center;
+        font-size: var(--text-xs);
+        padding: var(--space-xs) var(--space-sm);
       }
+    }
 
-      .applications-grid {
-        font-size: 0.85rem;
+    @media (max-width: 480px) {
+      .loan-management-container {
+        padding: var(--space-xs);
       }
-
-      .applications-grid th,
-      .applications-grid td {
-        padding: 12px 8px;
-      }
-
-      .actions-cell {
-        white-space: normal;
-      }
-
-      .review-btn,
-      .quick-approve-btn {
-        display: block;
-        margin-bottom: 5px;
-        text-align: center;
+      
+      .page-header h1 {
+        font-size: var(--text-xl);
       }
     }
   `]

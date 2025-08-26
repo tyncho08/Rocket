@@ -113,10 +113,11 @@ export class MortgageService {
 
   // Format currency for display
   formatCurrency(amount: number): string {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD'
+    const formatted = new Intl.NumberFormat('en-US', {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
     }).format(amount);
+    return `$${formatted}`;
   }
 
   // Format percentage for display

@@ -49,7 +49,7 @@ export interface LoanApplicationDisplay {
 
       <div class="dashboard-main">
         <!-- Quick Stats -->
-        <div class="stats-section">
+        <div class="stats-grid">
           <div class="stat-card">
             <div class="stat-icon">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -109,8 +109,10 @@ export interface LoanApplicationDisplay {
         <!-- Main Content Grid -->
         <div class="dashboard-grid">
           <!-- Profile Section -->
-          <div class="dashboard-section profile-section">
-            <h2>Profile Information</h2>
+          <div class="section-content profile-section">
+            <div class="section-header">
+              <h2>Profile Information</h2>
+            </div>
             
             <div class="profile-content" *ngIf="!editingProfile; else profileTemplate">
               <div class="profile-info">
@@ -133,8 +135,7 @@ export interface LoanApplicationDisplay {
                   <div class="profile-item">
                     <span class="label">Address:</span>
                     <span class="value">
-                      {{ user?.address }}<br>
-                      {{ user?.city }}, {{ user?.state }} {{ user?.zipCode }}
+                      {{ user?.address }}, {{ user?.city }}, {{ user?.state }} {{ user?.zipCode }}
                     </span>
                   </div>
                   <div class="profile-item">
@@ -144,7 +145,7 @@ export interface LoanApplicationDisplay {
                 </div>
               </div>
               
-              <div class="profile-actions">
+              <div class="button-group-center mt-lg">
                 <button (click)="editProfile()" class="btn btn-primary">
                   Edit Profile
                 </button>
@@ -152,69 +153,71 @@ export interface LoanApplicationDisplay {
             </div>
 
             <ng-template #profileTemplate>
-              <form [formGroup]="profileForm" (ngSubmit)="saveProfile()" class="profile-form">
-                <div class="form-grid">
-                  <div class="form-group">
-                    <label for="firstName">First Name</label>
-                    <input type="text" id="firstName" formControlName="firstName" class="form-input" />
+              <div class="profile-edit-container">
+                <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+                  <div class="profile-form-grid">
+                    <div class="form-group">
+                      <label for="firstName">First Name</label>
+                      <input type="text" id="firstName" formControlName="firstName" class="form-control" />
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="lastName">Last Name</label>
+                      <input type="text" id="lastName" formControlName="lastName" class="form-control" />
+                    </div>
+                    
+                    <div class="form-group full-width">
+                      <label for="email">Email</label>
+                      <input type="email" id="email" formControlName="email" class="form-control" />
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="phone">Phone</label>
+                      <input type="tel" id="phone" formControlName="phone" class="form-control" />
+                    </div>
+                    
+                    <div class="form-group full-width">
+                      <label for="address">Address</label>
+                      <input type="text" id="address" formControlName="address" class="form-control" />
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="city">City</label>
+                      <input type="text" id="city" formControlName="city" class="form-control" />
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="state">State</label>
+                      <select id="state" formControlName="state" class="form-control">
+                        <option value="">Select State</option>
+                        <option value="TX">Texas</option>
+                        <option value="CA">California</option>
+                        <option value="FL">Florida</option>
+                        <option value="NY">New York</option>
+                      </select>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="zipCode">ZIP Code</label>
+                      <input type="text" id="zipCode" formControlName="zipCode" class="form-control" />
+                    </div>
                   </div>
                   
-                  <div class="form-group">
-                    <label for="lastName">Last Name</label>
-                    <input type="text" id="lastName" formControlName="lastName" class="form-input" />
+                  <div class="profile-form-actions">
+                    <button type="button" (click)="cancelEdit()" class="btn btn-secondary">
+                      Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary" [disabled]="profileForm.invalid">
+                      Save Changes
+                    </button>
                   </div>
-                  
-                  <div class="form-group full-width">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" formControlName="email" class="form-input" />
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="phone">Phone</label>
-                    <input type="tel" id="phone" formControlName="phone" class="form-input" />
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="address">Address</label>
-                    <input type="text" id="address" formControlName="address" class="form-input" />
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="city">City</label>
-                    <input type="text" id="city" formControlName="city" class="form-input" />
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="state">State</label>
-                    <select id="state" formControlName="state" class="form-input">
-                      <option value="">Select State</option>
-                      <option value="TX">Texas</option>
-                      <option value="CA">California</option>
-                      <option value="FL">Florida</option>
-                      <option value="NY">New York</option>
-                    </select>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="zipCode">ZIP Code</label>
-                    <input type="text" id="zipCode" formControlName="zipCode" class="form-input" />
-                  </div>
-                </div>
-                
-                <div class="form-actions">
-                  <button type="button" (click)="cancelEdit()" class="btn btn-secondary">
-                    Cancel
-                  </button>
-                  <button type="submit" class="btn btn-primary" [disabled]="profileForm.invalid">
-                    Save Changes
-                  </button>
-                </div>
-              </form>
+                </form>
+              </div>
             </ng-template>
           </div>
 
           <!-- Loan Applications -->
-          <div class="dashboard-section applications-section">
+          <div class="section-content applications-section">
             <div class="section-header">
               <h2>Loan Applications</h2>
               <button [routerLink]="['/loan-application']" class="btn btn-primary">
@@ -291,7 +294,7 @@ export interface LoanApplicationDisplay {
           </div>
 
           <!-- Favorite Properties -->
-          <div class="dashboard-section favorites-section">
+          <div class="section-content favorites-section">
             <div class="section-header">
               <h2>Saved Properties</h2>
               <button [routerLink]="['/search']" class="btn btn-outline">
@@ -313,7 +316,7 @@ export interface LoanApplicationDisplay {
               </button>
             </div>
             
-            <div *ngIf="favoriteProperties.length > 0" class="favorites-grid">
+            <div *ngIf="favoriteProperties.length > 0" class="card-grid-sm">
               <div 
                 *ngFor="let property of favoriteProperties.slice(0, 6)" 
                 class="favorite-card"
@@ -352,7 +355,7 @@ export interface LoanApplicationDisplay {
           </div>
 
           <!-- Recent Calculations -->
-          <div class="dashboard-section calculations-section">
+          <div class="section-content calculations-section">
             <div class="section-header">
               <h2>Recent Calculations</h2>
               <button [routerLink]="['/mortgage-tools']" class="btn btn-outline">
@@ -400,10 +403,12 @@ export interface LoanApplicationDisplay {
           </div>
 
           <!-- Quick Actions -->
-          <div class="dashboard-section actions-section">
-            <h2>Quick Actions</h2>
+          <div class="section-content actions-section">
+            <div class="section-header">
+              <h2>Quick Actions</h2>
+            </div>
             
-            <div class="quick-actions">
+            <div class="card-grid-sm">
               <button [routerLink]="['/search']" class="action-btn">
                 <div class="action-icon">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -466,47 +471,41 @@ export interface LoanApplicationDisplay {
     .dashboard-container {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 2rem;
+      padding: var(--space-lg);
     }
 
     .dashboard-header {
       text-align: center;
-      margin-bottom: 3rem;
+      margin-bottom: var(--space-2xl);
     }
 
     .dashboard-header h1 {
-      font-size: 2.5rem;
+      font-size: var(--text-3xl);
       color: var(--primary-dark);
-      margin-bottom: 0.5rem;
+      margin-bottom: var(--space-xs);
     }
 
     .dashboard-header p {
-      font-size: 1.1rem;
+      font-size: var(--text-lg);
       color: var(--text-secondary);
-    }
-
-    .stats-section {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 3rem;
     }
 
     .stat-card {
       background: var(--background-primary);
-      padding: 1.5rem;
-      border-radius: 0.75rem;
+      padding: var(--space-lg);
+      border-radius: var(--radius-lg);
       border: 1px solid var(--border-light);
-      box-shadow: 0 1px 3px var(--shadow-light);
+      box-shadow: 0 2px 8px var(--shadow-light);
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: var(--space-md);
       transition: all 0.2s ease;
     }
     
     .stat-card:hover {
       box-shadow: 0 4px 12px var(--shadow-medium);
       transform: translateY(-2px);
+      border-color: var(--primary-dark);
     }
 
     .stat-icon {
@@ -518,57 +517,25 @@ export interface LoanApplicationDisplay {
       align-items: center;
       justify-content: center;
       color: var(--primary-dark);
-    }
-    
-    .stat-icon svg {
-      width: 24px;
-      height: 24px;
-      stroke: var(--primary-dark);
+      flex-shrink: 0;
     }
 
     .stat-value {
-      font-size: 1.8rem;
+      font-size: var(--text-2xl);
       font-weight: 700;
       color: var(--primary-dark);
-      margin-bottom: 0.25rem;
+      margin-bottom: var(--space-xs);
     }
 
     .stat-label {
       color: var(--text-secondary);
-      font-size: 0.9rem;
+      font-size: var(--text-sm);
     }
 
     .dashboard-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 2rem;
-    }
-
-    .dashboard-section {
-      background: var(--background-primary);
-      padding: 2rem;
-      border-radius: 0.75rem;
-      border: 1px solid var(--border-light);
-      box-shadow: 0 1px 3px var(--shadow-light);
-    }
-
-    .dashboard-section h2 {
-      color: var(--primary-dark);
-      margin-bottom: 1.5rem;
-      font-size: 1.5rem;
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1.5rem;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .section-header h2 {
-      margin-bottom: 0;
+      gap: var(--space-lg);
     }
 
     /* Profile Section */
@@ -580,11 +547,12 @@ export interface LoanApplicationDisplay {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
+      gap: var(--space-lg);
     }
 
     .profile-info {
       display: flex;
-      gap: 2rem;
+      gap: var(--space-xl);
       flex: 1;
     }
 
@@ -597,131 +565,131 @@ export interface LoanApplicationDisplay {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: var(--text-xl);
       font-weight: 700;
+      flex-shrink: 0;
     }
 
     .profile-details h3 {
       color: var(--primary-dark);
-      margin-bottom: 1rem;
-      font-size: 1.5rem;
+      margin-bottom: var(--space-md);
+      font-size: var(--text-xl);
     }
 
     .profile-item {
       display: flex;
-      margin-bottom: 0.75rem;
+      margin-bottom: var(--space-sm);
+      align-items: flex-start;
     }
 
     .profile-item .label {
       width: 120px;
       color: var(--text-secondary);
       font-weight: 600;
+      font-size: var(--text-sm);
+      flex-shrink: 0;
     }
 
     .profile-item .value {
       color: var(--text-primary);
+      font-size: var(--text-sm);
     }
 
-    .profile-form .form-grid {
+    /* Profile Edit Form Styling */
+    .profile-edit-container {
+      padding: var(--space-lg) 0;
+    }
+
+    .profile-form-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-bottom: 2rem;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+
+    .profile-form-grid .form-group {
+      margin-bottom: var(--space-lg);
+    }
+
+    .profile-form-grid .form-group.full-width {
+      grid-column: span 2;
+    }
+
+    .profile-form-actions {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-md);
+      padding-top: var(--space-lg);
+      border-top: 1px solid var(--border-light);
     }
 
     .form-group.full-width {
       grid-column: span 2;
     }
 
-    .form-group label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      color: #2c3e50;
-    }
-
-    .form-input {
-      width: 100%;
-      padding: 0.75rem;
-      border: 2px solid #dee2e6;
-      border-radius: 6px;
-      font-size: 1rem;
-      transition: border-color 0.3s;
-    }
-
-    .form-input:focus {
-      outline: none;
-      border-color: #3498db;
-    }
-
-    .form-actions {
-      display: flex;
-      gap: 1rem;
-      justify-content: flex-end;
-      flex-wrap: wrap;
-    }
-
     /* Applications Section */
     .applications-list {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: var(--space-md);
     }
 
     .application-card {
-      border: 2px solid #dee2e6;
-      border-radius: 8px;
-      padding: 1.5rem;
-      transition: all 0.3s;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      transition: all 0.2s ease;
+      background: var(--background-primary);
     }
 
     .application-card.status-approved {
-      border-color: #27ae60;
-      background: #f8fff9;
+      border-color: var(--accent-success);
+      background: rgba(56, 161, 105, 0.05);
     }
 
     .application-card.status-denied {
-      border-color: #e74c3c;
-      background: #fff8f8;
+      border-color: var(--accent-danger);
+      background: rgba(229, 62, 62, 0.05);
     }
 
     .application-card.status-under_review {
-      border-color: #f39c12;
-      background: #fffcf8;
+      border-color: var(--accent-warning);
+      background: rgba(214, 158, 46, 0.05);
     }
 
     .app-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 1rem;
+      margin-bottom: var(--space-md);
     }
 
     .status-badge {
-      background: #e9ecef;
-      color: #495057;
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
-      font-size: 0.875rem;
+      background: var(--background-tertiary);
+      color: var(--text-primary);
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: calc(var(--radius-sm) * 2);
+      font-size: var(--text-xs);
       font-weight: 600;
     }
 
     .app-date {
-      color: #6c757d;
-      font-size: 0.875rem;
-      margin-left: 1rem;
+      color: var(--text-secondary);
+      font-size: var(--text-xs);
+      margin-left: var(--space-md);
     }
 
     .app-property h4 {
-      color: #2c3e50;
-      margin-bottom: 1rem;
+      color: var(--primary-dark);
+      margin-bottom: var(--space-md);
+      font-size: var(--text-lg);
     }
 
     .app-details {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1rem;
-      margin-bottom: 1rem;
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
     }
 
     .detail-item {
@@ -730,51 +698,51 @@ export interface LoanApplicationDisplay {
     }
 
     .detail-item .label {
-      color: #6c757d;
-      font-size: 0.875rem;
-      margin-bottom: 0.25rem;
+      color: var(--text-secondary);
+      font-size: var(--text-xs);
+      margin-bottom: var(--space-xs);
+      font-weight: 500;
     }
 
     .detail-item .value {
-      color: #2c3e50;
+      color: var(--primary-dark);
       font-weight: 600;
+      font-size: var(--text-sm);
     }
 
     .app-next-step {
-      background: #e3f2fd;
-      padding: 1rem;
-      border-radius: 6px;
-      color: #1976d2;
-      margin-bottom: 1rem;
+      background: rgba(26, 54, 93, 0.05);
+      padding: var(--space-md);
+      border-radius: var(--radius-sm);
+      color: var(--primary-dark);
+      margin-bottom: var(--space-md);
+      border: 1px solid var(--primary-dark);
+      font-size: var(--text-sm);
     }
 
     .app-actions {
       display: flex;
-      gap: 0.5rem;
+      gap: var(--space-xs);
       flex-wrap: wrap;
     }
 
     /* Favorites Section */
-    .favorites-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1rem;
-    }
-
     .favorite-card {
       position: relative;
-      border: 1px solid #dee2e6;
-      border-radius: 8px;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
       overflow: hidden;
       cursor: pointer;
-      transition: all 0.3s;
+      transition: all 0.2s ease;
       text-decoration: none;
       color: inherit;
+      background: var(--background-primary);
     }
 
     .favorite-card:hover {
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 12px var(--shadow-medium);
+      border-color: var(--primary-dark);
     }
 
     .favorite-card img {
@@ -784,241 +752,171 @@ export interface LoanApplicationDisplay {
     }
 
     .favorite-content {
-      padding: 1rem;
+      padding: var(--space-md);
     }
 
     .favorite-price {
       font-weight: 700;
-      color: #3498db;
-      margin-bottom: 0.25rem;
+      color: var(--primary-dark);
+      margin-bottom: var(--space-xs);
+      font-size: var(--text-base);
     }
 
     .favorite-address {
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
-      color: #2c3e50;
+      font-size: var(--text-sm);
+      margin-bottom: var(--space-xs);
+      color: var(--text-primary);
+      font-weight: 500;
     }
 
     .favorite-specs {
-      font-size: 0.8rem;
-      color: #6c757d;
+      font-size: var(--text-xs);
+      color: var(--text-secondary);
     }
 
     .unfavorite-btn {
       position: absolute;
-      top: 0.5rem;
-      right: 0.5rem;
-      background: rgba(255, 255, 255, 0.9);
-      border: none;
+      top: var(--space-xs);
+      right: var(--space-xs);
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--border-light);
       border-radius: 50%;
-      width: 30px;
-      height: 30px;
+      width: 32px;
+      height: 32px;
       cursor: pointer;
-      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(4px);
+      
+      &:hover {
+        background: var(--background-primary);
+        border-color: var(--accent-danger);
+        color: var(--accent-danger);
+      }
     }
 
     /* Calculations Section */
     .calculations-list {
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: var(--space-sm);
     }
 
     .calculation-card {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1rem;
-      background: #f8f9fa;
-      border-radius: 6px;
+      padding: var(--space-md);
+      background: var(--background-secondary);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-light);
       cursor: pointer;
-      transition: all 0.3s;
+      transition: all 0.2s ease;
     }
 
     .calculation-card:hover {
-      background: #e9ecef;
+      background: var(--background-tertiary);
+      border-color: var(--primary-dark);
     }
 
     .calc-payment {
       font-weight: 700;
-      color: #3498db;
-      font-size: 1.1rem;
+      color: var(--primary-dark);
+      font-size: var(--text-lg);
     }
 
     .calc-details {
       flex: 1;
-      margin-left: 1rem;
+      margin-left: var(--space-md);
     }
 
     .calc-amount {
-      font-size: 0.9rem;
-      color: #2c3e50;
+      font-size: var(--text-sm);
+      color: var(--text-primary);
+      font-weight: 500;
     }
 
     .calc-term {
-      font-size: 0.8rem;
-      color: #6c757d;
+      font-size: var(--text-xs);
+      color: var(--text-secondary);
     }
 
     .calc-date {
-      font-size: 0.8rem;
-      color: #6c757d;
+      font-size: var(--text-xs);
+      color: var(--text-secondary);
     }
 
-    /* Quick Actions */
-    .quick-actions {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-    }
-
+    /* Action buttons */
     .action-btn {
       display: flex;
       align-items: center;
-      gap: 1rem;
-      padding: 1rem;
-      background: #f8f9fa;
-      border: 1px solid #dee2e6;
-      border-radius: 8px;
+      gap: var(--space-md);
+      padding: var(--space-md);
+      background: var(--background-secondary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
       cursor: pointer;
-      transition: all 0.3s;
+      transition: all 0.2s ease;
       text-decoration: none;
       color: inherit;
     }
 
     .action-btn:hover {
-      background: #e9ecef;
+      background: var(--background-tertiary);
       transform: translateY(-2px);
+      border-color: var(--primary-dark);
+      box-shadow: 0 4px 12px var(--shadow-light);
     }
 
     .action-icon {
-      width: 50px;
-      height: 50px;
+      width: 48px;
+      height: 48px;
       background: var(--background-primary);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 1px 3px var(--shadow-light);
+      box-shadow: 0 2px 4px var(--shadow-light);
       color: var(--primary-dark);
-    }
-    
-    .action-icon svg {
-      width: 24px;
-      height: 24px;
-      stroke: var(--primary-dark);
+      flex-shrink: 0;
     }
 
     .action-title {
       font-weight: 600;
       color: var(--primary-dark);
-      margin-bottom: 0.25rem;
+      margin-bottom: var(--space-xs);
+      font-size: var(--text-base);
     }
 
     .action-subtitle {
-      font-size: 0.875rem;
+      font-size: var(--text-sm);
       color: var(--text-secondary);
-    }
-
-    /* Common Elements */
-    .btn {
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.3s;
-      text-decoration: none;
-      display: inline-block;
-      text-align: center;
-    }
-
-    .btn-sm {
-      padding: 0.5rem 1rem;
-      font-size: 0.875rem;
-    }
-
-    .btn-primary {
-      background-color: var(--primary-dark);
-      color: var(--text-white);
-      border: 1px solid var(--primary-dark);
-    }
-
-    .btn-primary:hover {
-      background-color: var(--primary-medium);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px var(--shadow-medium);
-    }
-
-    .btn-secondary {
-      background-color: var(--text-secondary);
-      color: var(--text-white);
-      border: 1px solid var(--text-secondary);
-    }
-
-    .btn-outline {
-      background: var(--background-primary);
-      border: 1px solid var(--border-medium);
-      color: var(--primary-dark);
-    }
-
-    .btn-outline:hover {
-      background-color: var(--background-tertiary);
-      border-color: var(--primary-dark);
-    }
-
-    .btn-link {
-      background: none;
-      border: none;
-      color: var(--primary-dark);
-      text-decoration: underline;
-    }
-
-    .empty-state {
-      text-align: center;
-      padding: 2rem;
-    }
-
-    .empty-icon {
-      margin-bottom: 1rem;
-      color: var(--text-muted);
-      display: flex;
-      justify-content: center;
-    }
-    
-    .empty-icon svg {
-      width: 48px;
-      height: 48px;
-      stroke: var(--text-muted);
-    }
-
-    .empty-state h3 {
-      color: var(--primary-dark);
-      margin-bottom: 0.5rem;
-    }
-
-    .empty-state p {
-      color: var(--text-secondary);
-      margin-bottom: 1.5rem;
     }
 
     .view-all {
       text-align: center;
-      margin-top: 1rem;
+      margin-top: var(--space-md);
     }
 
     /* Responsive */
     @media (max-width: 768px) {
       .dashboard-container {
-        padding: 1rem;
+        padding: var(--space-sm);
       }
 
-      .stats-section {
-        grid-template-columns: repeat(2, 1fr);
+      .dashboard-header {
+        margin-bottom: var(--space-xl);
+      }
+
+      .dashboard-header h1 {
+        font-size: var(--text-2xl);
       }
 
       .dashboard-grid {
         grid-template-columns: 1fr;
+        gap: var(--space-md);
       }
 
       .profile-section {
@@ -1027,49 +925,50 @@ export interface LoanApplicationDisplay {
 
       .profile-content {
         flex-direction: column;
-        gap: 1.5rem;
+        gap: var(--space-lg);
       }
 
       .profile-info {
         flex-direction: column;
-        gap: 1rem;
-      }
-
-      .profile-form .form-grid {
-        grid-template-columns: 1fr;
+        gap: var(--space-md);
       }
 
       .form-group.full-width {
         grid-column: span 1;
       }
 
+      .profile-form-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+      }
+
+      .profile-form-grid .form-group.full-width {
+        grid-column: span 1;
+      }
+
       .app-details {
         grid-template-columns: 1fr;
+        gap: var(--space-sm);
       }
+    }
 
-      .favorites-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .quick-actions {
-        grid-template-columns: 1fr;
+    @media (max-width: 480px) {
+      .dashboard-container {
+        padding: var(--space-xs);
       }
       
-      .section-header {
-        justify-content: center;
-        text-align: center;
+      .stat-card {
+        padding: var(--space-sm);
+        gap: var(--space-sm);
       }
       
-      .section-header h2 {
-        margin-bottom: 0.5rem;
+      .stat-icon {
+        width: 48px;
+        height: 48px;
       }
       
-      .form-actions {
-        justify-content: center;
-      }
-      
-      .app-actions {
-        justify-content: center;
+      .stat-value {
+        font-size: var(--text-xl);
       }
     }
   `]

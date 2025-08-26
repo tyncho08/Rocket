@@ -32,7 +32,7 @@ import { MortgageCalculation, MortgageCalculationResult } from '../../shared/mod
                   id="propertyPrice"
                   formControlName="propertyPrice"
                   placeholder="450,000"
-                  class="form-input"
+                  class="form-control has-prefix"
                 />
               </div>
               <div class="form-error" *ngIf="calculatorForm.get('propertyPrice')?.errors?.['required'] && calculatorForm.get('propertyPrice')?.touched">
@@ -50,7 +50,7 @@ import { MortgageCalculation, MortgageCalculationResult } from '../../shared/mod
                     id="downPayment"
                     formControlName="downPayment"
                     placeholder="90,000"
-                    class="form-input"
+                    class="form-control has-prefix"
                   />
                 </div>
                 <div class="percentage-display">
@@ -73,7 +73,7 @@ import { MortgageCalculation, MortgageCalculationResult } from '../../shared/mod
                   step="0.01"
                   min="0.01"
                   max="20"
-                  class="form-input"
+                  class="form-control has-suffix"
                 />
                 <span class="input-suffix">%</span>
               </div>
@@ -91,12 +91,13 @@ import { MortgageCalculation, MortgageCalculationResult } from '../../shared/mod
 
             <div class="form-group">
               <label for="loanTermYears">Loan Term</label>
-              <div class="term-buttons">
+              <div class="button-group">
                 <button
                   *ngFor="let term of loanTermOptions"
                   type="button"
-                  class="term-btn"
-                  [class.active]="calculatorForm.get('loanTermYears')?.value === term"
+                  class="btn btn-outline btn-sm"
+                  [class.btn-primary]="calculatorForm.get('loanTermYears')?.value === term"
+                  [class.btn-outline]="calculatorForm.get('loanTermYears')?.value !== term"
                   (click)="setLoanTerm(term)"
                 >
                   {{ term }} years
@@ -107,15 +108,15 @@ import { MortgageCalculation, MortgageCalculationResult } from '../../shared/mod
                   type="number"
                   formControlName="loanTermYears"
                   placeholder="Custom years"
-                  class="form-input"
+                  class="form-control"
                   min="1"
                   max="50"
                 />
               </div>
             </div>
 
-            <div class="quick-actions">
-              <button type="button" (click)="calculateMortgage()" class="btn btn-primary btn-large">
+            <div class="button-group-center mt-xl">
+              <button type="button" (click)="calculateMortgage()" class="btn btn-primary btn-lg">
                 Calculate Payment
               </button>
               <button type="button" (click)="clearForm()" class="btn btn-secondary">
@@ -144,7 +145,7 @@ import { MortgageCalculation, MortgageCalculationResult } from '../../shared/mod
                     id="annualIncome"
                     formControlName="annualIncome"
                     placeholder="85,000"
-                    class="form-input"
+                    class="form-control has-prefix"
                   />
                 </div>
               </div>
@@ -158,7 +159,7 @@ import { MortgageCalculation, MortgageCalculationResult } from '../../shared/mod
                     id="monthlyDebts"
                     formControlName="monthlyDebts"
                     placeholder="500"
-                    class="form-input"
+                    class="form-control has-prefix"
                   />
                 </div>
               </div>
@@ -401,69 +402,35 @@ import { MortgageCalculation, MortgageCalculationResult } from '../../shared/mod
     .calculator-container {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 2rem;
+      padding: var(--space-lg);
     }
 
     .calculator-header {
       text-align: center;
-      margin-bottom: 3rem;
+      margin-bottom: var(--space-2xl);
     }
 
     .calculator-header h1 {
-      font-size: 2.5rem;
-      color: #2c3e50;
-      margin-bottom: 0.5rem;
+      font-size: var(--text-3xl);
+      color: var(--primary-dark);
+      margin-bottom: var(--space-xs);
     }
 
     .calculator-header p {
-      font-size: 1.1rem;
-      color: #6c757d;
+      font-size: var(--text-lg);
+      color: var(--text-secondary);
     }
 
     .calculator-main {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 3rem;
+      gap: var(--space-2xl);
     }
 
-    .calculator-form {
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      margin-bottom: 2rem;
-    }
-
-    .preapproval-section {
-      background: #f8f9fa;
-      padding: 2rem;
-      border-radius: 12px;
-      border-left: 4px solid #3498db;
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    .form-group label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      color: #2c3e50;
-    }
-
-    .form-input {
-      width: 100%;
-      padding: 0.75rem;
-      border: 2px solid #dee2e6;
-      border-radius: 6px;
-      font-size: 1rem;
-      transition: border-color 0.3s;
-    }
-
-    .form-input:focus {
-      outline: none;
-      border-color: #3498db;
+    .preapproval-card {
+      background: var(--background-secondary);
+      border-left: 4px solid var(--primary-dark);
+      margin-top: var(--space-lg);
     }
 
     .input-with-prefix, .input-with-suffix {
@@ -472,31 +439,47 @@ import { MortgageCalculation, MortgageCalculationResult } from '../../shared/mod
       align-items: center;
     }
 
-    .input-prefix, .input-suffix {
-      position: absolute;
-      color: #6c757d;
-      font-weight: 600;
-    }
-
     .input-prefix {
-      left: 0.75rem;
+      position: absolute;
+      left: var(--space-sm);
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: var(--text-sm);
+      z-index: 2;
+      pointer-events: none;
+      margin: 0;
+      padding: 0;
+      line-height: 1;
     }
 
     .input-suffix {
-      right: 0.75rem;
+      position: absolute;
+      right: var(--space-sm);
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: var(--text-sm);
+      z-index: 2;
+      pointer-events: none;
+      margin: 0;
+      padding: 0;
+      line-height: 1;
     }
 
-    .input-with-prefix .form-input {
-      padding-left: 2rem;
+    .has-prefix {
+      padding-left: calc(var(--space-sm) * 2.5) !important;
     }
 
-    .input-with-suffix .form-input {
-      padding-right: 2rem;
+    .has-suffix {
+      padding-right: calc(var(--space-sm) * 2.5) !important;
     }
 
     .input-row {
       display: flex;
-      gap: 1rem;
+      gap: var(--space-md);
       align-items: center;
     }
 
@@ -505,152 +488,57 @@ import { MortgageCalculation, MortgageCalculationResult } from '../../shared/mod
     }
 
     .percentage-display {
-      background: #e3f2fd;
-      color: #1976d2;
-      padding: 0.75rem 1rem;
-      border-radius: 6px;
+      background: rgba(26, 54, 93, 0.1);
+      color: var(--primary-dark);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--radius-sm);
       font-weight: 600;
       min-width: 60px;
       text-align: center;
+      border: 1px solid var(--border-light);
     }
 
     .current-rates {
-      margin-top: 0.5rem;
+      margin-top: var(--space-xs);
     }
 
     .current-rates small {
-      color: #6c757d;
-    }
-
-    .term-buttons {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-
-    .term-btn {
-      padding: 0.75rem 1rem;
-      border: 2px solid #dee2e6;
-      background: white;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.3s;
-      font-weight: 500;
-    }
-
-    .term-btn.active {
-      border-color: #3498db;
-      background-color: #3498db;
-      color: white;
+      color: var(--text-secondary);
+      font-size: var(--text-xs);
     }
 
     .custom-term {
-      margin-top: 0.5rem;
-    }
-
-    .form-error {
-      color: #e74c3c;
-      font-size: 0.875rem;
-      margin-top: 0.25rem;
-    }
-
-    .quick-actions {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      margin-top: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.3s;
-      text-decoration: none;
-      display: inline-block;
-      text-align: center;
-    }
-
-    .btn-large {
-      padding: 1rem 2rem;
-      font-size: 1.1rem;
-    }
-
-    .btn-primary {
-      background-color: #3498db;
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background-color: #2980b9;
-    }
-
-    .btn-secondary {
-      background-color: #6c757d;
-      color: white;
-    }
-
-    .btn-outline {
-      background: white;
-      border: 2px solid #3498db;
-      color: #3498db;
-    }
-
-    .btn-outline:hover {
-      background-color: #3498db;
-      color: white;
-    }
-
-    .btn-sm {
-      padding: 0.5rem 1rem;
-      font-size: 0.875rem;
-    }
-
-    .btn-link {
-      background: none;
-      border: none;
-      color: #3498db;
-      text-decoration: underline;
-    }
-
-    .results-display {
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-top: var(--space-xs);
     }
 
     .payment-summary {
-      background: linear-gradient(135deg, #3498db, #2c3e50);
-      color: white;
-      padding: 2rem;
-      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary-medium));
+      color: var(--text-white);
+      padding: var(--space-xl);
+      border-radius: var(--radius-lg);
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: var(--space-lg);
     }
 
     .main-payment {
-      margin-bottom: 1.5rem;
+      margin-bottom: var(--space-lg);
     }
 
     .payment-amount {
-      font-size: 3rem;
+      font-size: var(--text-3xl);
       font-weight: 700;
-      margin-bottom: 0.5rem;
+      margin-bottom: var(--space-xs);
     }
 
     .payment-label {
-      font-size: 1.1rem;
+      font-size: var(--text-lg);
       opacity: 0.9;
     }
 
     .payment-breakdown {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 1rem;
+      gap: var(--space-md);
     }
 
     .breakdown-item {
@@ -660,64 +548,104 @@ import { MortgageCalculation, MortgageCalculationResult } from '../../shared/mod
     }
 
     .breakdown-item .label {
-      font-size: 0.9rem;
+      font-size: var(--text-sm);
       opacity: 0.8;
-      margin-bottom: 0.25rem;
+      margin-bottom: var(--space-xs);
     }
 
     .breakdown-item .value {
       font-weight: 600;
-      font-size: 1.1rem;
+      font-size: var(--text-lg);
     }
 
     .payment-chart {
       display: flex;
       justify-content: center;
-      gap: 2rem;
-      margin: 2rem 0;
+      align-items: flex-end;
+      gap: var(--space-xl);
+      margin: var(--space-xl) 0;
+      padding: 0 var(--space-md);
     }
 
     .chart-item {
       display: flex;
       flex-direction: column;
       align-items: center;
+      flex: 1;
+      max-width: 150px;
     }
 
     .chart-bar {
-      width: 80px;
+      width: 100px;
+      min-height: 40px;
       max-height: 200px;
       display: flex;
       align-items: end;
       justify-content: center;
-      padding: 0.5rem;
-      border-radius: 6px 6px 0 0;
-      color: white;
+      padding: var(--space-sm);
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+      color: var(--text-white);
       font-weight: 600;
       text-align: center;
-      font-size: 0.8rem;
-      line-height: 1.2;
+      font-size: var(--text-xs);
+      line-height: 1.3;
+      box-shadow: 0 4px 12px var(--shadow-light);
+      transition: all 0.2s ease;
+    }
+
+    .chart-bar:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px var(--shadow-medium);
     }
 
     .chart-bar.principal {
-      background: linear-gradient(to top, #27ae60, #2ecc71);
+      background: linear-gradient(to top, var(--primary-dark), var(--primary-medium));
     }
 
     .chart-bar.interest {
-      background: linear-gradient(to top, #e74c3c, #ec7063);
+      background: linear-gradient(to top, var(--text-secondary), var(--text-muted));
     }
 
+    /* Charts and Amortization Section Headers */
+    .charts-section, .amortization-section {
+      background: var(--background-primary);
+      padding: var(--space-xl);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-light);
+      box-shadow: 0 4px 12px var(--shadow-light);
+      margin-bottom: var(--space-xl);
+    }
+
+    .charts-section h3, .amortization-section h3 {
+      color: var(--primary-dark);
+      font-size: var(--text-xl);
+      font-weight: 600;
+      margin-bottom: var(--space-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    /* Schedule Controls Styling */
     .schedule-controls {
       display: flex;
-      gap: 1rem;
-      margin-bottom: 1rem;
-      justify-content: flex-end;
-      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: var(--space-md);
+      margin: var(--space-lg) 0;
+      padding: var(--space-md);
+      background: var(--background-secondary);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-light);
     }
 
     .schedule-table {
-      border: 1px solid #dee2e6;
-      border-radius: 8px;
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-md);
       overflow: hidden;
+      margin-top: var(--space-md);
+      box-shadow: 0 4px 12px var(--shadow-light);
     }
 
     .table-header, .table-row {
@@ -726,15 +654,16 @@ import { MortgageCalculation, MortgageCalculationResult } from '../../shared/mod
     }
 
     .table-header {
-      background: #f8f9fa;
+      background: var(--background-secondary);
       font-weight: 600;
-      color: #2c3e50;
+      color: var(--primary-dark);
     }
 
     .table-header .col, .table-row .col {
-      padding: 0.75rem;
+      padding: var(--space-sm);
       text-align: right;
-      border-right: 1px solid #dee2e6;
+      border-right: 1px solid var(--border-light);
+      font-size: var(--text-sm);
     }
 
     .table-header .col:first-child, .table-row .col:first-child {
@@ -746,12 +675,12 @@ import { MortgageCalculation, MortgageCalculationResult } from '../../shared/mod
     }
 
     .table-row {
-      border-bottom: 1px solid #f1f3f4;
-      font-size: 0.9rem;
+      border-bottom: 1px solid var(--border-light);
+      color: var(--text-primary);
     }
 
     .table-row:hover {
-      background-color: #f8f9fa;
+      background-color: var(--background-secondary);
     }
 
     .table-body {
@@ -760,200 +689,241 @@ import { MortgageCalculation, MortgageCalculationResult } from '../../shared/mod
     }
 
     .preapproval-result {
-      margin-top: 1.5rem;
+      margin-top: var(--space-lg);
     }
 
     .eligibility-status {
       display: flex;
-      gap: 1rem;
-      padding: 1rem;
-      border-radius: 8px;
+      gap: var(--space-md);
+      padding: var(--space-md);
+      border-radius: var(--radius-md);
     }
 
     .eligibility-status.approved {
-      background: #d4edda;
-      border: 1px solid #c3e6cb;
+      background: rgba(56, 161, 105, 0.1);
+      border: 1px solid var(--accent-success);
+      color: var(--accent-success);
     }
 
     .eligibility-status.denied {
-      background: #f8d7da;
-      border: 1px solid #f5c6cb;
+      background: rgba(229, 62, 62, 0.1);
+      border: 1px solid var(--accent-danger);
+      color: var(--accent-danger);
     }
 
     .status-icon {
-      font-size: 2rem;
+      font-size: var(--text-xl);
     }
 
     .status-text h4 {
-      margin: 0 0 0.5rem 0;
-      color: #2c3e50;
+      margin: 0 0 var(--space-xs) 0;
+      color: var(--primary-dark);
+      font-size: var(--text-lg);
     }
 
     .status-text p {
       margin: 0;
-      color: #6c757d;
+      color: var(--text-secondary);
+      font-size: var(--text-sm);
     }
 
     .history-list {
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
+      gap: var(--space-xs);
+      margin-bottom: var(--space-md);
     }
 
     .history-item {
-      padding: 1rem;
-      background: #f8f9fa;
-      border-radius: 6px;
+      padding: var(--space-md);
+      background: var(--background-secondary);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-light);
       cursor: pointer;
-      transition: all 0.3s;
+      transition: all 0.2s ease;
     }
 
     .history-item:hover {
-      background: #e9ecef;
+      background: var(--background-tertiary);
+      border-color: var(--primary-dark);
     }
 
     .history-payment {
       font-weight: 600;
-      color: #3498db;
+      color: var(--primary-dark);
+      font-size: var(--text-base);
     }
 
     .history-details {
-      font-size: 0.9rem;
-      color: #6c757d;
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
     }
 
-    .loading-state, .empty-results {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 3rem;
-      text-align: center;
+    /* Tablet responsiveness */
+    @media (max-width: 1024px) {
+      .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-md);
+      }
     }
 
-    .loading-spinner {
-      border: 3px solid #f3f3f3;
-      border-top: 3px solid #3498db;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 2s linear infinite;
-      margin-bottom: 1rem;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .empty-icon {
-      font-size: 4rem;
-      margin-bottom: 1rem;
-    }
-
+    /* Mobile responsiveness */
     @media (max-width: 768px) {
       .calculator-container {
-        padding: 1rem;
+        padding: var(--space-sm);
+      }
+
+      .calculator-header {
+        margin-bottom: var(--space-xl);
+      }
+
+      .calculator-header h1 {
+        font-size: var(--text-2xl);
       }
 
       .calculator-main {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: var(--space-lg);
       }
 
       .payment-breakdown {
         grid-template-columns: 1fr;
+        gap: var(--space-sm);
       }
 
       .payment-chart {
-        flex-direction: column;
-        gap: 1rem;
+        flex-direction: row;
+        gap: var(--space-md);
+        justify-content: space-around;
       }
-      
+
+      .chart-item {
+        max-width: 120px;
+      }
+
+      .chart-bar {
+        width: 80px;
+        max-height: 150px;
+      }
+
       .schedule-controls {
-        justify-content: center;
-      }
-      
-      .quick-actions {
         flex-direction: column;
-      }
-      
-      .term-buttons {
-        justify-content: center;
+        gap: var(--space-sm);
+        text-align: center;
       }
 
       .table-header, .table-row {
         grid-template-columns: 0.8fr 1fr 1fr 1fr 1fr;
-        font-size: 0.8rem;
+        font-size: var(--text-xs);
       }
 
       .table-header .col, .table-row .col {
-        padding: 0.5rem;
+        padding: var(--space-xs);
+      }
+
+      .tools-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .calculator-container {
+        padding: var(--space-xs);
+      }
+      
+      .payment-amount {
+        font-size: var(--text-2xl);
+      }
+      
+      .payment-chart {
+        flex-direction: column;
+        gap: var(--space-sm);
+        align-items: center;
+      }
+      
+      .chart-item {
+        max-width: 100px;
+        width: 100%;
+      }
+
+      .chart-bar {
+        width: 80px;
+        max-height: 120px;
+        min-height: 30px;
+      }
+
+      .schedule-controls {
+        flex-direction: column;
+        gap: var(--space-xs);
+        padding: var(--space-sm);
+      }
+      
+      .table-header .col, .table-row .col {
+        padding: 2px 4px;
+        font-size: 11px;
       }
     }
 
     /* Additional Tools Styles */
     .additional-tools {
-      margin-top: 3rem;
       text-align: center;
+      margin-top: var(--space-2xl);
     }
 
     .additional-tools h3 {
-      margin-bottom: 2rem;
-      color: #2c3e50;
+      color: var(--primary-dark);
+      font-size: var(--text-xl);
+      font-weight: 600;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .tools-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      max-width: 800px;
-      margin: 0 auto;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
     }
 
     .tool-card {
       display: block;
-      padding: 1.5rem;
-      background: white;
-      border: 2px solid #e9ecef;
-      border-radius: 12px;
+      padding: var(--space-lg);
+      background: var(--background-primary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
       text-decoration: none;
       color: inherit;
       transition: all 0.3s ease;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 8px var(--shadow-light);
     }
 
     .tool-card:hover {
-      border-color: #3498db;
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(52, 152, 219, 0.2);
+      border-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px var(--shadow-medium);
       color: inherit;
       text-decoration: none;
     }
 
     .tool-icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
+      color: var(--primary-dark);
+      margin-bottom: var(--space-md);
     }
 
     .tool-title {
-      font-size: 1.2rem;
+      font-size: var(--text-lg);
       font-weight: 600;
-      color: #2c3e50;
-      margin-bottom: 0.5rem;
+      color: var(--primary-dark);
+      margin-bottom: var(--space-xs);
     }
 
     .tool-description {
-      font-size: 0.9rem;
-      color: #6c757d;
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
       line-height: 1.4;
-    }
-
-    @media (max-width: 768px) {
-      .tools-grid {
-        grid-template-columns: 1fr;
-      }
     }
   `]
 })

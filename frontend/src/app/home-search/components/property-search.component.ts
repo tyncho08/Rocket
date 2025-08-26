@@ -19,30 +19,30 @@ import { Property, PropertySearchFilters, PropertySearchResult, PropertyLocation
       </div>
 
       <!-- Search Filters -->
-      <form [formGroup]="searchForm" class="search-filters">
-        <div class="filter-row">
-          <div class="filter-group">
+      <form [formGroup]="searchForm" class="section-content">
+        <div class="form-grid">
+          <div class="form-group">
             <label for="city">City</label>
             <input 
               type="text" 
               id="city" 
               formControlName="city" 
               placeholder="Enter city name"
-              class="filter-input"
+              class="form-control"
             />
           </div>
           
-          <div class="filter-group">
+          <div class="form-group">
             <label for="state">State</label>
-            <select id="state" formControlName="state" class="filter-select">
+            <select id="state" formControlName="state" class="form-control">
               <option value="">All States</option>
               <option *ngFor="let state of availableStates" [value]="state">{{ getStateName(state) }}</option>
             </select>
           </div>
 
-          <div class="filter-group">
+          <div class="form-group">
             <label for="propertyType">Property Type</label>
-            <select id="propertyType" formControlName="propertyType" class="filter-select">
+            <select id="propertyType" formControlName="propertyType" class="form-control">
               <option value="">All Types</option>
               <option value="Single Family">Single Family</option>
               <option value="Condo">Condo</option>
@@ -52,34 +52,35 @@ import { Property, PropertySearchFilters, PropertySearchResult, PropertyLocation
           </div>
         </div>
 
-        <div class="filter-row">
-          <div class="filter-group">
+        <div class="form-grid">
+          <div class="form-group">
             <label>Price Range</label>
             <div class="price-inputs">
               <input 
                 type="number" 
                 formControlName="minPrice" 
                 placeholder="Min price"
-                class="filter-input price-input"
+                class="form-control"
               />
-              <span>to</span>
+              <span class="range-separator">to</span>
               <input 
                 type="number" 
                 formControlName="maxPrice" 
                 placeholder="Max price"
-                class="filter-input price-input"
+                class="form-control"
               />
             </div>
           </div>
 
-          <div class="filter-group">
+          <div class="form-group">
             <label>Bedrooms</label>
-            <div class="bedroom-buttons">
+            <div class="button-group">
               <button 
                 *ngFor="let bed of bedroomOptions" 
                 type="button"
-                class="bedroom-btn"
-                [class.active]="searchForm.get('minBedrooms')?.value === bed"
+                class="btn btn-outline btn-sm"
+                [class.btn-primary]="searchForm.get('minBedrooms')?.value === bed"
+                [class.btn-outline]="searchForm.get('minBedrooms')?.value !== bed"
                 (click)="setMinBedrooms(bed)"
               >
                 {{ bed === 5 ? '5+' : bed }}
@@ -87,14 +88,15 @@ import { Property, PropertySearchFilters, PropertySearchResult, PropertyLocation
             </div>
           </div>
 
-          <div class="filter-group">
+          <div class="form-group">
             <label>Bathrooms</label>
-            <div class="bathroom-buttons">
+            <div class="button-group">
               <button 
                 *ngFor="let bath of bathroomOptions" 
                 type="button"
-                class="bathroom-btn"
-                [class.active]="searchForm.get('minBathrooms')?.value === bath"
+                class="btn btn-outline btn-sm"
+                [class.btn-primary]="searchForm.get('minBathrooms')?.value === bath"
+                [class.btn-outline]="searchForm.get('minBathrooms')?.value !== bath"
                 (click)="setMinBathrooms(bath)"
               >
                 {{ bath === 4 ? '4+' : bath }}
@@ -103,7 +105,7 @@ import { Property, PropertySearchFilters, PropertySearchResult, PropertyLocation
           </div>
         </div>
 
-        <div class="filter-actions">
+        <div class="button-group-center mt-lg">
           <button type="button" (click)="clearFilters()" class="btn btn-secondary">
             Clear Filters
           </button>
@@ -115,21 +117,22 @@ import { Property, PropertySearchFilters, PropertySearchResult, PropertyLocation
 
       <!-- Search Results -->
       <div class="search-results" *ngIf="searchResults">
-        <div class="results-header">
-          <div class="results-count">
+        <div class="section-header">
+          <div class="results-info">
             <h3>{{ searchResults.totalCount }} Properties Found</h3>
-            <p>Showing {{ ((searchResults.page - 1) * searchResults.pageSize) + 1 }} - 
+            <p class="results-count">Showing {{ ((searchResults.page - 1) * searchResults.pageSize) + 1 }} - 
                {{ Math.min(searchResults.page * searchResults.pageSize, searchResults.totalCount) }} 
                of {{ searchResults.totalCount }} results</p>
           </div>
           
           <div class="sort-controls">
-            <label for="sortBy">Sort by:</label>
+            <label for="sortBy" class="mr-xs">Sort by:</label>
             <select 
               id="sortBy" 
               [(ngModel)]="currentSort.sortBy" 
               (change)="onSortChange()"
-              class="sort-select"
+              class="form-control mr-xs"
+              style="width: auto; display: inline-block;"
             >
               <option value="ListedDate">Newest First</option>
               <option value="Price">Price</option>
@@ -138,7 +141,7 @@ import { Property, PropertySearchFilters, PropertySearchResult, PropertyLocation
             
             <button 
               type="button" 
-              class="sort-order-btn"
+              class="btn btn-outline btn-sm"
               (click)="toggleSortOrder()"
               [title]="currentSort.sortOrder === 'asc' ? 'Sort Descending' : 'Sort Ascending'"
             >
@@ -154,7 +157,7 @@ import { Property, PropertySearchFilters, PropertySearchResult, PropertyLocation
         </div>
 
         <!-- Properties Grid -->
-        <div *ngIf="!loading" class="properties-grid">
+        <div *ngIf="!loading" class="card-grid">
           <div 
             *ngFor="let property of searchResults.properties" 
             class="property-card"
@@ -166,18 +169,19 @@ import { Property, PropertySearchFilters, PropertySearchResult, PropertyLocation
                 (error)="onImageError($event)"
               />
               <button 
-                class="favorite-btn"
-                [class.active]="property.isFavorite"
+                class="btn btn-outline btn-sm favorite-btn"
+                [class.btn-danger]="property.isFavorite"
+                [class.btn-outline]="!property.isFavorite"
                 (click)="toggleFavorite(property)"
-                title="{{ property.isFavorite ? 'Remove from favorites' : 'Add to favorites' }}"
+                [title]="property.isFavorite ? 'Remove from favorites' : 'Add to favorites'"
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" [attr.fill]="property.isFavorite ? 'currentColor' : 'none'" stroke="currentColor" stroke-width="2">
+                <svg width="16" height="16" viewBox="0 0 24 24" [attr.fill]="property.isFavorite ? 'currentColor' : 'none'" stroke="currentColor" stroke-width="2">
                   <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
                 </svg>
               </button>
             </div>
             
-            <div class="property-details">
+            <div class="property-content">
               <div class="property-price">
                 {{ formatCurrency(property.price) }}
               </div>
@@ -200,10 +204,10 @@ import { Property, PropertySearchFilters, PropertySearchResult, PropertyLocation
                 {{ property.propertyType }}
               </div>
               
-              <div class="property-actions">
+              <div class="property-actions mt-md">
                 <button 
                   [routerLink]="['/properties', property.id]" 
-                  class="btn btn-primary btn-sm"
+                  class="btn btn-primary btn-sm btn-block"
                 >
                   View Details
                 </button>
@@ -214,7 +218,7 @@ import { Property, PropertySearchFilters, PropertySearchResult, PropertyLocation
 
         <!-- Empty State -->
         <div *ngIf="!loading && searchResults.properties.length === 0" class="empty-state">
-          <div class="empty-icon">
+          <div class="empty-state-icon">
             <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z"/>
               <polyline points="9,22 9,12 15,12 15,22"/>
@@ -263,158 +267,105 @@ import { Property, PropertySearchFilters, PropertySearchResult, PropertyLocation
     .search-container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 2rem;
+      padding: var(--space-lg);
     }
 
     .search-header {
       text-align: center;
-      margin-bottom: 3rem;
+      margin-bottom: var(--space-xl);
     }
 
     .search-header h1 {
-      font-size: 2.5rem;
+      font-size: var(--text-3xl);
       color: var(--primary-dark);
-      margin-bottom: 0.5rem;
+      margin-bottom: var(--space-xs);
     }
 
     .search-header p {
-      font-size: 1.1rem;
+      font-size: var(--text-lg);
       color: var(--text-secondary);
     }
 
-    .search-filters {
-      background: var(--background-primary);
-      padding: 2rem;
-      border-radius: 0.75rem;
-      border: 1px solid var(--border-light);
-      box-shadow: 0 1px 3px var(--shadow-light);
-      margin-bottom: 2rem;
+    /* Search Results Section */
+    .search-results {
+      margin-top: var(--space-xl);
     }
 
-    .filter-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
+    .results-info h3 {
+      margin: 0;
+      color: var(--primary-dark);
+      font-size: var(--text-xl);
     }
 
-    .filter-group {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .filter-group label {
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      color: #2c3e50;
-    }
-
-    .filter-input, .filter-select {
-      padding: 0.75rem;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      font-size: 1rem;
-    }
-
-    .price-inputs {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .price-input {
-      flex: 1;
-    }
-
-    .bedroom-buttons, .bathroom-buttons {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-
-    .bedroom-btn, .bathroom-btn {
-      padding: 0.5rem 1rem;
-      border: 2px solid #dee2e6;
-      background: white;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .bedroom-btn.active, .bathroom-btn.active {
-      border-color: #3498db;
-      background-color: #3498db;
-      color: white;
-    }
-
-    .filter-actions {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 0.75rem 2rem;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.3s;
-      text-align: center;
-    }
-
-    .btn-primary {
-      background-color: #3498db;
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background-color: #2980b9;
-    }
-
-    .btn-secondary {
-      background-color: #6c757d;
-      color: white;
-    }
-
-    .btn-sm {
-      padding: 0.5rem 1rem;
-      font-size: 0.875rem;
-    }
-
-    .results-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
+    .results-count {
+      color: var(--text-secondary);
+      font-size: var(--text-sm);
+      margin: var(--space-xs) 0 0 0;
     }
 
     .sort-controls {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      flex-wrap: wrap;
+      gap: var(--space-xs);
     }
 
-    .properties-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 2rem;
+    .sort-controls label {
+      color: var(--text-secondary);
+      font-size: var(--text-sm);
+      font-weight: 500;
     }
 
+    /* Enhanced Form Control Styling */
+    .form-control {
+      line-height: 1.5;
+      font-size: var(--text-base);
+      padding: var(--space-xs) var(--space-sm);
+      
+      &::placeholder {
+        color: var(--text-muted);
+        opacity: 0.8;
+        font-size: var(--text-sm);
+      }
+      
+      &:focus::placeholder {
+        opacity: 0.5;
+      }
+    }
+
+    /* Price Range Inputs */
+    .price-inputs {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .price-inputs .form-control {
+      flex: 1;
+    }
+
+    .range-separator {
+      color: var(--text-secondary);
+      font-size: var(--text-sm);
+      font-weight: 500;
+      padding: 0 var(--space-xs);
+    }
+
+    /* Property Cards */
     .property-card {
       background: var(--background-primary);
-      border-radius: 0.75rem;
+      border-radius: var(--radius-lg);
       border: 1px solid var(--border-light);
       box-shadow: 0 1px 3px var(--shadow-light);
       overflow: hidden;
       transition: all 0.2s ease;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
 
     .property-card:hover {
-      transform: translateY(-3px);
+      transform: translateY(-2px);
       box-shadow: 0 4px 12px var(--shadow-medium);
       border-color: var(--primary-dark);
     }
@@ -433,179 +384,137 @@ import { Property, PropertySearchFilters, PropertySearchResult, PropertyLocation
 
     .favorite-btn {
       position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: rgba(255, 255, 255, 0.95);
-      border: 1px solid var(--border-light);
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s ease;
-      color: var(--text-muted);
+      top: var(--space-sm);
+      right: var(--space-sm);
+      background: rgba(255, 255, 255, 0.95) !important;
+      backdrop-filter: blur(4px);
+      border-color: var(--border-medium);
+      color: var(--text-secondary);
     }
 
     .favorite-btn:hover {
-      background: rgba(255, 255, 255, 1);
+      background: rgba(255, 255, 255, 1) !important;
+      color: var(--primary-dark);
       border-color: var(--primary-dark);
-      transform: scale(1.05);
     }
 
-    .favorite-btn.active {
-      color: #e53e3e;
+    .favorite-btn.btn-danger {
+      background: rgba(255, 255, 255, 0.95) !important;
+      color: var(--accent-danger);
+      border-color: var(--accent-danger);
     }
 
-    .favorite-btn svg {
-      width: 20px;
-      height: 20px;
+    .favorite-btn.btn-danger:hover {
+      background: var(--accent-danger) !important;
+      color: var(--text-white);
+      border-color: var(--accent-danger);
     }
 
-    .property-details {
-      padding: 1.5rem;
+    .property-content {
+      padding: var(--space-md);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
     }
 
     .property-price {
-      font-size: 1.5rem;
+      font-size: var(--text-xl);
       font-weight: 700;
       color: var(--primary-dark);
-      margin-bottom: 0.5rem;
+      margin-bottom: var(--space-xs);
     }
 
     .property-address {
       font-weight: 600;
-      margin-bottom: 0.25rem;
+      color: var(--text-primary);
+      margin-bottom: var(--space-xs);
+      font-size: var(--text-base);
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      hyphens: auto;
     }
 
     .property-location {
       color: var(--text-secondary);
-      margin-bottom: 1rem;
+      font-size: var(--text-sm);
+      margin-bottom: var(--space-md);
     }
 
     .property-specs {
       display: flex;
-      gap: 1rem;
-      margin-bottom: 0.5rem;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xs);
+      flex-wrap: wrap;
+      justify-content: space-between;
     }
 
     .spec {
       color: var(--text-secondary);
-      font-size: 0.875rem;
+      font-size: var(--text-sm);
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .property-type {
       color: var(--accent-success);
       font-weight: 600;
-      margin-bottom: 1rem;
+      font-size: var(--text-sm);
+      margin-bottom: var(--space-md);
     }
 
-    .property-actions {
+    /* Pagination Numbers */
+    .pagination-numbers {
       display: flex;
-      gap: 0.5rem;
-    }
-
-    .loading-state {
-      text-align: center;
-      padding: 3rem;
-    }
-
-    .loading-spinner {
-      border: 3px solid var(--border-light);
-      border-top: 3px solid var(--primary-dark);
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 2s linear infinite;
-      margin: 0 auto 1rem;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .empty-state {
-      text-align: center;
-      padding: 3rem;
-    }
-
-    .empty-icon {
-      margin-bottom: 1rem;
-      color: var(--text-muted);
-      display: flex;
-      justify-content: center;
-    }
-
-    .empty-icon svg {
-      width: 64px;
-      height: 64px;
-      stroke: var(--text-muted);
-    }
-
-    .pagination {
-      display: flex;
-      justify-content: center;
+      gap: var(--space-xs);
       align-items: center;
-      gap: 0.5rem;
-      margin-top: 2rem;
-      flex-wrap: wrap;
     }
 
-    .pagination-btn, .pagination-number {
-      padding: 0.5rem 1rem;
-      border: 1px solid var(--border-medium);
-      background: var(--background-primary);
-      border-radius: 0.375rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .pagination-btn:hover, .pagination-number:hover {
-      background: var(--background-tertiary);
-      border-color: var(--primary-dark);
-    }
-
-    .pagination-number.active {
-      background-color: var(--primary-dark);
-      color: var(--text-white);
-      border-color: var(--primary-dark);
-    }
-
+    /* Responsive Design */
     @media (max-width: 768px) {
       .search-container {
-        padding: 1rem;
+        padding: var(--space-sm);
       }
       
-      .filter-row {
-        grid-template-columns: 1fr;
-      }
-      
-      .properties-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .results-header {
-        flex-direction: column;
-        gap: 1rem;
-        align-items: stretch;
+      .search-header h1 {
+        font-size: var(--text-2xl);
       }
       
       .sort-controls {
-        justify-content: center;
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--space-xs);
       }
       
-      .pagination {
-        gap: 0.25rem;
+      .sort-controls select {
+        width: 100%;
       }
       
       .pagination-numbers {
-        display: flex;
         flex-wrap: wrap;
-        gap: 0.25rem;
         justify-content: center;
       }
+    }
+
+    @media (max-width: 480px) {
+      .search-container {
+        padding: var(--space-xs);
+      }
+      
+      .property-specs {
+        gap: var(--space-xs);
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .property-content {
+        padding: var(--space-sm);
+      }
+    }
+    
+    /* Fix property actions spacing */
+    .property-actions {
+      margin-top: auto;
+      padding-top: var(--space-md);
     }
   `]
 })

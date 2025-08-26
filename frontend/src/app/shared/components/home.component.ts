@@ -8,19 +8,23 @@ import { RouterLink } from '@angular/router';
   imports: [CommonModule, RouterLink],
   template: `
     <div class="home-container">
-      <section class="hero">
+      <section class="hero-section">
         <div class="hero-content">
-          <h1>Welcome to LendPro</h1>
+          <h1>Welcome to Rocket Mortgage</h1>
           <p>Your one-stop solution for home search, mortgage tools, and loan management</p>
-          <div class="cta-buttons">
-            <a routerLink="/search" class="btn btn-primary">Search Homes</a>
-            <a routerLink="/mortgage-tools" class="btn btn-secondary">Mortgage Calculator</a>
+          <div class="button-group-center">
+            <a routerLink="/search" class="btn btn-outline-white btn-lg">Search Homes</a>
+            <a routerLink="/mortgage-tools" class="btn btn-outline-white btn-lg">Mortgage Calculator</a>
           </div>
         </div>
       </section>
 
-      <section class="features">
-        <div class="feature-grid">
+      <section class="section-content">
+        <div class="section-header">
+          <h2>Our Features</h2>
+          <p>Discover powerful tools to help you with your mortgage journey</p>
+        </div>
+        <div class="card-grid">
           <div class="feature-card">
             <div class="feature-icon">
               <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -30,7 +34,7 @@ import { RouterLink } from '@angular/router';
             </div>
             <h3>Home Search</h3>
             <p>Browse thousands of properties with advanced filtering options</p>
-            <a routerLink="/search" class="feature-link">Search Now</a>
+            <a routerLink="/search" class="btn btn-primary btn-sm">Search Now</a>
           </div>
           
           <div class="feature-card">
@@ -45,7 +49,7 @@ import { RouterLink } from '@angular/router';
             </div>
             <h3>Mortgage Tools</h3>
             <p>Calculate payments, check eligibility, and view amortization schedules</p>
-            <a routerLink="/mortgage-tools" class="feature-link">Try Tools</a>
+            <a routerLink="/mortgage-tools" class="btn btn-primary btn-sm">Try Tools</a>
           </div>
           
           <div class="feature-card">
@@ -57,7 +61,7 @@ import { RouterLink } from '@angular/router';
             </div>
             <h3>Loan Management</h3>
             <p>Apply for loans, track applications, and manage your mortgage</p>
-            <a routerLink="/dashboard" class="feature-link">Get Started</a>
+            <a routerLink="/dashboard" class="btn btn-primary btn-sm">Get Started</a>
           </div>
           
           <div class="feature-card">
@@ -69,7 +73,7 @@ import { RouterLink } from '@angular/router';
             </div>
             <h3>Market Trends</h3>
             <p>Analyze market data, price trends, and neighborhood analytics</p>
-            <a routerLink="/market-trends" class="feature-link">View Trends</a>
+            <a routerLink="/market-trends" class="btn btn-primary btn-sm">View Trends</a>
           </div>
         </div>
       </section>
@@ -77,111 +81,60 @@ import { RouterLink } from '@angular/router';
   `,
   styles: [`
     .home-container {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 0 1rem;
+      padding: 0 var(--space-lg);
     }
 
-    .hero {
+    .hero-section {
       text-align: center;
-      padding: 4rem 0;
-      background: #1a365d;
-      color: #ffffff;
-      border-radius: 0.75rem;
-      margin-bottom: 4rem;
+      padding: var(--space-2xl) var(--space-lg);
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 100%);
+      color: var(--text-white);
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--space-2xl);
+      box-shadow: 0 8px 32px var(--shadow-dark);
     }
 
     .hero-content {
-      position: relative;
-      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
-    .hero h1,
-    .hero-content h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      font-weight: 600;
-      color: #ffffff !important;
-      display: block !important;
-      visibility: visible !important;
-      opacity: 1 !important;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      color: #ffffff !important;
-      opacity: 0.9;
-    }
-
-    .cta-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 1rem 2rem;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: all 0.3s;
-      display: inline-block;
-      text-align: center;
-    }
-
-    .btn-primary {
-      background-color: var(--accent-success);
+    .hero-section h1 {
+      font-size: var(--text-4xl);
+      margin-bottom: var(--space-md);
+      font-weight: 700;
       color: var(--text-white);
-      border: 1px solid var(--accent-success);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
-    .btn-primary:hover {
-      background-color: #2d7a4b;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px var(--shadow-medium);
-    }
-
-    .btn-secondary {
-      background-color: transparent;
+    .hero-section p {
+      font-size: var(--text-xl);
+      margin-bottom: var(--space-xl);
       color: var(--text-white);
-      border: 1px solid var(--text-white);
-    }
-
-    .btn-secondary:hover {
-      background-color: var(--text-white);
-      color: var(--primary-dark);
-    }
-
-    .features {
-      padding: 2rem 0;
-    }
-
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
+      opacity: 0.95;
+      line-height: 1.6;
     }
 
     .feature-card {
       background: var(--background-primary);
-      padding: 2rem;
-      border-radius: 0.75rem;
+      padding: var(--space-xl);
+      border-radius: var(--radius-lg);
       border: 1px solid var(--border-light);
-      box-shadow: 0 1px 3px var(--shadow-light);
+      box-shadow: 0 4px 12px var(--shadow-light);
       text-align: center;
       transition: all 0.2s ease;
     }
 
     .feature-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 4px 12px var(--shadow-medium);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px var(--shadow-medium);
       border-color: var(--primary-dark);
     }
 
     .feature-icon {
-      margin-bottom: 1rem;
+      margin-bottom: var(--space-lg);
       color: var(--primary-dark);
       display: flex;
       justify-content: center;
@@ -195,49 +148,63 @@ import { RouterLink } from '@angular/router';
 
     .feature-card h3 {
       color: var(--primary-dark);
-      margin-bottom: 1rem;
+      margin-bottom: var(--space-md);
       font-weight: 600;
+      font-size: var(--text-xl);
     }
 
     .feature-card p {
       color: var(--text-secondary);
-      margin-bottom: 1.5rem;
+      margin-bottom: var(--space-lg);
       line-height: 1.6;
+      font-size: var(--text-base);
     }
 
-    .feature-link {
-      color: var(--primary-dark);
-      text-decoration: none;
-      font-weight: 500;
-      padding: 0.5rem 1rem;
-      border: 1px solid var(--primary-dark);
-      border-radius: 0.375rem;
-      transition: all 0.2s ease;
-    }
-
-    .feature-link:hover {
-      background-color: var(--primary-dark);
-      color: var(--text-white);
-      transform: translateY(-1px);
-      box-shadow: 0 2px 8px var(--shadow-medium);
-    }
-
+    /* Mobile responsive */
     @media (max-width: 768px) {
-      .hero-content h1 {
-        font-size: 2rem;
+      .home-container {
+        padding: 0 var(--space-sm);
+      }
+
+      .hero-section {
+        padding: var(--space-xl) var(--space-md);
+        margin-bottom: var(--space-xl);
+      }
+
+      .hero-section h1 {
+        font-size: var(--text-3xl);
+        margin-bottom: var(--space-sm);
       }
       
-      .hero-content p {
-        font-size: 1rem;
+      .hero-section p {
+        font-size: var(--text-lg);
+        margin-bottom: var(--space-lg);
+      }
+
+      .feature-card {
+        padding: var(--space-lg);
+      }
+
+      .feature-card h3 {
+        font-size: var(--text-lg);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .home-container {
+        padding: 0 var(--space-xs);
       }
       
-      .cta-buttons {
-        flex-direction: column;
-        align-items: center;
+      .hero-section {
+        padding: var(--space-lg) var(--space-sm);
       }
       
-      .feature-grid {
-        grid-template-columns: 1fr;
+      .hero-section h1 {
+        font-size: var(--text-2xl);
+      }
+      
+      .feature-card {
+        padding: var(--space-md);
       }
     }
   `]

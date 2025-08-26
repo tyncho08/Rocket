@@ -20,9 +20,9 @@ import { AuthService } from '../services/auth.service';
               id="firstName"
               formControlName="firstName"
               class="form-control"
-              [class.error]="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched"
+              [class.is-invalid]="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched"
             />
-            <div class="error-message" *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched">
+            <div class="form-error" *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched">
               <span *ngIf="registerForm.get('firstName')?.errors?.['required']">First name is required</span>
             </div>
           </div>
@@ -34,9 +34,9 @@ import { AuthService } from '../services/auth.service';
               id="lastName"
               formControlName="lastName"
               class="form-control"
-              [class.error]="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched"
+              [class.is-invalid]="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched"
             />
-            <div class="error-message" *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched">
+            <div class="form-error" *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched">
               <span *ngIf="registerForm.get('lastName')?.errors?.['required']">Last name is required</span>
             </div>
           </div>
@@ -48,9 +48,9 @@ import { AuthService } from '../services/auth.service';
               id="email"
               formControlName="email"
               class="form-control"
-              [class.error]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
+              [class.is-invalid]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
             />
-            <div class="error-message" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+            <div class="form-error" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
               <span *ngIf="registerForm.get('email')?.errors?.['required']">Email is required</span>
               <span *ngIf="registerForm.get('email')?.errors?.['email']">Invalid email format</span>
             </div>
@@ -63,9 +63,9 @@ import { AuthService } from '../services/auth.service';
               id="password"
               formControlName="password"
               class="form-control"
-              [class.error]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+              [class.is-invalid]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
             />
-            <div class="error-message" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+            <div class="form-error" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
               <span *ngIf="registerForm.get('password')?.errors?.['required']">Password is required</span>
               <span *ngIf="registerForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters</span>
             </div>
@@ -78,19 +78,19 @@ import { AuthService } from '../services/auth.service';
               id="confirmPassword"
               formControlName="confirmPassword"
               class="form-control"
-              [class.error]="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched"
+              [class.is-invalid]="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched"
             />
-            <div class="error-message" *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched">
+            <div class="form-error" *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched">
               <span *ngIf="registerForm.get('confirmPassword')?.errors?.['required']">Confirm password is required</span>
               <span *ngIf="registerForm.get('confirmPassword')?.errors?.['passwordMismatch']">Passwords do not match</span>
             </div>
           </div>
 
-          <div class="error-message" *ngIf="errorMessage">
+          <div class="form-error mt-md" *ngIf="errorMessage">
             {{ errorMessage }}
           </div>
 
-          <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid || loading">
+          <button type="submit" class="btn btn-primary btn-block mt-lg" [disabled]="registerForm.invalid || loading">
             {{ loading ? 'Registering...' : 'Register' }}
           </button>
         </form>
@@ -107,98 +107,65 @@ import { AuthService } from '../services/auth.service';
       justify-content: center;
       align-items: center;
       min-height: 70vh;
-      padding: 2rem;
+      padding: var(--space-lg);
     }
 
     .auth-card {
-      background: white;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      background: var(--background-primary);
+      padding: var(--space-xl);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-light);
+      box-shadow: 0 4px 16px var(--shadow-medium);
       width: 100%;
-      max-width: 400px;
+      max-width: 420px;
     }
 
     h2 {
       text-align: center;
-      margin-bottom: 2rem;
-      color: #2c3e50;
+      margin-bottom: var(--space-xl);
+      color: var(--primary-dark);
+      font-size: var(--text-2xl);
+      font-weight: 600;
     }
 
-    .form-group {
-      margin-bottom: 1rem;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-      color: #34495e;
-    }
-
-    .form-control {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 1rem;
-      transition: border-color 0.3s;
-    }
-
-    .form-control:focus {
-      outline: none;
-      border-color: #3498db;
-    }
-
-    .form-control.error {
-      border-color: #e74c3c;
-    }
-
-    .error-message {
-      color: #e74c3c;
-      font-size: 0.875rem;
-      margin-top: 0.25rem;
-    }
-
-    .btn {
-      width: 100%;
-      padding: 0.75rem;
-      border: none;
-      border-radius: 4px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      margin-top: 1rem;
-      text-align: center;
-    }
-
-    .btn-primary {
-      background-color: #3498db;
-      color: white;
-    }
-
-    .btn-primary:hover:not(:disabled) {
-      background-color: #2980b9;
-    }
-
-    .btn:disabled {
-      background-color: #bdc3c7;
-      cursor: not-allowed;
+    .form-control.is-invalid {
+      border-color: var(--accent-danger);
+      box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.1);
     }
 
     .auth-link {
       text-align: center;
-      margin-top: 1rem;
-      color: #7f8c8d;
+      margin-top: var(--space-lg);
+      color: var(--text-secondary);
+      font-size: var(--text-sm);
     }
 
     .auth-link a {
-      color: #3498db;
+      color: var(--primary-dark);
       text-decoration: none;
+      font-weight: 500;
+      
+      &:hover {
+        text-decoration: underline;
+      }
     }
-
-    .auth-link a:hover {
-      text-decoration: underline;
+    
+    /* Mobile responsive */
+    @media (max-width: 480px) {
+      .auth-container {
+        padding: var(--space-sm);
+        min-height: 60vh;
+      }
+      
+      .auth-card {
+        padding: var(--space-lg);
+        max-width: 100%;
+      }
+      
+      h2 {
+        font-size: var(--text-xl);
+        margin-bottom: var(--space-lg);
+      }
     }
   `]
 })

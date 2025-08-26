@@ -357,13 +357,6 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
             </svg>
             Export Market Data
           </button>
-          <button (click)="generateReport()" class="btn btn-secondary">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
-              <path d="M9 5H7C6.46957 5 5.96086 5.21071 5.58579 5.58579C5.21071 5.96086 5 6.46957 5 7V19C5 19.5304 5.21071 20.0391 5.58579 20.4142C5.96086 20.7893 6.46957 21 7 21H17C17.5304 21 18.0391 20.7893 18.4142 20.4142C18.7893 20.0391 19 19.5304 19 19V7C19 6.46957 18.7893 5.96086 18.4142 5.58579C18.0391 5.21071 17.5304 5 17 5H15"/>
-              <path d="M9 5C9 4.46957 9.21071 3.96086 9.58579 3.58579C9.96086 3.21071 10.4696 3 11 3H13C13.5304 3 14.0391 3.21071 14.4142 3.58579C14.7893 3.96086 15 4.46957 15 5V7H9V5Z"/>
-            </svg>
-            Generate Report
-          </button>
           <button (click)="shareInsights()" class="btn btn-outline">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
               <path d="M4 12V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V12"/>
@@ -397,42 +390,48 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
     .market-dashboard-container {
       min-height: 100vh;
       background: var(--background-secondary);
-      padding: 2rem;
+      padding: var(--space-lg);
+      max-width: 1400px;
+      margin: 0 auto;
     }
 
     .dashboard-header {
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: var(--space-2xl);
       position: relative;
     }
 
     .dashboard-header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+      font-size: var(--text-3xl);
+      margin-bottom: var(--space-sm);
       color: var(--primary-dark);
       font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
     }
 
     .dashboard-header p {
-      font-size: 1.2rem;
+      font-size: var(--text-lg);
       color: var(--text-secondary);
-      margin-bottom: 1.5rem;
+      margin-bottom: var(--space-lg);
     }
 
     .header-actions {
       display: flex;
-      gap: 15px;
+      gap: var(--space-md);
       justify-content: center;
       flex-wrap: wrap;
     }
 
     .region-selector {
       background: var(--background-primary);
-      border-radius: 0.75rem;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      margin-bottom: var(--space-2xl);
       border: 1px solid var(--border-light);
-      box-shadow: 0 1px 3px var(--shadow-light);
+      box-shadow: 0 2px 8px var(--shadow-light);
       max-width: 800px;
       margin-left: auto;
       margin-right: auto;
@@ -441,7 +440,7 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
     .region-selector form {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
+      gap: var(--space-lg);
     }
 
     .dashboard-content {
@@ -460,14 +459,18 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
 
     .indicators-section h2 {
       color: var(--primary-dark);
-      margin-bottom: 1.5rem;
+      margin-bottom: var(--space-xl);
       font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
     }
 
     .indicators-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
+      gap: var(--space-lg);
     }
 
     .indicator-card {
@@ -538,15 +541,20 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
 
     .chart-section h2 {
       color: var(--primary-dark);
-      margin-bottom: 1.5rem;
+      margin-bottom: var(--space-xl);
       font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
     }
 
     .chart-controls {
       display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
       flex-wrap: wrap;
+      justify-content: center;
     }
 
     .metric-btn {
@@ -686,17 +694,19 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
 
     .rate-chart-area {
       position: relative;
-      height: 250px;
-      border: 1px solid #e9ecef;
-      border-radius: 8px;
-      background: #f8f9fa;
+      height: 280px;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      background: var(--background-secondary);
+      overflow: hidden;
     }
 
     .rate-chart-grid {
       position: relative;
       width: 100%;
-      height: 200px;
-      padding: 20px;
+      height: 220px;
+      padding: var(--space-lg);
+      overflow: hidden;
     }
 
     .rate-line {
@@ -706,14 +716,19 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
       width: 100%;
       height: 100%;
       pointer-events: none;
+      overflow: hidden;
+    }
+
+    .rate-line polyline {
+      vector-effect: non-scaling-stroke;
     }
 
     .current-rates {
       display: flex;
       justify-content: space-around;
-      padding: 15px;
-      background: white;
-      border-top: 1px solid #e9ecef;
+      padding: var(--space-md);
+      background: var(--background-primary);
+      border-top: 1px solid var(--border-light);
     }
 
     .current-rate {
@@ -722,15 +737,16 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
 
     .rate-label {
       display: block;
-      font-size: 0.8rem;
-      color: #666;
-      margin-bottom: 4px;
+      font-size: var(--text-xs);
+      color: var(--text-secondary);
+      margin-bottom: var(--space-xs);
+      font-weight: 500;
     }
 
     .rate-value {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #2c3e50;
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: var(--primary-dark);
     }
 
     .regional-section {
@@ -744,14 +760,18 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
 
     .regional-section h2 {
       color: var(--primary-dark);
-      margin-bottom: 1.5rem;
+      margin-bottom: var(--space-xl);
       font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
     }
 
     .regional-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
+      gap: var(--space-lg);
     }
 
     .region-card {
@@ -845,14 +865,18 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
 
     .insights-section h2 {
       color: var(--primary-dark);
-      margin-bottom: 1.5rem;
+      margin-bottom: var(--space-xl);
       font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
     }
 
     .insights-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 20px;
+      gap: var(--space-lg);
     }
 
     .insight-card {
@@ -928,44 +952,67 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
 
     .dashboard-actions {
       display: flex;
-      gap: 15px;
+      gap: var(--space-md);
       justify-content: center;
       flex-wrap: wrap;
-      margin-bottom: 30px;
+      margin-bottom: var(--space-2xl);
+      padding: var(--space-lg);
     }
 
     .btn {
-      padding: 12px 24px;
+      padding: var(--space-sm) var(--space-lg);
       border: none;
-      border-radius: 6px;
-      font-size: 1rem;
+      border-radius: var(--radius-sm);
+      font-size: var(--text-base);
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
       text-decoration: none;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      min-width: 180px;
+      text-align: center;
     }
 
     .btn-primary {
-      background: #667eea;
-      color: white;
+      background: var(--primary-dark);
+      color: var(--text-white);
+      border: 1px solid var(--primary-dark);
     }
 
     .btn-primary:hover {
-      background: #5a67d8;
+      background: var(--primary-light);
+      border-color: var(--primary-light);
       transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+      box-shadow: 0 4px 12px var(--shadow-medium);
     }
 
     .btn-secondary {
-      background: #6c757d;
-      color: white;
+      background: var(--text-secondary);
+      color: var(--text-white);
+      border: 1px solid var(--text-secondary);
+    }
+
+    .btn-secondary:hover {
+      background: var(--text-primary);
+      border-color: var(--text-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px var(--shadow-medium);
     }
 
     .btn-outline {
-      background: white;
-      color: #667eea;
-      border: 2px solid #667eea;
+      background: var(--background-primary);
+      color: var(--primary-dark);
+      border: 2px solid var(--primary-dark);
+    }
+
+    .btn-outline:hover {
+      background: var(--primary-dark);
+      color: var(--text-white);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px var(--shadow-medium);
     }
 
     .form-group {
@@ -1017,16 +1064,28 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
     /* Responsive */
     @media (max-width: 768px) {
       .market-dashboard-container {
-        padding: 10px;
+        padding: var(--space-sm);
       }
 
       .dashboard-header h1 {
-        font-size: 2rem;
+        font-size: var(--text-2xl);
+        flex-direction: column;
+        gap: var(--space-xs);
       }
 
       .header-actions {
         flex-direction: column;
         align-items: center;
+        gap: var(--space-sm);
+      }
+
+      .region-selector {
+        margin-bottom: var(--space-xl);
+      }
+
+      .region-selector form {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
       }
 
       .chart-controls {
@@ -1042,12 +1101,34 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
       }
 
       .dashboard-actions {
-        flex-direction: column;
-        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-sm);
+        padding: var(--space-md);
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      .btn {
+        min-width: unset;
+        width: 100%;
       }
 
       .indicators-grid {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: var(--space-md);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .dashboard-actions {
+        grid-template-columns: 1fr;
+        max-width: 280px;
+      }
+
+      .btn {
+        font-size: var(--text-sm);
+        padding: var(--space-xs) var(--space-md);
       }
     }
   `]
@@ -1230,7 +1311,19 @@ export class MarketTrendsDashboardComponent implements OnInit, OnDestroy {
     return this.interestRateData.map((data, index) => {
       const x = (index / (this.interestRateData.length - 1)) * 100;
       const rate = data[rateType] as number;
-      const y = max === min ? 50 : 100 - (((rate - min) / (max - min)) * 80 + 10);
+      
+      let y: number;
+      if (max === min) {
+        y = 50; // Center line if all values are the same
+      } else {
+        // Scale to use 10% padding on top and bottom (10% to 90% range)
+        const normalizedValue = (rate - min) / (max - min);
+        y = 90 - (normalizedValue * 80); // Invert Y axis and constrain to 10-90 range
+      }
+      
+      // Ensure y is within bounds
+      y = Math.max(10, Math.min(90, y));
+      
       return `${x},${y}`;
     }).join(' ');
   }
@@ -1277,19 +1370,6 @@ export class MarketTrendsDashboardComponent implements OnInit, OnDestroy {
     URL.revokeObjectURL(url);
   }
 
-  generateReport() {
-    // In a real app, this would generate a comprehensive PDF report
-    const reportData = {
-      title: `Market Analysis Report - ${this.selectedRegion}`,
-      date: new Date().toLocaleDateString(),
-      indicators: this.marketIndicators,
-      insights: this.marketInsights,
-      summary: this.generateReportSummary()
-    };
-
-    console.log('Generating market report:', reportData);
-    // Could integrate with PDF generation library here
-  }
 
   shareInsights() {
     if (navigator.share) {
@@ -1302,13 +1382,4 @@ export class MarketTrendsDashboardComponent implements OnInit, OnDestroy {
     }
   }
 
-  private generateReportSummary(): string {
-    if (!this.marketIndicators || this.marketInsights.length === 0) return '';
-    
-    const temp = this.marketIndicators.marketTemperature;
-    const affordability = this.marketIndicators.affordabilityIndex;
-    const topInsight = this.marketInsights[0];
-    
-    return `The ${this.selectedRegion} market is currently ${temp} with an affordability index of ${affordability.toFixed(0)}. Key insight: ${topInsight.title} - ${topInsight.description}`;
-  }
 }

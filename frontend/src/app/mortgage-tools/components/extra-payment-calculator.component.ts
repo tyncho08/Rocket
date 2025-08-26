@@ -78,9 +78,15 @@ interface PaymentScenario {
   template: `
     <div class="extra-payment-container">
       <div class="calculator-header">
-        <h1>💰 Extra Payment Calculator</h1>
+        <h1>Extra Payment Calculator</h1>
         <p>See how extra mortgage payments can save you time and money</p>
-        <a routerLink="/mortgage-tools" class="back-link">← Back to Mortgage Tools</a>
+        <a routerLink="/mortgage-tools" class="back-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+            <path d="M19 12H5"/>
+            <path d="M12 19l-7-7 7-7"/>
+          </svg>
+          Back to Mortgage Tools
+        </a>
       </div>
 
       <div class="calculator-content">
@@ -88,8 +94,14 @@ interface PaymentScenario {
           <form [formGroup]="calculatorForm" (ngSubmit)="calculate()">
             <!-- Current Loan Details -->
             <div class="form-section">
-              <h3>🏠 Current Mortgage Details</h3>
-              <div class="form-grid">
+              <h3>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem; vertical-align: middle;">
+                  <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z"/>
+                  <polyline points="9,22 9,12 15,12 15,22"/>
+                </svg>
+                Current Mortgage Details
+              </h3>
+              <div class="form-grid-2x2">
                 <div class="form-group">
                   <label for="loanBalance">Current Loan Balance</label>
                   <input 
@@ -140,9 +152,16 @@ interface PaymentScenario {
 
             <!-- Extra Payment Options -->
             <div class="form-section">
-              <h3>➕ Extra Payment Strategy</h3>
-              <div class="form-grid">
-                <div class="form-group">
+              <h3>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem; vertical-align: middle;">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="12" y1="8" x2="12" y2="16"/>
+                  <line x1="8" y1="12" x2="16" y2="12"/>
+                </svg>
+                Extra Payment Strategy
+              </h3>
+              <div class="form-grid-strategy">
+                <div class="form-group form-group-full">
                   <label for="extraPaymentType">Payment Type</label>
                   <select id="extraPaymentType" formControlName="extraPaymentType" class="form-input">
                     <option value="monthly">Monthly Extra Payment</option>
@@ -205,10 +224,22 @@ interface PaymentScenario {
                 class="btn btn-primary"
                 [disabled]="calculatorForm.invalid || calculating"
               >
-                {{ calculating ? 'Calculating...' : '🧮 Calculate Savings' }}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+                  <rect x="4" y="4" width="16" height="16" rx="2"/>
+                  <rect x="9" y="9" width="1" height="1"/>
+                  <rect x="14" y="9" width="1" height="1"/>
+                  <rect x="9" y="14" width="1" height="1"/>
+                  <rect x="14" y="14" width="1" height="1"/>
+                </svg>
+                {{ calculating ? 'Calculating...' : 'Calculate Savings' }}
               </button>
               <button type="button" (click)="reset()" class="btn btn-secondary">
-                🔄 Reset
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+                  <path d="M1 4V10H7"/>
+                  <path d="M23 20V14H17"/>
+                  <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10M22.66 14.36A9 9 0 0 1 3.51 15L23 20"/>
+                </svg>
+                Reset
               </button>
             </div>
           </form>
@@ -219,7 +250,14 @@ interface PaymentScenario {
           <!-- Savings Summary -->
           <div class="savings-summary">
             <div class="summary-header">
-              <h3>📊 Extra Payment Impact</h3>
+              <h3>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem; vertical-align: middle;">
+                  <line x1="18" y1="20" x2="18" y2="10"/>
+                  <line x1="12" y1="20" x2="12" y2="4"/>
+                  <line x1="6" y1="20" x2="6" y2="14"/>
+                </svg>
+                Extra Payment Impact
+              </h3>
               <div class="recommendation-badge">
                 {{ getSavingsRecommendation() }}
               </div>
@@ -227,25 +265,45 @@ interface PaymentScenario {
             
             <div class="savings-grid">
               <div class="savings-card highlight">
-                <div class="savings-icon">💰</div>
+                <div class="savings-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="1" x2="12" y2="23"/>
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                  </svg>
+                </div>
                 <div class="savings-amount">\${{ result.savings.interestSaved | number:'1.0-0' }}</div>
                 <div class="savings-label">Interest Saved</div>
               </div>
               
               <div class="savings-card highlight">
-                <div class="savings-icon">⏰</div>
+                <div class="savings-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12,6 12,12 16,14"/>
+                  </svg>
+                </div>
                 <div class="savings-amount">{{ Math.floor(result.savings.timeSaved / 12) }} years {{ result.savings.timeSaved % 12 }} months</div>
                 <div class="savings-label">Time Saved</div>
               </div>
               
               <div class="savings-card">
-                <div class="savings-icon">📈</div>
+                <div class="savings-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
+                  </svg>
+                </div>
                 <div class="savings-amount">{{ result.savings.percentageSaved | number:'1.1-1' }}%</div>
                 <div class="savings-label">Percentage Saved</div>
               </div>
               
               <div class="savings-card">
-                <div class="savings-icon">🎯</div>
+                <div class="savings-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <circle cx="12" cy="12" r="6"/>
+                    <circle cx="12" cy="12" r="2"/>
+                  </svg>
+                </div>
                 <div class="savings-amount">{{ result.withExtraPayment.payoffDate }}</div>
                 <div class="savings-label">New Payoff Date</div>
               </div>
@@ -254,7 +312,15 @@ interface PaymentScenario {
 
           <!-- Comparison Table -->
           <div class="comparison-table">
-            <h3>📋 Loan Comparison</h3>
+            <h3>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem; vertical-align: middle;">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                <line x1="9" y1="9" x2="15" y2="9"/>
+                <line x1="9" y1="13" x2="15" y2="13"/>
+                <line x1="9" y1="17" x2="15" y2="17"/>
+              </svg>
+              Loan Comparison
+            </h3>
             <div class="table-container">
               <table class="loan-comparison">
                 <thead>
@@ -303,7 +369,13 @@ interface PaymentScenario {
 
           <!-- Payment Scenarios -->
           <div class="scenarios-section">
-            <h3>🔬 Payment Scenarios</h3>
+            <h3>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem; vertical-align: middle;">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+              </svg>
+              Payment Scenarios
+            </h3>
             <div class="scenarios-grid">
               <div 
                 *ngFor="let scenario of result.scenarios" 
@@ -340,7 +412,14 @@ interface PaymentScenario {
 
           <!-- Breakdown Analysis -->
           <div class="breakdown-analysis">
-            <h3>📊 Payment Breakdown</h3>
+            <h3>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem; vertical-align: middle;">
+                <line x1="18" y1="20" x2="18" y2="10"/>
+                <line x1="12" y1="20" x2="12" y2="4"/>
+                <line x1="6" y1="20" x2="6" y2="14"/>
+              </svg>
+              Payment Breakdown
+            </h3>
             <div class="breakdown-cards">
               <div class="breakdown-card">
                 <h4>First Year</h4>
@@ -412,10 +491,43 @@ interface PaymentScenario {
 
           <!-- Action Buttons -->
           <div class="result-actions">
-            <button (click)="saveCalculation()" class="btn btn-primary">💾 Save Calculation</button>
-            <button (click)="exportResults()" class="btn btn-secondary">📄 Export Report</button>
-            <button (click)="shareResults()" class="btn btn-outline">📤 Share Results</button>
-            <button (click)="viewPaymentSchedule()" class="btn btn-outline">📅 View Payment Schedule</button>
+            <button (click)="saveCalculation()" class="btn btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+                <path d="M19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H16L21 8V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21Z"/>
+                <polyline points="17,21 17,13 7,13 7,21"/>
+                <polyline points="7,3 7,8 15,8"/>
+              </svg>
+              Save Calculation
+            </button>
+            <button (click)="exportResults()" class="btn btn-secondary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+                <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"/>
+                <polyline points="14,2 14,8 20,8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+                <polyline points="10,9 9,9 8,9"/>
+              </svg>
+              Export Report
+            </button>
+            <button (click)="shareResults()" class="btn btn-outline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+                <circle cx="18" cy="5" r="3"/>
+                <circle cx="6" cy="12" r="3"/>
+                <circle cx="18" cy="19" r="3"/>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+              </svg>
+              Share Results
+            </button>
+            <button (click)="viewPaymentSchedule()" class="btn btn-outline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              View Payment Schedule
+            </button>
           </div>
         </div>
       </div>
@@ -424,41 +536,49 @@ interface PaymentScenario {
   styles: [`
     .extra-payment-container {
       min-height: 100vh;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      padding: 20px;
+      background: var(--background-secondary);
+      padding: var(--space-lg);
     }
 
     .calculator-header {
       text-align: center;
-      margin-bottom: 40px;
-      color: white;
+      margin-bottom: var(--space-2xl);
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 100%);
+      padding: var(--space-2xl) var(--space-lg);
+      border-radius: var(--radius-lg);
+      color: var(--text-white);
     }
 
     .calculator-header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 15px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      font-size: var(--text-3xl);
+      margin-bottom: var(--space-md);
+      color: var(--text-white);
+      font-weight: 600;
     }
 
     .calculator-header p {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
+      font-size: var(--text-lg);
+      margin-bottom: var(--space-md);
       opacity: 0.9;
     }
 
     .back-link {
-      color: white;
+      color: var(--text-white);
       text-decoration: none;
-      padding: 8px 16px;
-      border: 2px solid rgba(255,255,255,0.3);
-      border-radius: 20px;
-      transition: all 0.3s ease;
+      padding: var(--space-xs) var(--space-md);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: var(--radius-lg);
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      font-size: var(--text-sm);
     }
 
     .back-link:hover {
       background: rgba(255,255,255,0.2);
-      color: white;
+      color: var(--text-white);
       text-decoration: none;
+      transform: translateY(-1px);
     }
 
     .calculator-content {
@@ -466,35 +586,57 @@ interface PaymentScenario {
       margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr;
-      gap: 30px;
+      gap: var(--space-xl);
     }
 
     .calculator-form {
-      background: white;
-      border-radius: 15px;
-      padding: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      background: var(--background-primary);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      box-shadow: 0 4px 12px var(--shadow-medium);
+      border: 1px solid var(--border-light);
     }
 
     .form-section {
-      margin-bottom: 30px;
-      padding: 25px;
-      background: #f8f9fa;
-      border-radius: 10px;
+      margin-bottom: var(--space-xl);
+      padding: var(--space-lg);
+      background: var(--background-secondary);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-light);
     }
 
     .form-section h3 {
-      color: #333;
-      margin-bottom: 20px;
+      color: var(--primary-dark);
+      margin-bottom: var(--space-md);
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: var(--space-sm);
+      font-size: var(--text-xl);
+      font-weight: 600;
     }
 
     .form-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+      gap: var(--space-md);
+    }
+
+    .form-grid-2x2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+      align-items: start;
+    }
+
+    .form-grid-strategy {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+      align-items: start;
+    }
+
+    .form-group-full {
+      grid-column: 1 / -1;
     }
 
     .form-group {
@@ -504,37 +646,46 @@ interface PaymentScenario {
     .form-group label {
       display: block;
       font-weight: 500;
-      color: #333;
-      margin-bottom: 6px;
-      font-size: 0.9rem;
+      color: var(--text-primary);
+      margin-bottom: var(--space-xs);
+      font-size: var(--text-sm);
+      line-height: 1.4;
     }
 
     .form-input {
       width: 100%;
-      padding: 12px 16px;
-      border: 2px solid #e0e6ed;
-      border-radius: 6px;
-      font-size: 1rem;
-      background: white;
-      transition: all 0.3s ease;
+      height: var(--height-input);
+      padding: 0 var(--space-sm);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-sm);
+      font-size: var(--text-base);
+      background: var(--background-primary);
+      color: var(--text-primary);
+      transition: all 0.2s ease;
     }
 
     .form-input:focus {
       outline: none;
-      border-color: #667eea;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      border-color: var(--primary-dark);
+      box-shadow: 0 0 0 3px rgba(26, 54, 93, 0.1);
     }
 
     .form-input[readonly] {
-      background: #f8f9fa;
-      color: #6c757d;
+      background: var(--background-tertiary);
+      color: var(--text-secondary);
+      cursor: not-allowed;
+    }
+
+    .form-input::placeholder {
+      color: var(--text-muted);
     }
 
     .form-actions {
       display: flex;
-      gap: 15px;
+      gap: var(--space-sm);
       justify-content: center;
-      margin-top: 30px;
+      margin-top: var(--space-xl);
+      flex-wrap: wrap;
     }
 
     .btn {
@@ -584,39 +735,47 @@ interface PaymentScenario {
 
     /* Results Section */
     .results-section {
-      background: white;
-      border-radius: 15px;
-      padding: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      background: var(--background-primary);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      box-shadow: 0 4px 12px var(--shadow-medium);
+      border: 1px solid var(--border-light);
     }
 
     .savings-summary {
-      margin-bottom: 30px;
-      padding: 25px;
-      background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
-      border-radius: 12px;
-      border-left: 5px solid #28a745;
+      margin-bottom: var(--space-xl);
+      padding: var(--space-lg);
+      background: rgba(56, 161, 105, 0.05);
+      border-radius: var(--radius-md);
+      border-left: 4px solid var(--accent-success);
     }
 
     .summary-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: var(--space-md);
+      flex-wrap: wrap;
+      gap: var(--space-sm);
     }
 
     .summary-header h3 {
       margin: 0;
-      color: #333;
+      color: var(--primary-dark);
+      font-size: var(--text-xl);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
     }
 
     .recommendation-badge {
-      padding: 8px 16px;
-      background: #28a745;
-      color: white;
-      border-radius: 20px;
-      font-weight: bold;
-      font-size: 0.9rem;
+      padding: var(--space-xs) var(--space-md);
+      background: var(--accent-success);
+      color: var(--text-white);
+      border-radius: var(--radius-lg);
+      font-weight: 600;
+      font-size: var(--text-sm);
     }
 
     .savings-grid {
@@ -795,54 +954,97 @@ interface PaymentScenario {
 
     .breakdown-cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-lg);
+      width: 100%;
+      justify-items: center;
+      align-items: start;
     }
 
     .breakdown-card {
-      background: white;
-      border: 2px solid #e9ecef;
-      border-radius: 10px;
-      padding: 20px;
+      background: var(--background-primary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: var(--space-xl);
+      width: 100%;
+      max-width: 400px;
+      min-height: 240px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 8px var(--shadow-light);
+      transition: all 0.2s ease;
+    }
+
+    .breakdown-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px var(--shadow-medium);
     }
 
     .breakdown-card.total {
-      border-color: #667eea;
-      background: #f8f9ff;
+      border-color: var(--primary-dark);
+      background: rgba(26, 54, 93, 0.03);
     }
 
     .breakdown-card h4 {
-      margin: 0 0 15px 0;
-      color: #333;
-      font-size: 1.1rem;
+      margin: 0 0 var(--space-lg) 0;
+      color: var(--primary-dark);
+      font-size: var(--text-xl);
+      font-weight: 600;
+      text-align: center;
+      flex-shrink: 0;
     }
 
     .breakdown-details {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: var(--space-sm);
+      flex: 1;
     }
 
     .detail-row {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      padding: 6px 0;
+      align-items: flex-start;
+      padding: var(--space-xs) 0;
+      font-size: var(--text-sm);
+      line-height: 1.5;
+      min-height: 24px;
+    }
+    
+    .detail-row span:first-child {
+      color: var(--text-secondary);
+      font-weight: 500;
+      flex: 1;
+      margin-right: var(--space-sm);
+    }
+    
+    .detail-row span:last-child {
+      color: var(--text-primary);
+      font-weight: 600;
+      text-align: right;
+      flex-shrink: 0;
     }
 
     .detail-row.total-row {
-      border-top: 2px solid #e9ecef;
-      margin-top: 8px;
-      padding-top: 12px;
-      font-weight: bold;
-      color: #667eea;
+      border-top: 2px solid var(--border-medium);
+      margin-top: var(--space-md);
+      padding-top: var(--space-md);
+      font-size: var(--text-base);
+    }
+    
+    .detail-row.total-row span {
+      color: var(--primary-dark) !important;
+      font-weight: 700 !important;
     }
 
     .result-actions {
       display: flex;
-      gap: 15px;
+      gap: var(--space-sm);
       justify-content: center;
+      align-items: center;
       flex-wrap: wrap;
+      margin-top: var(--space-xl);
+      padding: var(--space-lg);
     }
 
     /* Math functions available in template */
@@ -850,41 +1052,109 @@ interface PaymentScenario {
       /* Math functions will be accessible */
     }
 
-    /* Responsive */
+    /* Enhanced Responsive Design */
     @media (max-width: 768px) {
       .extra-payment-container {
-        padding: 10px;
+        padding: var(--space-sm);
+      }
+
+      .calculator-header {
+        padding: var(--space-lg);
       }
 
       .calculator-header h1 {
-        font-size: 2rem;
+        font-size: var(--text-2xl);
       }
 
-      .form-grid {
+      .form-grid,
+      .form-grid-2x2,
+      .form-grid-strategy {
         grid-template-columns: 1fr;
+        gap: var(--space-sm);
+      }
+      
+      .form-group-full {
+        grid-column: 1;
       }
 
       .savings-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        grid-template-columns: 1fr;
+        gap: var(--space-sm);
+      }
+
+      .savings-card {
+        max-width: none;
+        width: 100%;
       }
 
       .scenarios-grid {
         grid-template-columns: 1fr;
+        gap: var(--space-sm);
+      }
+
+      .scenario-card {
+        max-width: none;
+        width: 100%;
       }
 
       .breakdown-cards {
         grid-template-columns: 1fr;
+        gap: var(--space-md);
+      }
+
+      .breakdown-card {
+        max-width: none;
+        width: 100%;
+        min-height: auto;
+        padding: var(--space-lg);
       }
 
       .result-actions {
         flex-direction: column;
         align-items: center;
+        gap: var(--space-sm);
+      }
+
+      .result-actions .btn {
+        width: 100%;
+        max-width: 300px;
       }
 
       .summary-header {
         flex-direction: column;
-        gap: 15px;
+        gap: var(--space-sm);
+        text-align: center;
         align-items: center;
+      }
+
+      .loan-comparison {
+        font-size: var(--text-xs);
+      }
+
+      .loan-comparison th,
+      .loan-comparison td {
+        padding: var(--space-xs);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .calculator-header h1 {
+        font-size: var(--text-xl);
+      }
+
+      .calculator-form,
+      .results-section {
+        padding: var(--space-md);
+      }
+
+      .form-section {
+        padding: var(--space-sm);
+      }
+
+      .savings-card,
+      .scenario-card,
+      .breakdown-card {
+        padding: var(--space-sm);
       }
     }
   `]
@@ -940,7 +1210,7 @@ export class ExtraPaymentCalculatorComponent implements OnInit {
       const monthlyPayment = balance * (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) / 
                             (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
       
-      this.calculatorForm.get('monthlyPayment')?.setValue(monthlyPayment);
+      this.calculatorForm.get('monthlyPayment')?.setValue(Math.round(monthlyPayment * 100) / 100);
     }
   }
 
