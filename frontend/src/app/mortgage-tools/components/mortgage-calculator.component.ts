@@ -14,7 +14,7 @@ import { MortgageCalculation, MortgageCalculationResult } from '../../shared/mod
   template: `
     <div class="calculator-container">
       <div class="calculator-header">
-        <h1>🧮 Mortgage Calculator</h1>
+        <h1>Mortgage Calculator</h1>
         <p>Calculate your monthly mortgage payments and see detailed amortization schedules</p>
       </div>
 
@@ -126,7 +126,14 @@ import { MortgageCalculation, MortgageCalculationResult } from '../../shared/mod
 
           <!-- Pre-approval Section -->
           <div class="preapproval-section" *ngIf="result">
-            <h3>🏦 Pre-approval Check</h3>
+            <h3>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem; vertical-align: middle;">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+              Pre-approval Check
+            </h3>
             <form [formGroup]="preapprovalForm" class="preapproval-form">
               <div class="form-group">
                 <label for="annualIncome">Annual Income</label>
@@ -163,7 +170,17 @@ import { MortgageCalculation, MortgageCalculationResult } from '../../shared/mod
 
             <div class="preapproval-result" *ngIf="preapprovalResult !== null">
               <div class="eligibility-status" [class.approved]="preapprovalResult" [class.denied]="!preapprovalResult">
-                <div class="status-icon">{{ preapprovalResult ? '✅' : '❌' }}</div>
+                <div class="status-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <ng-container *ngIf="preapprovalResult; else deniedIcon">
+                      <polyline points="20,6 9,17 4,12"/>
+                    </ng-container>
+                    <ng-template #deniedIcon>
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </ng-template>
+                  </svg>
+                </div>
                 <div class="status-text">
                   <h4>{{ preapprovalResult ? 'Likely Pre-approved' : 'Pre-approval Unlikely' }}</h4>
                   <p>{{ preapprovalMessage }}</p>
@@ -182,7 +199,13 @@ import { MortgageCalculation, MortgageCalculationResult } from '../../shared/mod
 
           <!-- Results Display -->
           <div *ngIf="result && !calculating" class="results-display">
-            <h2>💰 Payment Summary</h2>
+            <h2>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem; vertical-align: middle;">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+              Payment Summary
+            </h2>
             
             <div class="payment-summary">
               <div class="main-payment">
@@ -208,7 +231,14 @@ import { MortgageCalculation, MortgageCalculationResult } from '../../shared/mod
 
             <!-- Charts Section -->
             <div class="charts-section">
-              <h3>📊 Payment Breakdown</h3>
+              <h3>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem; vertical-align: middle;">
+                  <line x1="18" y1="20" x2="18" y2="10"/>
+                  <line x1="12" y1="20" x2="12" y2="4"/>
+                  <line x1="6" y1="20" x2="6" y2="14"/>
+                </svg>
+                Payment Breakdown
+              </h3>
               
               <!-- Simple visual breakdown -->
               <div class="payment-chart">
@@ -227,7 +257,13 @@ import { MortgageCalculation, MortgageCalculationResult } from '../../shared/mod
 
             <!-- Amortization Schedule -->
             <div class="amortization-section">
-              <h3>📋 Amortization Schedule</h3>
+              <h3>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem; vertical-align: middle;">
+                  <path d="M9 5H7C6.46957 5 5.96086 5.21071 5.58579 5.58579C5.21071 5.96086 5 6.46957 5 7V19C5 19.5304 5.21071 20.0391 5.58579 20.4142C5.96086 20.7893 6.46957 21 7 21H17C17.5304 21 18.0391 20.7893 18.4142 20.4142C18.7893 20.0391 19 19.5304 19 19V7C19 6.46957 18.7893 5.96086 18.4142 5.58579C18.0391 5.21071 17.5304 5 17 5H15"/>
+                  <path d="M9 5C9 4.46957 9.21071 3.96086 9.58579 3.58579C9.96086 3.21071 10.4696 3 11 3H13C13.5304 3 14.0391 3.21071 14.4142 3.58579C14.7893 3.96086 15 4.46957 15 5V7H9V5Z"/>
+                </svg>
+                Amortization Schedule
+              </h3>
               
               <div class="schedule-controls">
                 <button 
@@ -242,7 +278,11 @@ import { MortgageCalculation, MortgageCalculationResult } from '../../shared/mod
                   (click)="exportSchedule()" 
                   class="btn btn-outline btn-sm"
                 >
-                  📄 Export
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"/>
+                    <polyline points="14,2 14,8 20,8"/>
+                  </svg>
+                  Export
                 </button>
               </div>
 
@@ -272,7 +312,13 @@ import { MortgageCalculation, MortgageCalculationResult } from '../../shared/mod
 
             <!-- History -->
             <div class="calculation-history" *ngIf="calculationHistory.length > 0">
-              <h3>📚 Recent Calculations</h3>
+              <h3>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem; vertical-align: middle;">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                  <path d="M6.5 2H20V22H6.5A2.5 2.5 0 0 1 4 19.5V4.5A2.5 2.5 0 0 1 6.5 2Z"/>
+                </svg>
+                Recent Calculations
+              </h3>
               <div class="history-list">
                 <div 
                   *ngFor="let calc of calculationHistory.slice(0, 3)" 
@@ -292,7 +338,12 @@ import { MortgageCalculation, MortgageCalculationResult } from '../../shared/mod
 
           <!-- Empty State -->
           <div *ngIf="!result && !calculating" class="empty-results">
-            <div class="empty-icon">🏠</div>
+            <div class="empty-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z"/>
+                <polyline points="9,22 9,12 15,12 15,22"/>
+              </svg>
+            </div>
             <h3>Ready to Calculate</h3>
             <p>Enter your loan details on the left to see payment estimates and amortization schedules.</p>
           </div>
@@ -300,22 +351,45 @@ import { MortgageCalculation, MortgageCalculationResult } from '../../shared/mod
       </div>
       <!-- Additional Tools -->
       <div class="additional-tools" *ngIf="result">
-        <h3>🔧 Additional Calculators</h3>
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem; vertical-align: middle;">
+            <path d="M14.7 6.3A1 1 0 0 0 13 5L5 13L9 17L17 9A1 1 0 0 0 15.7 7.3Z"/>
+            <path d="M9 7L17 15"/>
+            <circle cx="6" cy="8" r="2"/>
+          </svg>
+          Additional Calculators
+        </h3>
         <div class="tools-grid">
           <a routerLink="/refinance-calculator" class="tool-card">
-            <div class="tool-icon">🏦</div>
+            <div class="tool-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </div>
             <div class="tool-title">Refinance Calculator</div>
             <div class="tool-description">See if refinancing could save you money</div>
           </a>
           
           <a routerLink="/extra-payment-calculator" class="tool-card">
-            <div class="tool-icon">💰</div>
+            <div class="tool-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
             <div class="tool-title">Extra Payment Calculator</div>
             <div class="tool-description">Calculate savings with extra payments</div>
           </a>
           
           <a routerLink="/rent-vs-buy-calculator" class="tool-card">
-            <div class="tool-icon">🏠</div>
+            <div class="tool-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z"/>
+                <polyline points="9,22 9,12 15,12 15,22"/>
+              </svg>
+            </div>
             <div class="tool-title">Rent vs Buy Calculator</div>
             <div class="tool-description">Decide between renting and buying</div>
           </a>

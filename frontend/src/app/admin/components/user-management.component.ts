@@ -14,7 +14,14 @@ import { NotificationService } from '../../shared/services/notification.service'
   template: `
     <div class="user-management-container">
       <div class="page-header">
-        <h1>👥 User Management</h1>
+        <h1>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem; vertical-align: middle;">
+            <path d="M17 21V19C17 17.9391 17.5786 16.9217 18.3284 16.1716C19.0783 15.4214 20.0957 15 21 15V15C22.1046 15 23 15.8954 23 17V21"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M1 21V19C1 17.9391 1.57857 16.9217 2.32843 16.1716C3.07828 15.4214 4.0957 15 5 15H13C13.9043 15 14.9217 15.4214 15.6716 16.1716C16.4214 16.9217 17 17.9391 17 19V21"/>
+          </svg>
+          User Management
+        </h1>
         <p>Manage user accounts and permissions</p>
         <a routerLink="/admin" class="back-btn">← Back to Dashboard</a>
       </div>
@@ -97,7 +104,13 @@ import { NotificationService } from '../../shared/services/notification.service'
 
         <!-- No Users Message -->
         <div class="no-users" *ngIf="usersResponse.users.length === 0">
-          <div class="no-data-icon">👥</div>
+          <div class="no-data-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21V19C17 17.9391 17.5786 16.9217 18.3284 16.1716C19.0783 15.4214 20.0957 15 21 15V15C22.1046 15 23 15.8954 23 17V21"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M1 21V19C1 17.9391 1.57857 16.9217 2.32843 16.1716C3.07828 15.4214 4.0957 15 5 15H13C13.9043 15 14.9217 15.4214 15.6716 16.1716C16.4214 16.9217 17 17.9391 17 19V21"/>
+            </svg>
+          </div>
           <h3>No Users Found</h3>
           <p>No users match your current search criteria.</p>
         </div>
@@ -126,28 +139,55 @@ import { NotificationService } from '../../shared/services/notification.service'
 
       <!-- User Statistics -->
       <div class="stats-section">
-        <h2>📊 User Statistics</h2>
+        <h2>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem; vertical-align: middle;">
+            <line x1="18" y1="20" x2="18" y2="10"/>
+            <line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="14"/>
+          </svg>
+          User Statistics
+        </h2>
         <div class="stats-grid" *ngIf="usersResponse">
           <div class="stat-card">
-            <div class="stat-icon">👥</div>
+            <div class="stat-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21V19C17 17.9391 17.5786 16.9217 18.3284 16.1716C19.0783 15.4214 20.0957 15 21 15V15C22.1046 15 23 15.8954 23 17V21"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M1 21V19C1 17.9391 1.57857 16.9217 2.32843 16.1716C3.07828 15.4214 4.0957 15 5 15H13C13.9043 15 14.9217 15.4214 15.6716 16.1716C16.4214 16.9217 17 17.9391 17 19V21"/>
+              </svg>
+            </div>
             <div class="stat-value">{{usersResponse.totalCount}}</div>
             <div class="stat-label">Total Users</div>
           </div>
           
           <div class="stat-card">
-            <div class="stat-icon">👤</div>
+            <div class="stat-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </div>
             <div class="stat-value">{{getUsersByRole('User')}}</div>
             <div class="stat-label">Regular Users</div>
           </div>
           
           <div class="stat-card">
-            <div class="stat-icon">🛡️</div>
+            <div class="stat-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22S8 18 8 14V8L12 4L16 8V14C16 18 12 22 12 22Z"/>
+              </svg>
+            </div>
             <div class="stat-value">{{getUsersByRole('Admin')}}</div>
             <div class="stat-label">Administrators</div>
           </div>
           
           <div class="stat-card">
-            <div class="stat-icon">📋</div>
+            <div class="stat-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 5H7C6.46957 5 5.96086 5.21071 5.58579 5.58579C5.21071 5.96086 5 6.46957 5 7V19C5 19.5304 5.21071 20.0391 5.58579 20.4142C5.96086 20.7893 6.46957 21 7 21H17C17.5304 21 18.0391 20.7893 18.4142 20.4142C18.7893 20.0391 19 19.5304 19 19V7C19 6.46957 18.7893 5.96086 18.4142 5.58579C18.0391 5.21071 17.5304 5 17 5H15"/>
+                <path d="M9 5C9 4.46957 9.21071 3.96086 9.58579 3.58579C9.96086 3.21071 10.4696 3 11 3H13C13.5304 3 14.0391 3.21071 14.4142 3.58579C14.7893 3.96086 15 4.46957 15 5V7H9V5Z"/>
+              </svg>
+            </div>
             <div class="stat-value">{{getTotalApplications()}}</div>
             <div class="stat-label">Total Applications</div>
           </div>
@@ -158,61 +198,65 @@ import { NotificationService } from '../../shared/services/notification.service'
   styles: [`
     .user-management-container {
       min-height: 100vh;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      padding: 20px;
+      background: var(--background-secondary);
+      padding: 2rem;
     }
 
     .page-header {
       text-align: center;
-      margin-bottom: 30px;
-      color: white;
+      margin-bottom: 2rem;
       position: relative;
     }
 
     .page-header h1 {
       font-size: 2.5rem;
-      margin-bottom: 10px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      margin-bottom: 0.5rem;
+      color: var(--primary-dark);
+      font-weight: 600;
     }
 
     .page-header p {
       font-size: 1.2rem;
-      opacity: 0.9;
-      margin-bottom: 20px;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
     }
 
     .back-btn {
       position: absolute;
       left: 0;
       top: 0;
-      color: white;
+      color: var(--primary-dark);
       text-decoration: none;
-      padding: 10px 20px;
-      border: 2px solid rgba(255,255,255,0.3);
-      border-radius: 25px;
-      transition: all 0.3s ease;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid var(--border-medium);
+      border-radius: 0.375rem;
+      background: var(--background-primary);
+      transition: all 0.2s ease;
+      font-weight: 500;
     }
 
     .back-btn:hover {
-      background: rgba(255,255,255,0.2);
-      color: white;
+      background: var(--background-tertiary);
+      border-color: var(--primary-dark);
+      color: var(--primary-dark);
       text-decoration: none;
+      transform: translateY(-1px);
     }
 
     .filters-section {
-      background: white;
-      border-radius: 15px;
-      padding: 25px;
-      margin-bottom: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      background: var(--background-primary);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border: 1px solid var(--border-light);
+      box-shadow: 0 1px 3px var(--shadow-light);
       display: flex;
-      gap: 20px;
+      gap: 1.25rem;
       align-items: center;
       flex-wrap: wrap;
       max-width: 1400px;
       margin-left: auto;
       margin-right: auto;
-      margin-bottom: 30px;
     }
 
     .search-filter {
@@ -249,7 +293,7 @@ import { NotificationService } from '../../shared/services/notification.service'
       align-items: center;
       justify-content: center;
       min-height: 300px;
-      color: white;
+      color: var(--text-primary);
     }
 
     .spinner {
@@ -268,15 +312,15 @@ import { NotificationService } from '../../shared/services/notification.service'
     }
 
     .users-table {
-      background: white;
-      border-radius: 15px;
-      padding: 30px;
-      margin-bottom: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      background: var(--background-primary);
+      border-radius: 0.75rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid var(--border-light);
+      box-shadow: 0 1px 3px var(--shadow-light);
       max-width: 1400px;
       margin-left: auto;
       margin-right: auto;
-      margin-bottom: 30px;
     }
 
     .table-responsive {
@@ -290,22 +334,22 @@ import { NotificationService } from '../../shared/services/notification.service'
     }
 
     .users-grid th {
-      background: #f8f9fa;
+      background: var(--background-secondary);
       padding: 15px 12px;
       text-align: left;
       font-weight: 600;
-      color: #333;
-      border-bottom: 2px solid #e9ecef;
+      color: var(--primary-dark);
+      border-bottom: 2px solid var(--border-light);
       white-space: nowrap;
     }
 
     .user-row {
-      border-bottom: 1px solid #e9ecef;
+      border-bottom: 1px solid var(--border-light);
       transition: background-color 0.3s ease;
     }
 
     .user-row:hover {
-      background-color: #f8f9fa;
+      background-color: var(--background-secondary);
     }
 
     .users-grid td {
@@ -323,8 +367,8 @@ import { NotificationService } from '../../shared/services/notification.service'
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
+      background: var(--primary-dark);
+      color: var(--text-white);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -334,17 +378,17 @@ import { NotificationService } from '../../shared/services/notification.service'
 
     .user-details .user-name {
       font-weight: 600;
-      color: #333;
+      color: var(--primary-dark);
       margin-bottom: 4px;
     }
 
     .user-details .user-id {
       font-size: 0.8rem;
-      color: #666;
+      color: var(--text-secondary);
     }
 
     .user-email {
-      color: #666;
+      color: var(--text-secondary);
       font-size: 0.9rem;
     }
 
@@ -373,16 +417,16 @@ import { NotificationService } from '../../shared/services/notification.service'
     .app-count {
       font-size: 1.2rem;
       font-weight: bold;
-      color: #333;
+      color: var(--primary-dark);
     }
 
     .app-label {
       font-size: 0.8rem;
-      color: #666;
+      color: var(--text-secondary);
     }
 
     .date-cell {
-      color: #666;
+      color: var(--text-secondary);
       font-size: 0.9rem;
     }
 
@@ -392,17 +436,17 @@ import { NotificationService } from '../../shared/services/notification.service'
 
     .role-select {
       padding: 6px 12px;
-      border: 1px solid #e0e6ed;
+      border: 1px solid var(--border-light);
       border-radius: 6px;
       font-size: 0.85rem;
-      background: white;
+      background: var(--background-primary);
       transition: border-color 0.3s ease;
     }
 
     .role-select:focus {
       outline: none;
-      border-color: #667eea;
-      box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+      border-color: var(--primary-dark);
+      box-shadow: 0 0 0 2px var(--shadow-light);
     }
 
     .updating-indicator {
@@ -410,14 +454,14 @@ import { NotificationService } from '../../shared/services/notification.service'
       top: 100%;
       left: 0;
       font-size: 0.75rem;
-      color: #007bff;
+      color: var(--primary-dark);
       margin-top: 4px;
     }
 
     .no-users {
       text-align: center;
       padding: 60px 20px;
-      color: #666;
+      color: var(--text-secondary);
     }
 
     .no-data-icon {
@@ -427,30 +471,33 @@ import { NotificationService } from '../../shared/services/notification.service'
 
     .no-users h3 {
       margin-bottom: 10px;
-      color: #333;
+      color: var(--primary-dark);
     }
 
     .pagination {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 20px;
-      color: white;
-      margin-bottom: 30px;
+      gap: 1.25rem;
+      color: var(--text-primary);
+      margin-bottom: 2rem;
     }
 
     .pagination-btn {
-      background: rgba(255,255,255,0.2);
-      color: white;
-      border: 2px solid rgba(255,255,255,0.3);
-      padding: 10px 20px;
-      border-radius: 25px;
+      background: var(--background-primary);
+      color: var(--primary-dark);
+      border: 1px solid var(--border-medium);
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.375rem;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.2s ease;
+      font-weight: 500;
     }
 
     .pagination-btn:hover:not(:disabled) {
-      background: rgba(255,255,255,0.3);
+      background: var(--background-tertiary);
+      border-color: var(--primary-dark);
+      transform: translateY(-1px);
     }
 
     .pagination-btn:disabled {
@@ -463,20 +510,22 @@ import { NotificationService } from '../../shared/services/notification.service'
     }
 
     .stats-section {
-      background: white;
-      border-radius: 15px;
-      padding: 30px;
-      margin-bottom: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      background: var(--background-primary);
+      border-radius: 0.75rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid var(--border-light);
+      box-shadow: 0 1px 3px var(--shadow-light);
       max-width: 1400px;
       margin-left: auto;
       margin-right: auto;
     }
 
     .stats-section h2 {
-      margin-bottom: 25px;
-      color: #333;
+      margin-bottom: 1.5rem;
+      color: var(--primary-dark);
       font-size: 1.5rem;
+      font-weight: 600;
     }
 
     .stats-grid {
@@ -486,32 +535,35 @@ import { NotificationService } from '../../shared/services/notification.service'
     }
 
     .stat-card {
-      background: linear-gradient(135deg, #f8f9ff 0%, #e3ebff 100%);
-      padding: 25px;
-      border-radius: 12px;
+      background: var(--background-secondary);
+      padding: 1.5rem;
+      border-radius: 0.75rem;
       text-align: center;
-      transition: transform 0.3s ease;
+      border: 1px solid var(--border-light);
+      transition: all 0.2s ease;
     }
 
     .stat-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px var(--shadow-medium);
+      border-color: var(--primary-dark);
     }
 
     .stat-icon {
-      font-size: 2rem;
-      margin-bottom: 10px;
+      color: var(--primary-dark);
+      margin-bottom: 1rem;
     }
 
     .stat-value {
       font-size: 2.5rem;
       font-weight: bold;
-      color: #333;
-      margin-bottom: 5px;
+      color: var(--primary-dark);
+      margin-bottom: 0.5rem;
     }
 
     .stat-label {
       font-size: 0.9rem;
-      color: #666;
+      color: var(--text-secondary);
       text-transform: uppercase;
       letter-spacing: 1px;
     }

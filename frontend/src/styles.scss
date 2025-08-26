@@ -1,1 +1,139 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global Professional Design System */
+
+/* Professional Color Palette */
+:root {
+  /* Primary Colors - Professional Navy & Gray */
+  --primary-dark: #1a365d;          /* Deep navy for headers and important elements */
+  --primary-medium: #2d3748;        /* Medium gray-blue for text */
+  --primary-light: #4a5568;         /* Light gray for secondary text */
+  
+  /* Background Colors - Clean & Professional */
+  --background-primary: #ffffff;     /* Pure white for main backgrounds */
+  --background-secondary: #f7fafc;   /* Very light gray for sections */
+  --background-tertiary: #edf2f7;    /* Light gray for cards and containers */
+  
+  /* Accent Colors - Minimal & Professional */
+  --accent-success: #38a169;         /* Professional green for positive actions */
+  --accent-warning: #d69e2e;         /* Muted yellow for warnings */
+  --accent-danger: #e53e3e;          /* Professional red for errors */
+  
+  /* Border & Shadow Colors */
+  --border-light: #e2e8f0;          /* Light borders */
+  --border-medium: #cbd5e0;         /* Medium borders */
+  --shadow-light: rgba(0, 0, 0, 0.05);
+  --shadow-medium: rgba(0, 0, 0, 0.1);
+  --shadow-strong: rgba(0, 0, 0, 0.15);
+  
+  /* Text Colors */
+  --text-primary: #2d3748;          /* Main text color */
+  --text-secondary: #4a5568;        /* Secondary text */
+  --text-muted: #718096;            /* Muted text */
+  --text-white: #ffffff;            /* White text for dark backgrounds */
+}
+
+/* Professional Typography */
+body {
+  font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
+  color: var(--text-primary);
+  line-height: 1.6;
+  background-color: var(--background-secondary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--primary-dark);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+/* Professional Button Base Styles */
+.btn-primary {
+  background-color: var(--primary-dark);
+  color: var(--text-white);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background-color: var(--primary-medium);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--shadow-medium);
+  }
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--primary-dark);
+  border: 1px solid var(--border-medium);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background-color: var(--background-tertiary);
+    border-color: var(--primary-dark);
+  }
+}
+
+/* Professional Card Styles */
+.card-professional {
+  background: var(--background-primary);
+  border: 1px solid var(--border-light);
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px var(--shadow-light);
+  transition: all 0.2s ease;
+  
+  &:hover {
+    box-shadow: 0 4px 12px var(--shadow-medium);
+    transform: translateY(-2px);
+  }
+}
+
+/* Remove default button styles */
+button {
+  font-family: inherit;
+}
+
+/* Professional spacing utilities */
+.space-y-4 > * + * {
+  margin-top: 1rem;
+}
+
+.space-y-6 > * + * {
+  margin-top: 1.5rem;
+}
+
+/* Professional form styles */
+.form-control {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-medium);
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+  
+  &:focus {
+    outline: none;
+    border-color: var(--primary-dark);
+    box-shadow: 0 0 0 3px rgba(26, 54, 93, 0.1);
+  }
+}
+
+/* Angular Material overrides for professional look */
+.mat-mdc-card {
+  background: var(--background-primary);
+  border: 1px solid var(--border-light);
+  box-shadow: 0 1px 3px var(--shadow-light);
+}
+
+.mat-mdc-button.mat-primary {
+  --mdc-filled-button-container-color: var(--primary-dark);
+}
+
+.mat-mdc-button.mat-accent {
+  --mdc-filled-button-container-color: var(--accent-success);
+}

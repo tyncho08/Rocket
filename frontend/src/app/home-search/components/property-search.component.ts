@@ -174,7 +174,9 @@ import { Property, PropertySearchFilters, PropertySearchResult } from '../../sha
                 (click)="toggleFavorite(property)"
                 title="{{ property.isFavorite ? 'Remove from favorites' : 'Add to favorites' }}"
               >
-                {{ property.isFavorite ? '❤️' : '🤍' }}
+                <svg width="20" height="20" viewBox="0 0 24 24" [attr.fill]="property.isFavorite ? 'currentColor' : 'none'" stroke="currentColor" stroke-width="2">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
               </button>
             </div>
             
@@ -215,7 +217,12 @@ import { Property, PropertySearchFilters, PropertySearchResult } from '../../sha
 
         <!-- Empty State -->
         <div *ngIf="!loading && searchResults.properties.length === 0" class="empty-state">
-          <div class="empty-icon">🏠</div>
+          <div class="empty-icon">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z"/>
+              <polyline points="9,22 9,12 15,12 15,22"/>
+            </svg>
+          </div>
           <h3>No properties found</h3>
           <p>Try adjusting your search filters to see more results</p>
           <button (click)="clearFilters()" class="btn btn-primary">
@@ -269,20 +276,21 @@ import { Property, PropertySearchFilters, PropertySearchResult } from '../../sha
 
     .search-header h1 {
       font-size: 2.5rem;
-      color: #2c3e50;
+      color: var(--primary-dark);
       margin-bottom: 0.5rem;
     }
 
     .search-header p {
       font-size: 1.1rem;
-      color: #6c757d;
+      color: var(--text-secondary);
     }
 
     .search-filters {
-      background: white;
+      background: var(--background-primary);
       padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 0.75rem;
+      border: 1px solid var(--border-light);
+      box-shadow: 0 1px 3px var(--shadow-light);
       margin-bottom: 2rem;
     }
 
@@ -397,15 +405,18 @@ import { Property, PropertySearchFilters, PropertySearchResult } from '../../sha
     }
 
     .property-card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      background: var(--background-primary);
+      border-radius: 0.75rem;
+      border: 1px solid var(--border-light);
+      box-shadow: 0 1px 3px var(--shadow-light);
       overflow: hidden;
-      transition: transform 0.3s;
+      transition: all 0.2s ease;
     }
 
     .property-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px var(--shadow-medium);
+      border-color: var(--primary-dark);
     }
 
     .property-image {
@@ -424,13 +435,32 @@ import { Property, PropertySearchFilters, PropertySearchResult } from '../../sha
       position: absolute;
       top: 1rem;
       right: 1rem;
-      background: rgba(255, 255, 255, 0.9);
-      border: none;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--border-light);
       border-radius: 50%;
       width: 40px;
       height: 40px;
       cursor: pointer;
-      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      color: var(--text-muted);
+    }
+
+    .favorite-btn:hover {
+      background: rgba(255, 255, 255, 1);
+      border-color: var(--primary-dark);
+      transform: scale(1.05);
+    }
+
+    .favorite-btn.active {
+      color: #e53e3e;
+    }
+
+    .favorite-btn svg {
+      width: 20px;
+      height: 20px;
     }
 
     .property-details {
@@ -440,7 +470,7 @@ import { Property, PropertySearchFilters, PropertySearchResult } from '../../sha
     .property-price {
       font-size: 1.5rem;
       font-weight: 700;
-      color: #2c3e50;
+      color: var(--primary-dark);
       margin-bottom: 0.5rem;
     }
 
@@ -450,7 +480,7 @@ import { Property, PropertySearchFilters, PropertySearchResult } from '../../sha
     }
 
     .property-location {
-      color: #6c757d;
+      color: var(--text-secondary);
       margin-bottom: 1rem;
     }
 
@@ -461,12 +491,12 @@ import { Property, PropertySearchFilters, PropertySearchResult } from '../../sha
     }
 
     .spec {
-      color: #6c757d;
-      font-size: 0.9rem;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
     }
 
     .property-type {
-      color: #3498db;
+      color: var(--accent-success);
       font-weight: 600;
       margin-bottom: 1rem;
     }
@@ -482,8 +512,8 @@ import { Property, PropertySearchFilters, PropertySearchResult } from '../../sha
     }
 
     .loading-spinner {
-      border: 3px solid #f3f3f3;
-      border-top: 3px solid #3498db;
+      border: 3px solid var(--border-light);
+      border-top: 3px solid var(--primary-dark);
       border-radius: 50%;
       width: 40px;
       height: 40px;
@@ -502,8 +532,16 @@ import { Property, PropertySearchFilters, PropertySearchResult } from '../../sha
     }
 
     .empty-icon {
-      font-size: 4rem;
       margin-bottom: 1rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: center;
+    }
+
+    .empty-icon svg {
+      width: 64px;
+      height: 64px;
+      stroke: var(--text-muted);
     }
 
     .pagination {
@@ -516,16 +554,22 @@ import { Property, PropertySearchFilters, PropertySearchResult } from '../../sha
 
     .pagination-btn, .pagination-number {
       padding: 0.5rem 1rem;
-      border: 1px solid #dee2e6;
-      background: white;
-      border-radius: 6px;
+      border: 1px solid var(--border-medium);
+      background: var(--background-primary);
+      border-radius: 0.375rem;
       cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .pagination-btn:hover, .pagination-number:hover {
+      background: var(--background-tertiary);
+      border-color: var(--primary-dark);
     }
 
     .pagination-number.active {
-      background-color: #3498db;
-      color: white;
-      border-color: #3498db;
+      background-color: var(--primary-dark);
+      color: var(--text-white);
+      border-color: var(--primary-dark);
     }
 
     @media (max-width: 768px) {

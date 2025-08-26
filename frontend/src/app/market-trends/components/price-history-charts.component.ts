@@ -48,7 +48,13 @@ export interface PropertyMarketStats {
   template: `
     <div class="price-history-container">
       <div class="charts-header">
-        <h1>📈 Property Price History & Analysis</h1>
+        <h1>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem; vertical-align: middle;">
+            <polyline points="23,6 13.5,15.5 8.5,10.5 1,18"/>
+            <polyline points="17,6 23,6 23,12"/>
+          </svg>
+          Property Price History & Analysis
+        </h1>
         <p>Detailed price trends and market analysis for properties</p>
         <div class="header-actions">
           <a routerLink="/market-trends" class="btn btn-secondary">← Market Dashboard</a>
@@ -139,7 +145,14 @@ export interface PropertyMarketStats {
 
         <!-- Main Price Chart -->
         <div class="main-chart-section">
-          <h3>📊 Price History Chart</h3>
+          <h3>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem; vertical-align: middle;">
+              <line x1="18" y1="20" x2="18" y2="10"/>
+              <line x1="12" y1="20" x2="12" y2="4"/>
+              <line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+            Price History Chart
+          </h3>
           <div class="chart-container">
             <div class="chart-wrapper" [ngSwitch]="currentChartType">
               <!-- Line Chart -->
@@ -277,7 +290,13 @@ export interface PropertyMarketStats {
 
         <!-- Comparable Properties -->
         <div class="comparables-section" *ngIf="selectedProperty.comparables.length > 0">
-          <h3>🏘️ Comparable Properties</h3>
+          <h3>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem; vertical-align: middle;">
+              <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z"/>
+              <polyline points="9,22 9,12 15,12 15,22"/>
+            </svg>
+            Comparable Properties
+          </h3>
           <div class="comparables-grid">
             <div 
               *ngFor="let comp of selectedProperty.comparables"
@@ -316,28 +335,58 @@ export interface PropertyMarketStats {
 
         <!-- Market Statistics -->
         <div class="market-stats-section">
-          <h3>📊 Market Statistics</h3>
+          <h3>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem; vertical-align: middle;">
+              <line x1="18" y1="20" x2="18" y2="10"/>
+              <line x1="12" y1="20" x2="12" y2="4"/>
+              <line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+            Market Statistics
+          </h3>
           <div class="stats-grid">
             <div class="stat-card">
-              <div class="stat-icon">⏱️</div>
+              <div class="stat-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12,6 12,12 16,14"/>
+                </svg>
+              </div>
               <div class="stat-value">{{ selectedProperty.marketStats.averageDaysOnMarket }}</div>
               <div class="stat-label">Avg Days on Market</div>
             </div>
             
             <div class="stat-card">
-              <div class="stat-icon">🏘️</div>
+              <div class="stat-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z"/>
+                  <polyline points="9,22 9,12 15,12 15,22"/>
+                </svg>
+              </div>
               <div class="stat-value">{{ selectedProperty.marketStats.neighborhoodAppreciation | number:'1.1-1' }}%</div>
               <div class="stat-label">Neighborhood Growth</div>
             </div>
             
             <div class="stat-card">
-              <div class="stat-icon">📈</div>
+              <div class="stat-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="23,6 13.5,15.5 8.5,10.5 1,18"/>
+                  <polyline points="17,6 23,6 23,12"/>
+                </svg>
+              </div>
               <div class="stat-value">{{ selectedProperty.marketStats.marketVolatility | number:'1.1-1' }}</div>
               <div class="stat-label">Market Volatility</div>
             </div>
             
             <div class="stat-card grade" [class]="'grade-' + selectedProperty.marketStats.investmentGrade.toLowerCase()">
-              <div class="stat-icon">🏆</div>
+              <div class="stat-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+                  <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+                  <path d="M6 9a9 9 0 0 0 12 0"/>
+                  <path d="M12 9v13"/>
+                  <circle cx="12" cy="19" r="3"/>
+                </svg>
+              </div>
               <div class="stat-value">{{ selectedProperty.marketStats.investmentGrade }}</div>
               <div class="stat-label">Investment Grade</div>
             </div>
@@ -346,10 +395,36 @@ export interface PropertyMarketStats {
 
         <!-- Export Actions -->
         <div class="chart-actions">
-          <button (click)="exportChartData()" class="btn btn-primary">📊 Export Chart Data</button>
-          <button (click)="generatePriceReport()" class="btn btn-secondary">📄 Generate Report</button>
-          <button (click)="shareChart()" class="btn btn-outline">📤 Share Chart</button>
-          <button (click)="addToComparison()" class="btn btn-outline">➕ Add to Comparison</button>
+          <button (click)="exportChartData()" class="btn btn-primary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+              <line x1="18" y1="20" x2="18" y2="10"/>
+              <line x1="12" y1="20" x2="12" y2="4"/>
+              <line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+            Export Chart Data
+          </button>
+          <button (click)="generatePriceReport()" class="btn btn-secondary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+              <path d="M9 5H7C6.46957 5 5.96086 5.21071 5.58579 5.58579C5.21071 5.96086 5 6.46957 5 7V19C5 19.5304 5.21071 20.0391 5.58579 20.4142C5.96086 20.7893 6.46957 21 7 21H17C17.5304 21 18.0391 20.7893 18.4142 20.4142C18.7893 20.0391 19 19.5304 19 19V7C19 6.46957 18.7893 5.96086 18.4142 5.58579C18.0391 5.21071 17.5304 5 17 5H15"/>
+              <path d="M9 5C9 4.46957 9.21071 3.96086 9.58579 3.58579C9.96086 3.21071 10.4696 3 11 3H13C13.5304 3 14.0391 3.21071 14.4142 3.58579C14.7893 3.96086 15 4.46957 15 5V7H9V5Z"/>
+            </svg>
+            Generate Report
+          </button>
+          <button (click)="shareChart()" class="btn btn-outline">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+              <path d="M4 12V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V12"/>
+              <polyline points="16,6 12,2 8,6"/>
+              <line x1="12" y1="2" x2="12" y2="15"/>
+            </svg>
+            Share Chart
+          </button>
+          <button (click)="addToComparison()" class="btn btn-outline">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            Add to Comparison
+          </button>
         </div>
       </div>
 
@@ -361,7 +436,12 @@ export interface PropertyMarketStats {
         </div>
         
         <div class="empty-state" *ngIf="!loading && !selectedProperty">
-          <div class="empty-icon">🏠</div>
+          <div class="empty-icon">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z"/>
+              <polyline points="9,22 9,12 15,12 15,22"/>
+            </svg>
+          </div>
           <h3>No Property Selected</h3>
           <p>Search for a property address above to view detailed price history and analysis.</p>
         </div>

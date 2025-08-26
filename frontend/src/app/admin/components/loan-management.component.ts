@@ -14,7 +14,7 @@ import { NotificationService } from '../../shared/services/notification.service'
   template: `
     <div class="loan-management-container">
       <div class="page-header">
-        <h1>📋 Loan Management</h1>
+        <h1>Loan Management</h1>
         <p>Review and manage all loan applications</p>
         <a routerLink="/admin" class="back-btn">← Back to Dashboard</a>
       </div>
@@ -106,7 +106,12 @@ import { NotificationService } from '../../shared/services/notification.service'
 
         <!-- No Applications Message -->
         <div class="no-applications" *ngIf="applicationsResponse.applications.length === 0">
-          <div class="no-data-icon">📋</div>
+          <div class="no-data-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 5H7C6.46957 5 5.96086 5.21071 5.58579 5.58579C5.21071 5.96086 5 6.46957 5 7V19C5 19.5304 5.21071 20.0391 5.58579 20.4142C5.96086 20.7893 6.46957 21 7 21H17C17.5304 21 18.0391 20.7893 18.4142 20.4142C18.7893 20.0391 19 19.5304 19 19V7C19 6.46957 18.7893 5.96086 18.4142 5.58579C18.0391 5.21071 17.5304 5 17 5H15"/>
+              <path d="M9 5C9 4.46957 9.21071 3.96086 9.58579 3.58579C9.96086 3.21071 10.4696 3 11 3H13C13.5304 3 14.0391 3.21071 14.4142 3.58579C14.7893 3.96086 15 4.46957 15 5V7H9V5Z"/>
+            </svg>
+          </div>
           <h3>No Applications Found</h3>
           <p>No loan applications match your current filters.</p>
         </div>
@@ -137,45 +142,49 @@ import { NotificationService } from '../../shared/services/notification.service'
   styles: [`
     .loan-management-container {
       min-height: 100vh;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      padding: 20px;
+      background: var(--background-secondary);
+      padding: 2rem;
     }
 
     .page-header {
       text-align: center;
-      margin-bottom: 30px;
-      color: white;
+      margin-bottom: 2rem;
       position: relative;
     }
 
     .page-header h1 {
       font-size: 2.5rem;
-      margin-bottom: 10px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      margin-bottom: 0.5rem;
+      color: var(--primary-dark);
+      font-weight: 600;
     }
 
     .page-header p {
       font-size: 1.2rem;
-      opacity: 0.9;
-      margin-bottom: 20px;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
     }
 
     .back-btn {
       position: absolute;
       left: 0;
       top: 0;
-      color: white;
+      color: var(--primary-dark);
       text-decoration: none;
-      padding: 10px 20px;
-      border: 2px solid rgba(255,255,255,0.3);
-      border-radius: 25px;
-      transition: all 0.3s ease;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid var(--border-medium);
+      border-radius: 0.375rem;
+      background: var(--background-primary);
+      transition: all 0.2s ease;
+      font-weight: 500;
     }
 
     .back-btn:hover {
-      background: rgba(255,255,255,0.2);
-      color: white;
+      background: var(--background-tertiary);
+      border-color: var(--primary-dark);
+      color: var(--primary-dark);
       text-decoration: none;
+      transform: translateY(-1px);
     }
 
     .filters-section {

@@ -43,7 +43,7 @@ export interface LoanApplicationDisplay {
   template: `
     <div class="dashboard-container">
       <div class="dashboard-header">
-        <h1>👤 My Dashboard</h1>
+        <h1>My Dashboard</h1>
         <p>Manage your mortgage journey and track your applications</p>
       </div>
 
@@ -51,7 +51,12 @@ export interface LoanApplicationDisplay {
         <!-- Quick Stats -->
         <div class="stats-section">
           <div class="stat-card">
-            <div class="stat-icon">🏠</div>
+            <div class="stat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z"/>
+                <polyline points="9,22 9,12 15,12 15,22"/>
+              </svg>
+            </div>
             <div class="stat-content">
               <div class="stat-value">{{ favoriteProperties.length }}</div>
               <div class="stat-label">Saved Properties</div>
@@ -59,7 +64,12 @@ export interface LoanApplicationDisplay {
           </div>
           
           <div class="stat-card">
-            <div class="stat-icon">📋</div>
+            <div class="stat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 5H7C6.46957 5 5.96086 5.21071 5.58579 5.58579C5.21071 5.96086 5 6.46957 5 7V19C5 19.5304 5.21071 20.0391 5.58579 20.4142C5.96086 20.7893 6.46957 21 7 21H17C17.5304 21 18.0391 20.7893 18.4142 20.4142C18.7893 20.0391 19 19.5304 19 19V7C19 6.46957 18.7893 5.96086 18.4142 5.58579C18.0391 5.21071 17.5304 5 17 5H15"/>
+                <path d="M9 5C9 4.46957 9.21071 3.96086 9.58579 3.58579C9.96086 3.21071 10.4696 3 11 3H13C13.5304 3 14.0391 3.21071 14.4142 3.58579C14.7893 3.96086 15 4.46957 15 5V7H9V5Z"/>
+              </svg>
+            </div>
             <div class="stat-content">
               <div class="stat-value">{{ loanApplications.length }}</div>
               <div class="stat-label">Loan Applications</div>
@@ -67,7 +77,15 @@ export interface LoanApplicationDisplay {
           </div>
           
           <div class="stat-card">
-            <div class="stat-icon">🧮</div>
+            <div class="stat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="4" y="4" width="16" height="16" rx="2"/>
+                <rect x="9" y="9" width="1" height="1"/>
+                <rect x="14" y="9" width="1" height="1"/>
+                <rect x="9" y="14" width="1" height="1"/>
+                <rect x="14" y="14" width="1" height="1"/>
+              </svg>
+            </div>
             <div class="stat-content">
               <div class="stat-value">{{ calculationHistory.length }}</div>
               <div class="stat-label">Calculations</div>
@@ -75,7 +93,12 @@ export interface LoanApplicationDisplay {
           </div>
           
           <div class="stat-card" *ngIf="getActiveApplication()">
-            <div class="stat-icon">⏱️</div>
+            <div class="stat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12,6 12,12 16,14"/>
+              </svg>
+            </div>
             <div class="stat-content">
               <div class="stat-value">{{ getActiveApplication()?.status | titlecase }}</div>
               <div class="stat-label">Current Status</div>
@@ -100,22 +123,22 @@ export interface LoanApplicationDisplay {
                 <div class="profile-details">
                   <h3>{{ user?.firstName }} {{ user?.lastName }}</h3>
                   <div class="profile-item">
-                    <span class="label">📧 Email:</span>
+                    <span class="label">Email:</span>
                     <span class="value">{{ user?.email }}</span>
                   </div>
                   <div class="profile-item">
-                    <span class="label">📱 Phone:</span>
+                    <span class="label">Phone:</span>
                     <span class="value">{{ user?.phone || 'Not provided' }}</span>
                   </div>
                   <div class="profile-item">
-                    <span class="label">🏠 Address:</span>
+                    <span class="label">Address:</span>
                     <span class="value">
                       {{ user?.address }}<br>
                       {{ user?.city }}, {{ user?.state }} {{ user?.zipCode }}
                     </span>
                   </div>
                   <div class="profile-item">
-                    <span class="label">📅 Member Since:</span>
+                    <span class="label">Member Since:</span>
                     <span class="value">{{ formatDate(user?.joinDate) }}</span>
                   </div>
                 </div>
@@ -123,7 +146,7 @@ export interface LoanApplicationDisplay {
               
               <div class="profile-actions">
                 <button (click)="editProfile()" class="btn btn-primary">
-                  ✏️ Edit Profile
+                  Edit Profile
                 </button>
               </div>
             </div>
@@ -183,7 +206,7 @@ export interface LoanApplicationDisplay {
                     Cancel
                   </button>
                   <button type="submit" class="btn btn-primary" [disabled]="profileForm.invalid">
-                    💾 Save Changes
+                    Save Changes
                   </button>
                 </div>
               </form>
@@ -195,12 +218,17 @@ export interface LoanApplicationDisplay {
             <div class="section-header">
               <h2>Loan Applications</h2>
               <button [routerLink]="['/loan-application']" class="btn btn-primary">
-                📝 New Application
+                New Application
               </button>
             </div>
             
             <div *ngIf="loanApplications.length === 0" class="empty-state">
-              <div class="empty-icon">📋</div>
+              <div class="empty-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 5H7C6.46957 5 5.96086 5.21071 5.58579 5.58579C5.21071 5.96086 5 6.46957 5 7V19C5 19.5304 5.21071 20.0391 5.58579 20.4142C5.96086 20.7893 6.46957 21 7 21H17C17.5304 21 18.0391 20.7893 18.4142 20.4142C18.7893 20.0391 19 19.5304 19 19V7C19 6.46957 18.7893 5.96086 18.4142 5.58579C18.0391 5.21071 17.5304 5 17 5H15"/>
+                  <path d="M9 5C9 4.46957 9.21071 3.96086 9.58579 3.58579C9.96086 3.21071 10.4696 3 11 3H13C13.5304 3 14.0391 3.21071 14.4142 3.58579C14.7893 3.96086 15 4.46957 15 5V7H9V5Z"/>
+                </svg>
+              </div>
               <h3>No applications yet</h3>
               <p>Ready to start your mortgage journey?</p>
               <button [routerLink]="['/loan-application']" class="btn btn-primary">
@@ -249,13 +277,13 @@ export interface LoanApplicationDisplay {
                 
                 <div class="app-actions">
                   <button (click)="viewApplicationDetails(app.id)" class="btn btn-outline btn-sm">
-                    👁️ View Details
+                    View Details
                   </button>
                   <button *ngIf="app.status === 'draft'" (click)="continueApplication(app.id)" class="btn btn-primary btn-sm">
-                    ✏️ Continue
+                    Continue
                   </button>
                   <button *ngIf="app.status !== 'draft'" (click)="viewApplicationDocuments(app.id)" class="btn btn-secondary btn-sm">
-                    📄 Documents
+                    Documents
                   </button>
                 </div>
               </div>
@@ -267,12 +295,17 @@ export interface LoanApplicationDisplay {
             <div class="section-header">
               <h2>Saved Properties</h2>
               <button [routerLink]="['/search']" class="btn btn-outline">
-                🔍 Search More
+                Search More
               </button>
             </div>
             
             <div *ngIf="favoriteProperties.length === 0" class="empty-state">
-              <div class="empty-icon">🏠</div>
+              <div class="empty-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z"/>
+                  <polyline points="9,22 9,12 15,12 15,22"/>
+                </svg>
+              </div>
               <h3>No saved properties</h3>
               <p>Save properties you're interested in to track them here</p>
               <button [routerLink]="['/search']" class="btn btn-primary">
@@ -303,7 +336,10 @@ export interface LoanApplicationDisplay {
                   (click)="removeFavorite(property, $event)"
                   title="Remove from favorites"
                 >
-                  ❌
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
                 </button>
               </div>
             </div>
@@ -320,12 +356,20 @@ export interface LoanApplicationDisplay {
             <div class="section-header">
               <h2>Recent Calculations</h2>
               <button [routerLink]="['/mortgage-tools']" class="btn btn-outline">
-                🧮 Calculate
+                Calculate
               </button>
             </div>
             
             <div *ngIf="calculationHistory.length === 0" class="empty-state">
-              <div class="empty-icon">🧮</div>
+              <div class="empty-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="4" y="4" width="16" height="16" rx="2"/>
+                  <rect x="9" y="9" width="1" height="1"/>
+                  <rect x="14" y="9" width="1" height="1"/>
+                  <rect x="9" y="14" width="1" height="1"/>
+                  <rect x="14" y="14" width="1" height="1"/>
+                </svg>
+              </div>
               <h3>No calculations yet</h3>
               <p>Use our mortgage calculator to estimate payments</p>
               <button [routerLink]="['/mortgage-tools']" class="btn btn-primary">
@@ -361,7 +405,12 @@ export interface LoanApplicationDisplay {
             
             <div class="quick-actions">
               <button [routerLink]="['/search']" class="action-btn">
-                <div class="action-icon">🏠</div>
+                <div class="action-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z"/>
+                    <polyline points="9,22 9,12 15,12 15,22"/>
+                  </svg>
+                </div>
                 <div class="action-content">
                   <div class="action-title">Search Properties</div>
                   <div class="action-subtitle">Find your dream home</div>
@@ -369,7 +418,15 @@ export interface LoanApplicationDisplay {
               </button>
               
               <button [routerLink]="['/mortgage-tools']" class="action-btn">
-                <div class="action-icon">🧮</div>
+                <div class="action-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="4" y="4" width="16" height="16" rx="2"/>
+                    <rect x="9" y="9" width="1" height="1"/>
+                    <rect x="14" y="9" width="1" height="1"/>
+                    <rect x="9" y="14" width="1" height="1"/>
+                    <rect x="14" y="14" width="1" height="1"/>
+                  </svg>
+                </div>
                 <div class="action-content">
                   <div class="action-title">Calculate Payments</div>
                   <div class="action-subtitle">Estimate monthly costs</div>
@@ -377,7 +434,11 @@ export interface LoanApplicationDisplay {
               </button>
               
               <button [routerLink]="['/loan-application']" class="action-btn">
-                <div class="action-icon">📝</div>
+                <div class="action-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 3C17.2626 2.73735 17.5744 2.52901 17.9176 2.38687C18.2608 2.24473 18.6286 2.17157 19 2.17157C19.3714 2.17157 19.7392 2.24473 20.0824 2.38687C20.4256 2.52901 20.7374 2.73735 21 3C21.2626 3.26264 21.471 3.57444 21.6131 3.9176C21.7553 4.26077 21.8284 4.62856 21.8284 5C21.8284 5.37143 21.7553 5.73923 21.6131 6.08239C21.471 6.42555 21.2626 6.73735 21 7L7.5 20.5L2 22L3.5 16.5L17 3Z"/>
+                  </svg>
+                </div>
                 <div class="action-content">
                   <div class="action-title">Apply for Loan</div>
                   <div class="action-subtitle">Start your application</div>
@@ -385,7 +446,11 @@ export interface LoanApplicationDisplay {
               </button>
               
               <button (click)="contactSupport()" class="action-btn">
-                <div class="action-icon">📞</div>
+                <div class="action-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7294C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.1468 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3147 6.72533 15.2662 5.18999 12.85C3.49997 10.2412 2.44824 7.27099 2.11999 4.18C2.095 3.90347 2.12787 3.62476 2.21649 3.36162C2.30512 3.09849 2.44756 2.85669 2.63476 2.65162C2.82196 2.44655 3.0498 2.28271 3.30379 2.17052C3.55777 2.05833 3.83233 2.00026 4.10999 2H7.10999C7.59532 1.99523 8.06579 2.16708 8.43376 2.48353C8.80173 2.79999 9.04207 3.23945 9.10999 3.72C9.23662 4.68007 9.47145 5.62273 9.80999 6.53C9.94454 6.88792 9.97366 7.27691 9.8939 7.65088C9.81415 8.02485 9.62886 8.36811 9.35999 8.64L8.08999 9.91C9.513 12.4135 11.5865 14.4869 14.09 15.91L15.36 14.64C15.6319 14.3711 15.9751 14.1858 16.3491 14.1061C16.7231 14.0263 17.1121 14.0555 17.47 14.19C18.3773 14.5286 19.3199 14.7634 20.28 14.89C20.7658 14.9585 21.2094 15.2032 21.5265 15.5775C21.8437 15.9518 22.0122 16.4296 21.2 16.92H22Z"/>
+                  </svg>
+                </div>
                 <div class="action-content">
                   <div class="action-title">Contact Support</div>
                   <div class="action-subtitle">Get help from experts</div>
@@ -411,13 +476,13 @@ export interface LoanApplicationDisplay {
 
     .dashboard-header h1 {
       font-size: 2.5rem;
-      color: #2c3e50;
+      color: var(--primary-dark);
       margin-bottom: 0.5rem;
     }
 
     .dashboard-header p {
       font-size: 1.1rem;
-      color: #6c757d;
+      color: var(--text-secondary);
     }
 
     .stats-section {
@@ -428,35 +493,48 @@ export interface LoanApplicationDisplay {
     }
 
     .stat-card {
-      background: white;
+      background: var(--background-primary);
       padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 0.75rem;
+      border: 1px solid var(--border-light);
+      box-shadow: 0 1px 3px var(--shadow-light);
       display: flex;
       align-items: center;
       gap: 1rem;
+      transition: all 0.2s ease;
+    }
+    
+    .stat-card:hover {
+      box-shadow: 0 4px 12px var(--shadow-medium);
+      transform: translateY(-2px);
     }
 
     .stat-icon {
-      font-size: 2rem;
       width: 60px;
       height: 60px;
-      background: #f8f9fa;
+      background: var(--background-tertiary);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
+      color: var(--primary-dark);
+    }
+    
+    .stat-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--primary-dark);
     }
 
     .stat-value {
       font-size: 1.8rem;
       font-weight: 700;
-      color: #2c3e50;
+      color: var(--primary-dark);
       margin-bottom: 0.25rem;
     }
 
     .stat-label {
-      color: #6c757d;
+      color: var(--text-secondary);
       font-size: 0.9rem;
     }
 
@@ -467,14 +545,15 @@ export interface LoanApplicationDisplay {
     }
 
     .dashboard-section {
-      background: white;
+      background: var(--background-primary);
       padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 0.75rem;
+      border: 1px solid var(--border-light);
+      box-shadow: 0 1px 3px var(--shadow-light);
     }
 
     .dashboard-section h2 {
-      color: #2c3e50;
+      color: var(--primary-dark);
       margin-bottom: 1.5rem;
       font-size: 1.5rem;
     }
@@ -511,8 +590,8 @@ export interface LoanApplicationDisplay {
       width: 80px;
       height: 80px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #3498db, #2c3e50);
-      color: white;
+      background: var(--primary-dark);
+      color: var(--text-white);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -521,7 +600,7 @@ export interface LoanApplicationDisplay {
     }
 
     .profile-details h3 {
-      color: #2c3e50;
+      color: var(--primary-dark);
       margin-bottom: 1rem;
       font-size: 1.5rem;
     }
@@ -533,12 +612,12 @@ export interface LoanApplicationDisplay {
 
     .profile-item .label {
       width: 120px;
-      color: #6c757d;
+      color: var(--text-secondary);
       font-weight: 600;
     }
 
     .profile-item .value {
-      color: #2c3e50;
+      color: var(--text-primary);
     }
 
     .profile-form .form-grid {
@@ -809,26 +888,32 @@ export interface LoanApplicationDisplay {
     }
 
     .action-icon {
-      font-size: 1.5rem;
       width: 50px;
       height: 50px;
-      background: white;
+      background: var(--background-primary);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 1px 3px var(--shadow-light);
+      color: var(--primary-dark);
+    }
+    
+    .action-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--primary-dark);
     }
 
     .action-title {
       font-weight: 600;
-      color: #2c3e50;
+      color: var(--primary-dark);
       margin-bottom: 0.25rem;
     }
 
     .action-subtitle {
       font-size: 0.875rem;
-      color: #6c757d;
+      color: var(--text-secondary);
     }
 
     /* Common Elements */
@@ -850,34 +935,38 @@ export interface LoanApplicationDisplay {
     }
 
     .btn-primary {
-      background-color: #3498db;
-      color: white;
+      background-color: var(--primary-dark);
+      color: var(--text-white);
+      border: 1px solid var(--primary-dark);
     }
 
     .btn-primary:hover {
-      background-color: #2980b9;
+      background-color: var(--primary-medium);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px var(--shadow-medium);
     }
 
     .btn-secondary {
-      background-color: #6c757d;
-      color: white;
+      background-color: var(--text-secondary);
+      color: var(--text-white);
+      border: 1px solid var(--text-secondary);
     }
 
     .btn-outline {
-      background: white;
-      border: 2px solid #3498db;
-      color: #3498db;
+      background: var(--background-primary);
+      border: 1px solid var(--border-medium);
+      color: var(--primary-dark);
     }
 
     .btn-outline:hover {
-      background-color: #3498db;
-      color: white;
+      background-color: var(--background-tertiary);
+      border-color: var(--primary-dark);
     }
 
     .btn-link {
       background: none;
       border: none;
-      color: #3498db;
+      color: var(--primary-dark);
       text-decoration: underline;
     }
 
@@ -887,17 +976,25 @@ export interface LoanApplicationDisplay {
     }
 
     .empty-icon {
-      font-size: 3rem;
       margin-bottom: 1rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: center;
+    }
+    
+    .empty-icon svg {
+      width: 48px;
+      height: 48px;
+      stroke: var(--text-muted);
     }
 
     .empty-state h3 {
-      color: #2c3e50;
+      color: var(--primary-dark);
       margin-bottom: 0.5rem;
     }
 
     .empty-state p {
-      color: #6c757d;
+      color: var(--text-secondary);
       margin-bottom: 1.5rem;
     }
 

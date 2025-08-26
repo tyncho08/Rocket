@@ -75,7 +75,7 @@ export interface LoanApplicationData {
   template: `
     <div class="application-container">
       <div class="application-header">
-        <h1>🏠 Loan Application</h1>
+        <h1>Loan Application</h1>
         <p>Complete your mortgage application to get pre-approved</p>
         
         <div class="progress-bar">
@@ -100,7 +100,7 @@ export interface LoanApplicationData {
           <!-- Step 1: Personal Information -->
           <div *ngIf="currentStep === 0" class="step-content">
             <div class="step-header">
-              <h2>📝 Personal Information</h2>
+              <h2>Personal Information</h2>
               <p>Let's start with your basic information</p>
             </div>
             
@@ -224,7 +224,7 @@ export interface LoanApplicationData {
           <!-- Step 2: Employment Information -->
           <div *ngIf="currentStep === 1" class="step-content">
             <div class="step-header">
-              <h2>💼 Employment Information</h2>
+              <h2>Employment Information</h2>
               <p>Tell us about your current employment</p>
             </div>
             
@@ -347,7 +347,7 @@ export interface LoanApplicationData {
           <!-- Step 3: Financial Information -->
           <div *ngIf="currentStep === 2" class="step-content">
             <div class="step-header">
-              <h2>💰 Financial Information</h2>
+              <h2>Financial Information</h2>
               <p>Provide details about your assets and debts</p>
             </div>
             
@@ -489,7 +489,7 @@ export interface LoanApplicationData {
           <!-- Step 4: Loan Details -->
           <div *ngIf="currentStep === 3" class="step-content">
             <div class="step-header">
-              <h2>🏠 Loan Details</h2>
+              <h2>Loan Details</h2>
               <p>Tell us about the property and loan you're seeking</p>
             </div>
             
@@ -624,7 +624,7 @@ export interface LoanApplicationData {
           <!-- Step 5: References -->
           <div *ngIf="currentStep === 4" class="step-content">
             <div class="step-header">
-              <h2>👥 References</h2>
+              <h2>References</h2>
               <p>Provide at least two personal references</p>
             </div>
             
@@ -722,7 +722,7 @@ export interface LoanApplicationData {
           <!-- Step 6: Review & Submit -->
           <div *ngIf="currentStep === 5" class="step-content">
             <div class="step-header">
-              <h2>📋 Review & Submit</h2>
+              <h2>Review & Submit</h2>
               <p>Review your application before submitting</p>
             </div>
             
@@ -855,7 +855,7 @@ export interface LoanApplicationData {
               class="btn btn-primary btn-large"
               [disabled]="!canSubmit()"
             >
-              🚀 Submit Application
+              Submit Application
             </button>
           </div>
         </form>

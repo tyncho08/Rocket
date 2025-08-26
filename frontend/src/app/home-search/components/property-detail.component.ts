@@ -27,7 +27,10 @@ import { Property } from '../../shared/models/property.model';
           (click)="toggleFavorite()"
           title="{{ property.isFavorite ? 'Remove from favorites' : 'Add to favorites' }}"
         >
-          {{ property.isFavorite ? '❤️ Remove from Favorites' : '🤍 Add to Favorites' }}
+          <svg width="20" height="20" viewBox="0 0 24 24" [attr.fill]="property.isFavorite ? 'currentColor' : 'none'" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+          {{ property.isFavorite ? 'Remove from Favorites' : 'Add to Favorites' }}
         </button>
       </div>
 
@@ -77,13 +80,23 @@ import { Property } from '../../shared/models/property.model';
               [queryParams]="{propertyPrice: property.price}"
               class="btn btn-primary btn-large"
             >
-              🧮 Calculate Mortgage
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+                <rect x="4" y="4" width="16" height="16" rx="2"/>
+                <rect x="9" y="9" width="1" height="1"/>
+                <rect x="14" y="9" width="1" height="1"/>
+                <rect x="9" y="14" width="1" height="1"/>
+                <rect x="14" y="14" width="1" height="1"/>
+              </svg>
+              Calculate Mortgage
             </button>
             <button 
               (click)="contactAgent()" 
               class="btn btn-secondary btn-large"
             >
-              📞 Contact Agent
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+                <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7294C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.1468 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3147 6.72533 15.2662 5.18999 12.85C3.49997 10.2412 2.44824 7.27099 2.11999 4.18C2.095 3.90347 2.12787 3.62476 2.21649 3.36162C2.30512 3.09849 2.44756 2.85669 2.63476 2.65162C2.82196 2.44655 3.0498 2.28271 3.30379 2.17052C3.55777 2.05833 3.83233 2.00026 4.10999 2H7.10999C7.59532 1.99523 8.06579 2.16708 8.43376 2.48353C8.80173 2.79999 9.04207 3.23945 9.10999 3.72C9.23662 4.68007 9.47145 5.62273 9.80999 6.53C9.94454 6.88792 9.97366 7.27691 9.8939 7.65088C9.81415 8.02485 9.62886 8.36811 9.35999 8.64L8.08999 9.91C9.513 12.4135 11.5865 14.4869 14.09 15.91L15.36 14.64C15.6319 14.3711 15.9751 14.1858 16.3491 14.1061C16.7231 14.0263 17.1121 14.0555 17.47 14.19C18.3773 14.5286 19.3199 14.7634 20.28 14.89C20.7658 14.9585 21.2094 15.2032 21.5265 15.5775C21.8437 15.9518 22.0122 16.4296 22 16.92H22Z"/>
+              </svg>
+              Contact Agent
             </button>
           </div>
         </div>
@@ -168,7 +181,12 @@ import { Property } from '../../shared/models/property.model';
           </div>
           <ng-template #noSimilarProperties>
             <div class="no-similar-properties">
-              <div class="no-similar-icon">🏠</div>
+              <div class="no-similar-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z"/>
+                  <polyline points="9,22 9,12 15,12 15,22"/>
+                </svg>
+              </div>
               <h3>No Similar Properties Found</h3>
               <p>We couldn't find similar properties in this area right now. Try browsing all available properties in {{ property.city }}, {{ property.state }}.</p>
               <button 

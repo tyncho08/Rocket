@@ -11,7 +11,7 @@ import { AuthService } from './auth/services/auth.service';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'Mortgage Platform';
+  title = 'LendPro';
 
   constructor(public authService: AuthService) {}
 }

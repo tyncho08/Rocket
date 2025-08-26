@@ -29,7 +29,7 @@ import { NotificationService, Notification } from '../services/notification.serv
         (click)="removeNotification(notification.id)"
       >
         <div class="notification-header">
-          <div class="notification-icon">{{ getIcon(notification.type) }}</div>
+          <div class="notification-icon" [innerHTML]="getIcon(notification.type)"></div>
           <div class="notification-title">{{ notification.title }}</div>
           <button 
             class="notification-close" 
@@ -95,9 +95,10 @@ import { NotificationService, Notification } from '../services/notification.serv
     }
 
     .notification {
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      background: var(--background-primary);
+      border-radius: 0.5rem;
+      border: 1px solid var(--border-light);
+      box-shadow: 0 2px 8px var(--shadow-medium);
       margin-bottom: 1rem;
       padding: 1rem;
       border-left: 4px solid;
@@ -113,23 +114,39 @@ import { NotificationService, Notification } from '../services/notification.serv
     }
 
     .notification-success {
-      border-left-color: #28a745;
-      background: linear-gradient(90deg, #f8fff9 0%, white 100%);
+      border-left-color: var(--accent-success);
+      background: var(--background-primary);
+    }
+
+    .notification-success .notification-icon {
+      color: var(--accent-success);
     }
 
     .notification-error {
-      border-left-color: #dc3545;
-      background: linear-gradient(90deg, #fff8f8 0%, white 100%);
+      border-left-color: var(--accent-danger);
+      background: var(--background-primary);
+    }
+
+    .notification-error .notification-icon {
+      color: var(--accent-danger);
     }
 
     .notification-warning {
-      border-left-color: #ffc107;
-      background: linear-gradient(90deg, #fffef8 0%, white 100%);
+      border-left-color: var(--accent-warning);
+      background: var(--background-primary);
+    }
+
+    .notification-warning .notification-icon {
+      color: var(--accent-warning);
     }
 
     .notification-info {
-      border-left-color: #17a2b8;
-      background: linear-gradient(90deg, #f8fcff 0%, white 100%);
+      border-left-color: var(--primary-dark);
+      background: var(--background-primary);
+    }
+
+    .notification-info .notification-icon {
+      color: var(--primary-dark);
     }
 
     .notification-header {
@@ -139,14 +156,20 @@ import { NotificationService, Notification } from '../services/notification.serv
     }
 
     .notification-icon {
-      font-size: 1.2rem;
       margin-right: 0.5rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .notification-icon svg {
+      width: 20px;
+      height: 20px;
     }
 
     .notification-title {
       font-weight: 600;
       flex: 1;
-      color: #2c3e50;
+      color: var(--primary-dark);
     }
 
     .notification-close {
@@ -154,7 +177,7 @@ import { NotificationService, Notification } from '../services/notification.serv
       border: none;
       font-size: 1.5rem;
       cursor: pointer;
-      color: #6c757d;
+      color: var(--text-muted);
       padding: 0;
       width: 24px;
       height: 24px;
@@ -166,13 +189,13 @@ import { NotificationService, Notification } from '../services/notification.serv
     }
 
     .notification-close:hover {
-      background-color: rgba(0, 0, 0, 0.1);
-      color: #343a40;
+      background-color: var(--background-tertiary);
+      color: var(--text-primary);
     }
 
     .notification-message {
-      color: #6c757d;
-      font-size: 0.9rem;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
       line-height: 1.4;
     }
 
@@ -184,18 +207,18 @@ import { NotificationService, Notification } from '../services/notification.serv
 
     .notification-action {
       background: transparent;
-      border: 1px solid #dee2e6;
-      border-radius: 4px;
+      border: 1px solid var(--border-medium);
+      border-radius: 0.25rem;
       padding: 0.25rem 0.75rem;
       font-size: 0.875rem;
       cursor: pointer;
       transition: all 0.2s ease;
-      color: #495057;
+      color: var(--text-primary);
     }
 
     .notification-action:hover {
-      background-color: #f8f9fa;
-      border-color: #adb5bd;
+      background-color: var(--background-tertiary);
+      border-color: var(--primary-dark);
     }
 
     @keyframes slideIn {
@@ -247,11 +270,16 @@ export class NotificationComponent implements OnInit, OnDestroy {
 
   getIcon(type: string): string {
     switch (type) {
-      case 'success': return '✅';
-      case 'error': return '❌';
-      case 'warning': return '⚠️';
-      case 'info': return 'ℹ️';
-      default: return '📢';
+      case 'success': 
+        return '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>';
+      case 'error': 
+        return '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+      case 'warning': 
+        return '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18A2 2 0 0 0 3.68 21h16.64a2 2 0 0 0 1.86-2.86L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>';
+      case 'info': 
+        return '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>';
+      default: 
+        return '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12H14L13 11V7A2 2 0 0 0 11 5H9A2 2 0 0 0 7 7V11"/><path d="M14 9V7A6 6 0 0 0 2 7V11A10 10 0 0 0 12 21A10 10 0 0 0 22 11V7A6 6 0 0 0 14 9Z"/></svg>';
     }
   }
 }

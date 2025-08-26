@@ -13,7 +13,13 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
   template: `
     <div class="market-dashboard-container">
       <div class="dashboard-header">
-        <h1>📈 Market Trends Dashboard</h1>
+        <h1>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem; vertical-align: middle;">
+            <polyline points="23,6 13.5,15.5 8.5,10.5 1,18"/>
+            <polyline points="17,6 23,6 23,12"/>
+          </svg>
+          Market Trends Dashboard
+        </h1>
         <p>Real estate market analysis and insights</p>
         <div class="header-actions">
           <a routerLink="/search" class="btn btn-secondary">← Property Search</a>
@@ -50,28 +56,56 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
       <div class="dashboard-content" *ngIf="!loading; else loadingTemplate">
         <!-- Market Indicators -->
         <div class="indicators-section" *ngIf="marketIndicators">
-          <h2>🎯 Market Health Indicators</h2>
+          <h2>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem; vertical-align: middle;">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="12" r="6"/>
+              <circle cx="12" cy="12" r="2"/>
+            </svg>
+            Market Health Indicators
+          </h2>
           <div class="indicators-grid">
             <div class="indicator-card temperature" [class]="'temp-' + marketIndicators.marketTemperature">
-              <div class="indicator-icon">🌡️</div>
+              <div class="indicator-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 4V2a2 2 0 0 0-4 0v2a7 7 0 0 0-2 13.1A6 6 0 0 0 12 22a6 6 0 0 0 4-6.9A7 7 0 0 0 14 4Z"/>
+                  <circle cx="12" cy="18" r="2"/>
+                </svg>
+              </div>
               <div class="indicator-value">{{ marketIndicators.marketTemperature | titlecase }}</div>
               <div class="indicator-label">Market Temperature</div>
             </div>
             
             <div class="indicator-card">
-              <div class="indicator-icon">💰</div>
+              <div class="indicator-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="1" x2="12" y2="23"/>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                </svg>
+              </div>
               <div class="indicator-value">{{ marketIndicators.priceToIncomeRatio | number:'1.1-1' }}</div>
               <div class="indicator-label">Price-to-Income Ratio</div>
             </div>
             
             <div class="indicator-card">
-              <div class="indicator-icon">🏠</div>
+              <div class="indicator-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z"/>
+                  <polyline points="9,22 9,12 15,12 15,22"/>
+                </svg>
+              </div>
               <div class="indicator-value">{{ marketIndicators.affordabilityIndex | number:'1.0-0' }}</div>
               <div class="indicator-label">Affordability Index</div>
             </div>
             
             <div class="indicator-card">
-              <div class="indicator-icon">📊</div>
+              <div class="indicator-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="18" y1="20" x2="18" y2="10"/>
+                  <line x1="12" y1="20" x2="12" y2="4"/>
+                  <line x1="6" y1="20" x2="6" y2="14"/>
+                </svg>
+              </div>
               <div class="indicator-value">{{ marketIndicators.buyerDemand | number:'1.0-0' }}%</div>
               <div class="indicator-label">Buyer Demand</div>
             </div>
@@ -80,7 +114,13 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
 
         <!-- Price Trends Chart -->
         <div class="chart-section" *ngIf="trendData.length > 0">
-          <h2>📈 Price Trends</h2>
+          <h2>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem; vertical-align: middle;">
+              <polyline points="23,6 13.5,15.5 8.5,10.5 1,18"/>
+              <polyline points="17,6 23,6 23,12"/>
+            </svg>
+            Price Trends
+          </h2>
           <div class="chart-controls">
             <button 
               *ngFor="let metric of chartMetrics" 
@@ -139,7 +179,13 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
 
         <!-- Interest Rate Trends -->
         <div class="chart-section" *ngIf="interestRateData.length > 0">
-          <h2>📉 Interest Rate Trends</h2>
+          <h2>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem; vertical-align: middle;">
+              <polyline points="23,18 13.5,8.5 8.5,13.5 1,6"/>
+              <polyline points="17,18 23,18 23,12"/>
+            </svg>
+            Interest Rate Trends
+          </h2>
           <div class="interest-rate-chart">
             <div class="rate-legend">
               <div class="legend-item">
@@ -206,7 +252,13 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
 
         <!-- Regional Comparison -->
         <div class="regional-section" *ngIf="regionalData.length > 0">
-          <h2>🗺️ Regional Market Comparison</h2>
+          <h2>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem; vertical-align: middle;">
+              <path d="M3 7V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V7"/>
+              <path d="M3 7L12 2L21 7"/>
+            </svg>
+            Regional Market Comparison
+          </h2>
           <div class="regional-grid">
             <div 
               *ngFor="let region of regionalData.slice(0, 6)" 
@@ -243,7 +295,20 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
 
         <!-- Market Insights -->
         <div class="insights-section" *ngIf="marketInsights.length > 0">
-          <h2>💡 Market Insights & Analysis</h2>
+          <h2>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem; vertical-align: middle;">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1" x2="12" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1" y1="12" x2="3" y2="12"/>
+              <line x1="21" y1="12" x2="23" y2="12"/>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+            Market Insights & Analysis
+          </h2>
           <div class="insights-grid">
             <div 
               *ngFor="let insight of marketInsights" 
@@ -252,7 +317,21 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
             >
               <div class="insight-header">
                 <div class="insight-icon">
-                  {{ insight.impact === 'positive' ? '📈' : insight.impact === 'negative' ? '📉' : '📊' }}
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <ng-container *ngIf="insight.impact === 'positive'">
+                      <polyline points="23,6 13.5,15.5 8.5,10.5 1,18"/>
+                      <polyline points="17,6 23,6 23,12"/>
+                    </ng-container>
+                    <ng-container *ngIf="insight.impact === 'negative'">
+                      <polyline points="23,18 13.5,8.5 8.5,13.5 1,6"/>
+                      <polyline points="17,18 23,18 23,12"/>
+                    </ng-container>
+                    <ng-container *ngIf="insight.impact !== 'positive' && insight.impact !== 'negative'">
+                      <line x1="18" y1="20" x2="18" y2="10"/>
+                      <line x1="12" y1="20" x2="12" y2="4"/>
+                      <line x1="6" y1="20" x2="6" y2="14"/>
+                    </ng-container>
+                  </svg>
                 </div>
                 <div class="insight-confidence">{{ insight.confidence }}% confidence</div>
               </div>
@@ -271,10 +350,38 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
 
         <!-- Export and Actions -->
         <div class="dashboard-actions">
-          <button (click)="exportData()" class="btn btn-primary">📊 Export Market Data</button>
-          <button (click)="generateReport()" class="btn btn-secondary">📄 Generate Report</button>
-          <button (click)="shareInsights()" class="btn btn-outline">📤 Share Insights</button>
-          <button (click)="refreshData()" class="btn btn-outline">🔄 Refresh Data</button>
+          <button (click)="exportData()" class="btn btn-primary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+              <line x1="18" y1="20" x2="18" y2="10"/>
+              <line x1="12" y1="20" x2="12" y2="4"/>
+              <line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+            Export Market Data
+          </button>
+          <button (click)="generateReport()" class="btn btn-secondary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+              <path d="M9 5H7C6.46957 5 5.96086 5.21071 5.58579 5.58579C5.21071 5.96086 5 6.46957 5 7V19C5 19.5304 5.21071 20.0391 5.58579 20.4142C5.96086 20.7893 6.46957 21 7 21H17C17.5304 21 18.0391 20.7893 18.4142 20.4142C18.7893 20.0391 19 19.5304 19 19V7C19 6.46957 18.7893 5.96086 18.4142 5.58579C18.0391 5.21071 17.5304 5 17 5H15"/>
+              <path d="M9 5C9 4.46957 9.21071 3.96086 9.58579 3.58579C9.96086 3.21071 10.4696 3 11 3H13C13.5304 3 14.0391 3.21071 14.4142 3.58579C14.7893 3.96086 15 4.46957 15 5V7H9V5Z"/>
+            </svg>
+            Generate Report
+          </button>
+          <button (click)="shareInsights()" class="btn btn-outline">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+              <path d="M4 12V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V12"/>
+              <polyline points="16,6 12,2 8,6"/>
+              <line x1="12" y1="2" x2="12" y2="15"/>
+            </svg>
+            Share Insights
+          </button>
+          <button (click)="refreshData()" class="btn btn-outline">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+              <path d="M21 12C21 16.9706 16.9706 21 12 21C9.69494 21 7.59227 20.1334 6 18.7083L3 16"/>
+              <path d="M3 12C3 7.02944 7.02944 3 12 3C14.3051 3 16.4077 3.86656 18 5.29168L21 8"/>
+              <path d="M3 21V16H8"/>
+              <path d="M16 8H21V3"/>
+            </svg>
+            Refresh Data
+          </button>
         </div>
       </div>
 
@@ -290,26 +397,27 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
   styles: [`
     .market-dashboard-container {
       min-height: 100vh;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      padding: 20px;
+      background: var(--background-secondary);
+      padding: 2rem;
     }
 
     .dashboard-header {
       text-align: center;
-      margin-bottom: 30px;
-      color: white;
+      margin-bottom: 2rem;
+      position: relative;
     }
 
     .dashboard-header h1 {
       font-size: 2.5rem;
-      margin-bottom: 10px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      margin-bottom: 0.5rem;
+      color: var(--primary-dark);
+      font-weight: 600;
     }
 
     .dashboard-header p {
       font-size: 1.2rem;
-      opacity: 0.9;
-      margin-bottom: 25px;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
     }
 
     .header-actions {
@@ -320,11 +428,12 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
     }
 
     .region-selector {
-      background: white;
-      border-radius: 15px;
-      padding: 20px;
-      margin-bottom: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      background: var(--background-primary);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border: 1px solid var(--border-light);
+      box-shadow: 0 1px 3px var(--shadow-light);
       max-width: 800px;
       margin-left: auto;
       margin-right: auto;
@@ -342,16 +451,18 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
     }
 
     .indicators-section {
-      background: white;
-      border-radius: 15px;
-      padding: 30px;
-      margin-bottom: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      background: var(--background-primary);
+      border-radius: 0.75rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid var(--border-light);
+      box-shadow: 0 1px 3px var(--shadow-light);
     }
 
     .indicators-section h2 {
-      color: #333;
-      margin-bottom: 25px;
+      color: var(--primary-dark);
+      margin-bottom: 1.5rem;
+      font-weight: 600;
     }
 
     .indicators-grid {
@@ -418,16 +529,18 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
     }
 
     .chart-section {
-      background: white;
-      border-radius: 15px;
-      padding: 30px;
-      margin-bottom: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      background: var(--background-primary);
+      border-radius: 0.75rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid var(--border-light);
+      box-shadow: 0 1px 3px var(--shadow-light);
     }
 
     .chart-section h2 {
-      color: #333;
-      margin-bottom: 25px;
+      color: var(--primary-dark);
+      margin-bottom: 1.5rem;
+      font-weight: 600;
     }
 
     .chart-controls {
@@ -622,16 +735,18 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
     }
 
     .regional-section {
-      background: white;
-      border-radius: 15px;
-      padding: 30px;
-      margin-bottom: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      background: var(--background-primary);
+      border-radius: 0.75rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid var(--border-light);
+      box-shadow: 0 1px 3px var(--shadow-light);
     }
 
     .regional-section h2 {
-      color: #333;
-      margin-bottom: 25px;
+      color: var(--primary-dark);
+      margin-bottom: 1.5rem;
+      font-weight: 600;
     }
 
     .regional-grid {
@@ -721,16 +836,18 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
     }
 
     .insights-section {
-      background: white;
-      border-radius: 15px;
-      padding: 30px;
-      margin-bottom: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      background: var(--background-primary);
+      border-radius: 0.75rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid var(--border-light);
+      box-shadow: 0 1px 3px var(--shadow-light);
     }
 
     .insights-section h2 {
-      color: #333;
-      margin-bottom: 25px;
+      color: var(--primary-dark);
+      margin-bottom: 1.5rem;
+      font-weight: 600;
     }
 
     .insights-grid {
@@ -884,7 +1001,7 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
       align-items: center;
       justify-content: center;
       padding: 60px;
-      color: white;
+      color: var(--text-primary);
       text-align: center;
     }
 
