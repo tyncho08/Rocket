@@ -5,7 +5,7 @@ A comprehensive web application that combines **Home Search**, **Mortgage Tools*
 ## 🏗️ Architecture
 
 - **Backend:** .NET Core 3.1, C#, REST API
-- **Frontend:** Angular 17, TypeScript
+- **Frontend:** Angular 19, TypeScript
 - **Database:** PostgreSQL (latest stable)
 - **Package Manager:** pnpm
 
@@ -22,6 +22,9 @@ A comprehensive web application that combines **Home Search**, **Mortgage Tools*
 - **Mortgage Calculator:** Calculate monthly payments with detailed breakdowns
 - **Pre-approval Checker:** Assess loan eligibility based on income and debt
 - **Amortization Schedule:** Generate complete payment schedules
+- **Refinance Calculator:** Compare refinancing options and savings
+- **Rent vs Buy Calculator:** Financial analysis for renting vs purchasing
+- **Extra Payment Calculator:** Calculate impact of additional payments
 - Real-time calculations with interactive controls
 
 ### 📋 Mortgage Management
@@ -30,6 +33,8 @@ A comprehensive web application that combines **Home Search**, **Mortgage Tools*
 - **Application Tracking:** Real-time status updates and notifications
 - **User Dashboard:** Centralized view of all applications and payments
 - **Admin Panel:** Comprehensive management for loan officers and administrators
+- **Market Trends:** Price history charts and market analysis
+- **Property Comparison:** Side-by-side property feature comparison
 
 ## 📁 Project Structure
 
@@ -43,12 +48,15 @@ mortgage-platform/
 │   │   ├── DTOs/            # Data transfer objects
 │   │   └── Data/            # Entity Framework context
 │   └── README.md
-├── frontend/                # Angular 17 application
+├── frontend/                # Angular 19 application
 │   ├── src/app/
 │   │   ├── auth/            # Authentication module
 │   │   ├── home-search/     # Property search module
 │   │   ├── mortgage-tools/  # Calculator and tools
 │   │   ├── dashboard/       # User dashboard
+│   │   ├── market-trends/   # Market analysis and price charts
+│   │   ├── comparison/      # Property comparison features
+│   │   ├── loan-application/ # Loan application forms
 │   │   └── shared/          # Shared components
 │   └── README.md
 ├── database/                # PostgreSQL scripts
@@ -130,9 +138,10 @@ Once the backend is running, visit `http://localhost:5000/swagger` for interacti
 ### Key Endpoints
 
 - **Authentication:** `/api/auth/login`, `/api/auth/register`
-- **Properties:** `/api/properties/search`, `/api/properties/{id}`
-- **Mortgage Tools:** `/api/mortgage/calculate`, `/api/mortgage/preapproval`
+- **Properties:** `/api/properties/search`, `/api/properties/{id}`, `/api/properties/locations`
+- **Mortgage Tools:** `/api/mortgage/calculate`, `/api/mortgage/preapproval`, `/api/mortgage/refinance`
 - **Loans:** `/api/loans`, `/api/loans/{id}/status`
+- **Market Data:** `/api/market-trends`, `/api/price-history`
 
 ## 🧪 Testing
 
@@ -193,18 +202,25 @@ The application is fully responsive and works seamlessly across:
 
 ### Frontend Modules
 - **Auth Module:** Login, registration, and authentication guards
-- **Home Search Module:** Property search and filtering
-- **Mortgage Tools Module:** Calculators and financial tools
+- **Home Search Module:** Property search and filtering with advanced filters
+- **Mortgage Tools Module:** Comprehensive calculators and financial tools
 - **Dashboard Module:** User interface and loan management
+- **Market Trends Module:** Market analysis with interactive charts
+- **Comparison Module:** Property comparison functionality
+- **Admin Module:** Administrative features for loan management
+- **Loan Application Module:** Structured loan application forms
 
 ## 📈 Performance Features
 
 - Lazy loading for Angular modules
 - Database indexing for fast queries
 - Pagination for large data sets
-- Optimized API responses
+- Optimized API responses with realistic property data
 - Caching strategies
 - Efficient component architecture
+- Interactive charts with optimized rendering
+- Skeleton loaders for improved perceived performance
+- Multi-state property dataset for comprehensive testing
 
 ## 🛡️ Data Models
 
@@ -220,8 +236,11 @@ The application is fully responsive and works seamlessly across:
 - **Swagger:** API documentation and testing
 - **Entity Framework:** Database ORM and migrations
 - **Angular CLI:** Development and build tools
-- **TypeScript:** Type-safe development
+- **TypeScript:** Type-safe development (v5.7.2)
 - **SCSS:** Advanced styling capabilities
+- **Angular Material:** UI component library (v20.2.0)
+- **Chart.js/D3:** Interactive data visualization
+- **PostgreSQL:** Advanced database features with UUID support
 
 ## 📋 Production Readiness
 

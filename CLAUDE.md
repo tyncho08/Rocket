@@ -8,7 +8,7 @@ This is the Rocket Mortgage Platform - a full-stack mortgage application with pr
 
 **Tech Stack:**
 - Backend: .NET Core 3.1 with C# (API at http://localhost:5000)
-- Frontend: Angular 19 with TypeScript (UI at http://localhost:4200)
+- Frontend: Angular 19.2 with TypeScript 5.7.2 (UI at http://localhost:4200)
 - Database: PostgreSQL
 - Package Manager: pnpm (frontend), dotnet CLI (backend)
 
@@ -85,19 +85,25 @@ Key patterns:
 ### Frontend Structure
 Angular application with modular design:
 - **auth/** - Authentication module with login/register components
-- **home-search/** - Property search and listing features
-- **mortgage-tools/** - Calculators (payment, refinance, rent vs buy, etc.)
+- **home-search/** - Property search and listing features with advanced filtering
+- **mortgage-tools/** - Comprehensive calculators (payment, refinance, rent vs buy, extra payments)
 - **dashboard/** - User dashboard and loan management
-- **admin/** - Administrative features for loan approval
+- **admin/** - Administrative features for loan approval and management
+- **market-trends/** - Market analysis with interactive price history charts
+- **comparison/** - Property comparison functionality
+- **loan-application/** - Structured loan application forms
 - **shared/** - Common components, services, and utilities
 
 Key patterns:
 - Standalone components architecture
-- Lazy loading for performance
-- Angular Material for UI components
-- Reactive forms and form validation
-- Route guards for authentication
-- Interceptors for API communication
+- Lazy loading for performance optimization
+- Angular Material 20.2.0 for consistent UI components
+- Reactive forms with comprehensive validation
+- Route guards for authentication and authorization
+- HTTP interceptors for API communication and error handling
+- Interactive data visualization with charts
+- Skeleton loaders for improved user experience
+- Professional styling with enhanced visual design
 
 ### Database Schema
 **Database**: PostgreSQL (`mortgage_platform`)
@@ -136,12 +142,16 @@ Main tables:
 - Admin User: admin@mortgageplatform.com / admin123
 
 ### Key Features to Test
-1. Property search with filters and pagination
-2. Mortgage calculators (payment, refinance, amortization)
-3. Loan application workflow
-4. Document upload functionality
-5. Admin loan approval process
-6. User dashboard and favorites
+1. Property search with advanced filters and pagination
+2. Comprehensive mortgage calculators (payment, refinance, rent vs buy, extra payments, amortization)
+3. Market trends dashboard with interactive price history charts
+4. Property comparison functionality
+5. Loan application workflow with structured forms
+6. Document upload functionality
+7. Admin loan approval and management process
+8. User dashboard with favorites and loan tracking
+9. Multi-state property dataset with realistic data
+10. Enhanced UI with professional styling and animations
 
 ### Common Development Tasks
 
@@ -154,14 +164,22 @@ When modifying the API:
 When modifying the UI:
 1. Components are in `frontend/src/app/[module]/`
 2. Services are typically in the same module directory
-3. Use Angular Material components for consistency
+3. Use Angular Material 20.2.0 components for consistency
 4. Follow existing patterns for forms and validation
+5. Maintain professional styling and visual design standards
+6. Use interactive charts for data visualization where appropriate
+7. Implement skeleton loaders for better user experience
+8. Follow accessibility best practices with proper ARIA attributes
 
 ### Performance Considerations
 - Frontend uses lazy loading - maintain module boundaries
-- API uses pagination for large datasets
-- Images are loaded lazily with skeleton loaders
+- API uses pagination for large datasets with realistic multi-state property data
+- Images are loaded lazily with skeleton loaders for improved perceived performance
+- Interactive charts are optimized for smooth rendering
 - Consider using Angular's OnPush change detection for new components
+- Database queries are optimized with proper indexing
+- UUID generation functions are properly configured in PostgreSQL
+- Professional styling is optimized for cross-browser compatibility
 
 ### Security Notes
 - Never store sensitive data in frontend code
