@@ -66,5 +66,12 @@ namespace MortgagePlatform.API.Controllers
             var favorites = await _propertyService.GetFavoritePropertiesAsync(userId);
             return Ok(favorites);
         }
+
+        [HttpGet("locations")]
+        public async Task<IActionResult> GetLocations()
+        {
+            var locations = await _propertyService.GetLocationsAsync();
+            return Ok(locations);
+        }
     }
 }

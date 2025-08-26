@@ -5,7 +5,7 @@ import { RouterLink } from '@angular/router';
 import { Subscription, debounceTime, distinctUntilChanged } from 'rxjs';
 import { PropertyService } from '../services/property.service';
 import { NotificationService } from '../../shared/services/notification.service';
-import { Property, PropertySearchFilters, PropertySearchResult } from '../../shared/models/property.model';
+import { Property, PropertySearchFilters, PropertySearchResult, PropertyLocations } from '../../shared/models/property.model';
 
 @Component({
   selector: 'app-property-search',
@@ -36,10 +36,7 @@ import { Property, PropertySearchFilters, PropertySearchResult } from '../../sha
             <label for="state">State</label>
             <select id="state" formControlName="state" class="filter-select">
               <option value="">All States</option>
-              <option value="TX">Texas</option>
-              <option value="CA">California</option>
-              <option value="FL">Florida</option>
-              <option value="NY">New York</option>
+              <option *ngFor="let state of availableStates" [value]="state">{{ getStateName(state) }}</option>
             </select>
           </div>
 
@@ -619,6 +616,8 @@ export class PropertySearchComponent implements OnInit, OnDestroy {
   bedroomOptions = [1, 2, 3, 4, 5];
   bathroomOptions = [1, 2, 3, 4];
   currentSort = { sortBy: 'ListedDate', sortOrder: 'desc' };
+  availableStates: string[] = [];
+  availableCities: string[] = [];
   
   private subscriptions = new Subscription();
 
@@ -641,6 +640,19 @@ export class PropertySearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    // Load available locations
+    this.propertyService.getLocations().subscribe({
+      next: (locations: PropertyLocations) => {
+        this.availableStates = locations.states;
+        this.availableCities = locations.cities;
+      },
+      error: (error) => {
+        console.error('Failed to load locations:', error);
+        // Fallback to basic states if API fails
+        this.availableStates = ['TX', 'CA', 'FL', 'NY'];
+      }
+    });
+
     // Auto-search when form values change (debounced)
     this.subscriptions.add(
       this.searchForm.valueChanges.pipe(
@@ -779,6 +791,24 @@ export class PropertySearchComponent implements OnInit, OnDestroy {
 
   onImageError(event: any): void {
     event.target.src = 'assets/images/property-placeholder.jpg';
+  }
+
+  getStateName(stateCode: string): string {
+    const stateNames: { [key: string]: string } = {
+      'AZ': 'Arizona',
+      'CA': 'California',
+      'CO': 'Colorado',
+      'FL': 'Florida',
+      'GA': 'Georgia',
+      'IL': 'Illinois',
+      'NC': 'North Carolina',
+      'NY': 'New York',
+      'OR': 'Oregon',
+      'TN': 'Tennessee',
+      'TX': 'Texas',
+      'WA': 'Washington'
+    };
+    return stateNames[stateCode] || stateCode;
   }
 
   // Add to module imports

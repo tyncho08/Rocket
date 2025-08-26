@@ -200,5 +200,28 @@ namespace MortgagePlatform.API.Services
 
             return favorites;
         }
+
+        public async Task<LocationsDto> GetLocationsAsync()
+        {
+            var states = await _context.Properties
+                .Where(p => p.IsActive)
+                .Select(p => p.State)
+                .Distinct()
+                .OrderBy(s => s)
+                .ToArrayAsync();
+
+            var cities = await _context.Properties
+                .Where(p => p.IsActive)
+                .Select(p => p.City)
+                .Distinct()
+                .OrderBy(c => c)
+                .ToArrayAsync();
+
+            return new LocationsDto
+            {
+                States = states,
+                Cities = cities
+            };
+        }
     }
 }

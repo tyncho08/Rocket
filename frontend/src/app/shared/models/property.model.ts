@@ -38,3 +38,8 @@ export interface PropertySearchResult {
   pageSize: number;
   totalPages: number;
 }
+
+export interface PropertyLocations {
+  states: string[];
+  cities: string[];
+}

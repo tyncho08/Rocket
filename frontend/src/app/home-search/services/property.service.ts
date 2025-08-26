@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { Property, PropertySearchFilters, PropertySearchResult } from '../../shared/models/property.model';
+import { Property, PropertySearchFilters, PropertySearchResult, PropertyLocations } from '../../shared/models/property.model';
 import { AuthService } from '../../auth/services/auth.service';
 import { environment } from '../../../environments/environment';
 
@@ -90,13 +90,7 @@ export class PropertyService {
   }
 
   // Get available states/cities for location filters
-  getLocations(): Observable<{states: string[], cities: string[]}> {
-    return this.http.get<{states: string[], cities: string[]}>(`${this.apiUrl}/locations`).pipe(
-      // Fallback to default locations if API doesn't exist
-      map(locations => locations || {
-        states: ['TX', 'CA', 'FL', 'NY', 'IL'],
-        cities: ['Austin', 'Houston', 'Dallas', 'San Antonio']
-      })
-    );
+  getLocations(): Observable<PropertyLocations> {
+    return this.http.get<PropertyLocations>(`${this.apiUrl}/locations`);
   }
 }
