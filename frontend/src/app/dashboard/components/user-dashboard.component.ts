@@ -563,6 +563,8 @@ export interface LoanApplicationDisplay {
       justify-content: space-between;
       align-items: center;
       margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
 
     .section-header h2 {
@@ -656,6 +658,7 @@ export interface LoanApplicationDisplay {
       display: flex;
       gap: 1rem;
       justify-content: flex-end;
+      flex-wrap: wrap;
     }
 
     /* Applications Section */
@@ -748,6 +751,7 @@ export interface LoanApplicationDisplay {
     .app-actions {
       display: flex;
       gap: 0.5rem;
+      flex-wrap: wrap;
     }
 
     /* Favorites Section */
@@ -1049,6 +1053,23 @@ export interface LoanApplicationDisplay {
 
       .quick-actions {
         grid-template-columns: 1fr;
+      }
+      
+      .section-header {
+        justify-content: center;
+        text-align: center;
+      }
+      
+      .section-header h2 {
+        margin-bottom: 0.5rem;
+      }
+      
+      .form-actions {
+        justify-content: center;
+      }
+      
+      .app-actions {
+        justify-content: center;
       }
     }
   `]

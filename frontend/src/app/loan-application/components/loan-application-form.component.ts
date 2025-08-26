@@ -1150,6 +1150,7 @@ export interface LoanApplicationData {
       position: absolute;
       top: 1rem;
       right: 1rem;
+      z-index: 10;
     }
 
     .terms-section {
@@ -1189,6 +1190,8 @@ export interface LoanApplicationData {
       padding: 2rem;
       background: #f8f9fa;
       border-top: 1px solid #dee2e6;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
 
     .step-info {
@@ -1278,6 +1281,18 @@ export interface LoanApplicationData {
       .form-navigation {
         flex-direction: column;
         gap: 1rem;
+        justify-content: center;
+      }
+      
+      .form-navigation button {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+      }
+      
+      .step-info {
+        text-align: center;
+        order: -1;
       }
 
       .progress-steps {

@@ -137,3 +137,87 @@ button {
 .mat-mdc-button.mat-accent {
   --mdc-filled-button-container-color: var(--accent-success);
 }
+
+/* Button Group Layout Utilities */
+.button-group {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.button-group-center {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-group-end {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.button-group-between {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Responsive Button Stacking */
+@media (max-width: 640px) {
+  .button-group-mobile-stack {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  
+  .button-group-mobile-stack button,
+  .button-group-mobile-stack .btn-primary,
+  .button-group-mobile-stack .btn-secondary {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+/* Container-Aware Button Groups */
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+  
+  &.container-small {
+    max-width: 100%;
+    overflow: hidden;
+  }
+}
+
+/* Fix for absolute positioned buttons */
+.button-overlay-safe {
+  position: relative;
+  z-index: 10;
+  margin: 0.25rem;
+}
+
+/* Pagination button fixes */
+.pagination-controls {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+@media (max-width: 480px) {
+  .pagination-controls {
+    justify-content: space-between;
+    gap: 0.25rem;
+  }
+}

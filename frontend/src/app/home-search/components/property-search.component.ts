@@ -332,6 +332,7 @@ import { Property, PropertySearchFilters, PropertySearchResult } from '../../sha
     .bedroom-buttons, .bathroom-buttons {
       display: flex;
       gap: 0.5rem;
+      flex-wrap: wrap;
     }
 
     .bedroom-btn, .bathroom-btn {
@@ -354,6 +355,7 @@ import { Property, PropertySearchFilters, PropertySearchResult } from '../../sha
       justify-content: center;
       gap: 1rem;
       margin-top: 1rem;
+      flex-wrap: wrap;
     }
 
     .btn {
@@ -396,6 +398,7 @@ import { Property, PropertySearchFilters, PropertySearchResult } from '../../sha
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      flex-wrap: wrap;
     }
 
     .properties-grid {
@@ -550,6 +553,7 @@ import { Property, PropertySearchFilters, PropertySearchResult } from '../../sha
       align-items: center;
       gap: 0.5rem;
       margin-top: 2rem;
+      flex-wrap: wrap;
     }
 
     .pagination-btn, .pagination-number {
@@ -588,6 +592,22 @@ import { Property, PropertySearchFilters, PropertySearchResult } from '../../sha
       .results-header {
         flex-direction: column;
         gap: 1rem;
+        align-items: stretch;
+      }
+      
+      .sort-controls {
+        justify-content: center;
+      }
+      
+      .pagination {
+        gap: 0.25rem;
+      }
+      
+      .pagination-numbers {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+        justify-content: center;
       }
     }
   `]

@@ -559,6 +559,7 @@ import { MortgageCalculation, MortgageCalculationResult } from '../../shared/mod
       gap: 1rem;
       justify-content: center;
       margin-top: 2rem;
+      flex-wrap: wrap;
     }
 
     .btn {
@@ -710,6 +711,7 @@ import { MortgageCalculation, MortgageCalculationResult } from '../../shared/mod
       gap: 1rem;
       margin-bottom: 1rem;
       justify-content: flex-end;
+      flex-wrap: wrap;
     }
 
     .schedule-table {
@@ -867,6 +869,18 @@ import { MortgageCalculation, MortgageCalculationResult } from '../../shared/mod
       .payment-chart {
         flex-direction: column;
         gap: 1rem;
+      }
+      
+      .schedule-controls {
+        justify-content: center;
+      }
+      
+      .quick-actions {
+        flex-direction: column;
+      }
+      
+      .term-buttons {
+        justify-content: center;
       }
 
       .table-header, .table-row {
