@@ -133,7 +133,27 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
           
           <div class="price-chart-container">
             <div class="chart-wrapper">
+              <!-- Y-Axis Labels -->
+              <div class="chart-y-axis">
+                <div 
+                  *ngFor="let label of getYAxisLabels()" 
+                  class="y-label"
+                  [style.bottom.%]="label.position"
+                >
+                  {{ label.value }}
+                </div>
+              </div>
+              
               <div class="chart-area">
+                <!-- Grid lines -->
+                <div class="chart-grid-lines">
+                  <div 
+                    *ngFor="let line of getGridLines()" 
+                    class="grid-line"
+                    [style.bottom.%]="line"
+                  ></div>
+                </div>
+                
                 <div class="chart-grid">
                   <div 
                     *ngFor="let point of trendData; let i = index"
@@ -143,7 +163,7 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
                     [title]="getPointTooltip(point)"
                   >
                     <div class="point-dot"></div>
-                    <div class="point-value" *ngIf="i % 3 === 0">
+                    <div class="point-value" *ngIf="i % 2 === 0">
                       {{ formatChartValue(getPointValue(point)) }}
                     </div>
                   </div>
@@ -154,7 +174,7 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
                       [attr.points]="getChartPoints()"
                       fill="none"
                       stroke="#667eea"
-                      stroke-width="0.5"
+                      stroke-width="0.8"
                     />
                   </svg>
                 </div>
@@ -166,7 +186,7 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
                     class="x-label"
                     [style.left.%]="(i / (trendData.length - 1)) * 100"
                   >
-                    <span *ngIf="i % 3 === 0">
+                    <span *ngIf="shouldShowXLabel(i)">
                       {{ formatDate(point.date) }}
                     </span>
                   </div>
@@ -202,14 +222,34 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
             </div>
             
             <div class="rate-chart-area">
+              <!-- Y-Axis Labels for Interest Rates -->
+              <div class="rate-y-axis">
+                <div 
+                  *ngFor="let label of getInterestRateYAxisLabels()" 
+                  class="y-label"
+                  [style.bottom.%]="label.position"
+                >
+                  {{ label.value }}%
+                </div>
+              </div>
+              
               <div class="rate-chart-grid">
+                <!-- Grid lines for interest rates -->
+                <div class="rate-grid-lines">
+                  <div 
+                    *ngFor="let line of getGridLines()" 
+                    class="grid-line"
+                    [style.bottom.%]="line"
+                  ></div>
+                </div>
+                
                 <!-- 30-Year Rate Line -->
                 <svg class="rate-line rate-30-line" viewBox="0 0 100 100" preserveAspectRatio="none">
                   <polyline 
                     [attr.points]="getRateChartPoints('rate30Year')"
                     fill="none"
                     stroke="#e74c3c"
-                    stroke-width="0.8"
+                    stroke-width="1.2"
                   />
                 </svg>
                 
@@ -219,7 +259,7 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
                     [attr.points]="getRateChartPoints('rate15Year')"
                     fill="none"
                     stroke="#27ae60"
-                    stroke-width="0.8"
+                    stroke-width="1.2"
                   />
                 </svg>
                 
@@ -229,9 +269,22 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
                     [attr.points]="getRateChartPoints('rateARM')"
                     fill="none"
                     stroke="#f39c12"
-                    stroke-width="0.8"
+                    stroke-width="1.2"
                   />
                 </svg>
+              </div>
+              
+              <!-- X-Axis Labels for Interest Rates -->
+              <div class="rate-x-axis">
+                <div 
+                  *ngFor="let point of interestRateData; let i = index"
+                  class="x-label"
+                  [style.left.%]="(i / (interestRateData.length - 1)) * 100"
+                >
+                  <span *ngIf="shouldShowInterestRateXLabel(i)">
+                    {{ formatDate(point.date) }}
+                  </span>
+                </div>
               </div>
               
               <!-- Current Rate Values -->
@@ -581,7 +634,7 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
 
     .price-chart-container {
       position: relative;
-      height: 300px;
+      height: 350px;
       border: 1px solid #e9ecef;
       border-radius: 8px;
       overflow: hidden;
@@ -591,12 +644,52 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
       position: relative;
       height: 100%;
       padding: 20px;
+      padding-bottom: 50px;
+      display: flex;
+    }
+
+    .chart-y-axis {
+      position: relative;
+      width: 60px;
+      height: calc(100% - 60px);
+      margin-right: 10px;
     }
 
     .chart-area {
       position: relative;
-      height: calc(100% - 40px);
+      height: calc(100% - 60px);
+      flex: 1;
       background: linear-gradient(to top, #f8f9fa 0%, transparent 100%);
+    }
+
+    .chart-grid-lines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+    }
+
+    .grid-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: rgba(0, 0, 0, 0.1);
+      border-top: 1px dashed #e9ecef;
+    }
+
+    .y-label {
+      position: absolute;
+      right: 10px;
+      transform: translateY(50%);
+      font-size: 0.75rem;
+      color: #666;
+      font-weight: 500;
+      background: var(--background-primary);
+      padding: 2px 4px;
+      border-radius: 2px;
     }
 
     .chart-grid {
@@ -644,8 +737,10 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
 
     .chart-x-axis {
       position: relative;
-      height: 20px;
-      margin-top: 10px;
+      height: 30px;
+      margin-top: 15px;
+      padding-top: 10px;
+      border-top: 1px solid #e9ecef;
     }
 
     .x-label {
@@ -653,6 +748,11 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
       transform: translateX(-50%);
       font-size: 0.8rem;
       color: #666;
+      font-weight: 500;
+      background: var(--background-primary);
+      padding: 2px 4px;
+      border-radius: 3px;
+      white-space: nowrap;
     }
 
     .interest-rate-chart {
@@ -694,11 +794,22 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
 
     .rate-chart-area {
       position: relative;
-      height: 280px;
+      height: 320px;
       border: 1px solid var(--border-light);
       border-radius: var(--radius-md);
       background: var(--background-secondary);
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .rate-y-axis {
+      position: absolute;
+      left: 10px;
+      top: 20px;
+      width: 50px;
+      height: 220px;
+      z-index: 2;
     }
 
     .rate-chart-grid {
@@ -706,7 +817,26 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
       width: 100%;
       height: 220px;
       padding: var(--space-lg);
+      padding-left: 70px;
       overflow: hidden;
+      flex: 1;
+    }
+
+    .rate-grid-lines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+    }
+
+    .rate-x-axis {
+      position: relative;
+      height: 30px;
+      padding: 0 var(--space-lg);
+      padding-left: 70px;
+      border-top: 1px solid var(--border-light);
     }
 
     .rate-line {
@@ -1344,6 +1474,70 @@ export class MarketTrendsDashboardComponent implements OnInit, OnDestroy {
   formatDate(dateString: string): string {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', { month: 'short', year: '2-digit' });
+  }
+
+  shouldShowXLabel(index: number): boolean {
+    if (this.trendData.length <= 6) return true;
+    if (this.trendData.length <= 12) return index % 2 === 0;
+    return index % 3 === 0;
+  }
+
+  shouldShowInterestRateXLabel(index: number): boolean {
+    if (this.interestRateData.length <= 6) return true;
+    if (this.interestRateData.length <= 12) return index % 2 === 0;
+    return index % 3 === 0;
+  }
+
+  getYAxisLabels(): Array<{position: number, value: string}> {
+    if (this.trendData.length === 0) return [];
+    
+    const values = this.trendData.map(p => this.getPointValue(p));
+    const min = Math.min(...values);
+    const max = Math.max(...values);
+    
+    if (max === min) {
+      return [{ position: 50, value: this.formatChartValue(min) }];
+    }
+    
+    const labels = [];
+    for (let i = 0; i <= 4; i++) {
+      const value = min + (max - min) * (i / 4);
+      const position = 10 + (80 * i / 4);
+      labels.push({
+        position: position,
+        value: this.formatChartValue(value)
+      });
+    }
+    
+    return labels;
+  }
+
+  getInterestRateYAxisLabels(): Array<{position: number, value: string}> {
+    if (this.interestRateData.length === 0) return [];
+    
+    const allRates = this.interestRateData.flatMap(d => [d.rate30Year, d.rate15Year, d.rateARM]);
+    const min = Math.min(...allRates);
+    const max = Math.max(...allRates);
+    
+    if (max === min) {
+      return [{ position: 50, value: min.toFixed(1) }];
+    }
+    
+    const labels = [];
+    for (let i = 0; i <= 4; i++) {
+      const value = min + (max - min) * (i / 4);
+      const position = 10 + (80 * i / 4);
+      labels.push({
+        position: position,
+        value: value.toFixed(1)
+      });
+    }
+    
+    return labels;
+  }
+
+  getGridLines(): number[] {
+    return [10, 30, 50, 70, 90];
   }
 
   refreshData() {

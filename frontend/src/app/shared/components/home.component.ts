@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
     <div class="home-container">
       <section class="hero-section">
         <div class="hero-content">
-          <h1>Welcome to Rocket Mortgage</h1>
+          <h1>Welcome to LendPro</h1>
           <p>Your one-stop solution for home search, mortgage tools, and loan management</p>
           <div class="button-group-center">
             <a routerLink="/search" class="btn btn-outline-white btn-lg">Search Homes</a>

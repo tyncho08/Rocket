@@ -19,7 +19,7 @@ import { Property, PropertySearchFilters, PropertySearchResult, PropertyLocation
       </div>
 
       <!-- Search Filters -->
-      <form [formGroup]="searchForm" class="section-content">
+      <form [formGroup]="searchForm" class="section-content compact-form">
         <div class="form-grid">
           <div class="form-group">
             <label for="city">City</label>
@@ -105,11 +105,11 @@ import { Property, PropertySearchFilters, PropertySearchResult, PropertyLocation
           </div>
         </div>
 
-        <div class="button-group-center mt-lg">
-          <button type="button" (click)="clearFilters()" class="btn btn-secondary">
+        <div class="button-group-center mt-md">
+          <button type="button" (click)="clearFilters()" class="btn btn-secondary btn-sm">
             Clear Filters
           </button>
-          <button type="button" (click)="searchProperties()" class="btn btn-primary">
+          <button type="button" (click)="searchProperties()" class="btn btn-primary btn-sm">
             Search Properties
           </button>
         </div>
@@ -272,7 +272,7 @@ import { Property, PropertySearchFilters, PropertySearchResult, PropertyLocation
 
     .search-header {
       text-align: center;
-      margin-bottom: var(--space-xl);
+      margin-bottom: var(--space-lg);
     }
 
     .search-header h1 {
@@ -315,11 +315,44 @@ import { Property, PropertySearchFilters, PropertySearchResult, PropertyLocation
       font-weight: 500;
     }
 
+    /* Custom Form Grid for Property Search - Fix overlapping issue */
+    .form-grid {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: var(--space-md) !important;
+      width: 100% !important;
+    }
+    
+    .form-grid .form-group {
+      flex: 1 1 320px !important;
+      min-width: 320px !important;
+      max-width: calc(50% - var(--space-lg)) !important;
+      margin-bottom: var(--space-sm) !important;
+      margin-right: 0 !important;
+    }
+    
+    /* Ensure form controls don't overflow */
+    .form-grid .form-group .form-control {
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Compact Form Styling */
+    .compact-form {
+      background: var(--background-primary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg) !important;
+      margin-bottom: var(--space-lg) !important;
+      box-shadow: 0 2px 8px var(--shadow-light);
+    }
+
     /* Enhanced Form Control Styling */
     .form-control {
-      line-height: 1.5;
-      font-size: var(--text-base);
+      line-height: 1.4;
+      font-size: var(--text-sm);
       padding: var(--space-xs) var(--space-sm);
+      height: 40px;
       
       &::placeholder {
         color: var(--text-muted);
@@ -330,6 +363,17 @@ import { Property, PropertySearchFilters, PropertySearchResult, PropertyLocation
       &:focus::placeholder {
         opacity: 0.5;
       }
+    }
+
+    /* Compact form group styling */
+    .compact-form .form-group {
+      margin-bottom: var(--space-sm) !important;
+    }
+
+    .compact-form .form-group label {
+      margin-bottom: var(--space-xs);
+      font-size: var(--text-sm);
+      font-weight: 500;
     }
 
     /* Price Range Inputs */
@@ -479,6 +523,13 @@ import { Property, PropertySearchFilters, PropertySearchResult, PropertyLocation
         font-size: var(--text-2xl);
       }
       
+      /* Responsive form grid - ensure proper spacing on tablets */
+      .form-grid .form-group {
+        flex: 1 1 280px !important;
+        min-width: 280px !important;
+        max-width: 100% !important;
+      }
+      
       .sort-controls {
         flex-direction: column;
         align-items: stretch;
@@ -498,6 +549,19 @@ import { Property, PropertySearchFilters, PropertySearchResult, PropertyLocation
     @media (max-width: 480px) {
       .search-container {
         padding: var(--space-xs);
+      }
+      
+      /* Mobile form grid - single column to prevent overlap */
+      .form-grid {
+        flex-direction: column !important;
+        gap: var(--space-sm) !important;
+      }
+      
+      .form-grid .form-group {
+        flex: none !important;
+        min-width: auto !important;
+        max-width: 100% !important;
+        width: 100% !important;
       }
       
       .property-specs {
