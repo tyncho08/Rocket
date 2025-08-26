@@ -418,13 +418,6 @@ export interface PropertyMarketStats {
             </svg>
             Share Chart
           </button>
-          <button (click)="addToComparison()" class="btn btn-outline">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
-              <line x1="12" y1="5" x2="12" y2="19"/>
-              <line x1="5" y1="12" x2="19" y2="12"/>
-            </svg>
-            Add to Comparison
-          </button>
         </div>
       </div>
 
@@ -1574,10 +1567,4 @@ export class PriceHistoryChartsComponent implements OnInit, OnDestroy {
     }).catch(console.error);
   }
 
-  addToComparison() {
-    if (!this.selectedProperty) return;
-    
-    console.log('Adding property to comparison:', this.selectedProperty.address);
-    // In a real app, would add to comparison service
-  }
 }

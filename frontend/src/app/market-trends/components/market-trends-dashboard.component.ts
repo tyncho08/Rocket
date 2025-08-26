@@ -23,7 +23,6 @@ import { MarketTrendsService, MarketTrendData, RegionData, InterestRateData, Mar
         <p>Real estate market analysis and insights</p>
         <div class="header-actions">
           <a routerLink="/search" class="btn btn-secondary">← Property Search</a>
-          <a routerLink="/comparison" class="btn btn-secondary">Property Comparison</a>
         </div>
       </div>
 
